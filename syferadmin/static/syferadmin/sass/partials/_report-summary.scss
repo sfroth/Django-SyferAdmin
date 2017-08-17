@@ -1,0 +1,367 @@
+// ----- Report Summary ----- //
+
+$report-sidebar-width: 470px;
+$report-sidebar-view: 960px;
+
+@mixin report-sidebar-active {
+	#promotion_form {
+		@include calc("width", "100% - #{$report-sidebar-width}");
+		@include transition(width .6s #{$cubic-bezier}); // 1/2 Slowly transition in
+	}
+
+	.btn.close-report-menu {
+		display: block;
+	}
+
+	.object-tools, .report-container {
+		@include transform(translateX(-470px));
+		@include transition(right .6s #{$cubic-bezier}, transform .6s #{$cubic-bezier});
+	}
+}
+
+#promotion_form, .object-tools li, .submit-row > * {
+	@include kill-flicker;
+}
+
+.add-promo.promotions-promotion form > h2 {
+	clear: left;
+	float: left;
+	width: auto;
+}
+
+.btn.close-report-menu {
+	background: none;
+	border: 0;
+	display: none;
+	font-size: 14px;
+	height: 30px;
+	line-height: 30px;
+	padding: 0;
+	position: absolute;
+	right: 0;
+	top: 60px;
+	width: 30px;
+	@include icon($icon: "\f00d", $padding: 0);
+}
+
+
+.btn.view-report {
+	background: none;
+    border: 0;
+    clear: left;
+    float: left;
+	font-size: 11px;
+	height: auto;
+	letter-spacing: .1em;
+	line-height: normal;
+	// margin: -20px 0 0;
+	margin: -38px 0 0;
+	padding: 0;
+	@include transition(all .3s ease-in-out);
+	@include icon($icon: "\e61d", $font-family: $font-icon, $padding: 7px, $font-size: 9px);
+
+	@include breakpoint(max-width 768px) {
+		font-size: 10px;
+		// left: 90px;
+		// position: absolute;
+		// top: 74px;
+	}
+
+	// @include breakpoint(max-width 479px) {
+	// 	left: 20px;
+	// }
+}
+
+.promotions-promotion .object-tools {
+	@include transition(right .3s #{$cubic-bezier}, transform .3s #{$cubic-bezier});
+}
+
+.report-container {
+	background-color: darken(#fafafa, .5%);
+	margin-bottom: -20px;
+	padding-bottom: 100px;
+	padding-top: 30px;
+	@extend %padding-margin;
+
+	> a {
+		display: inline-block;
+		font-size: 12px;
+		letter-spacing: .1em;
+		margin-bottom: 20px;
+		text-transform: uppercase;
+		@include icon($icon: "\f0f6", $padding: 7px); // file
+	}
+
+	header {
+		display: none;
+	}
+
+	h2 {
+		@extend %heading-title;
+		@include icon($icon: "\e61d", $font-family: $font-icon, $padding: 10px); // chart
+		margin-bottom: 10px;
+	}
+
+	.data-body {
+		background-color: #fff;
+	}
+
+	.date_ranges {
+		padding-bottom: 40px;
+
+		button {
+			width: 100%;
+		}
+	}
+
+	.also-purchased {
+		margin: 0;
+		padding: 0;
+
+		counter-reset: productorders;
+
+		li {
+			float: left;
+			list-style: none;
+			width: 49.5%;
+
+			&:nth-child(2n+1) {
+				clear: both;
+			}
+
+			a {
+				display: block;
+				padding: 10px;
+				position: relative;
+
+				&:before {
+					background-color: $aqua;
+					color: #F3F3F3;
+					counter-increment: productorders;
+					content: counter(productorders);
+					font-family: $font-standard-bold;
+					font-size: 12px;
+					left: 1px;
+					height: 22px;
+					line-height: 22px;
+					padding: 0 10px;
+					position: absolute;
+					top: 11px;
+				}
+
+			}
+
+			&:nth-child(odd) a {
+				padding-left: 0;
+			}
+
+			&:nth-child(even) a {
+				padding-right: 0;
+
+				&:before {
+					left: 11px;
+				}
+			}
+
+			figure {
+				margin: 0;
+
+				img {
+					border: 1px solid #EEE;
+				}
+			}
+
+			figcaption {
+				strong, span {
+					display: block;
+				}
+			}
+		}
+	}
+
+	dl.notifications {
+		overflow: hidden;
+
+		dt {
+			position: relative;
+			float: left;
+			width: 90%;
+			margin: 0 0 10px;
+			padding-bottom: 10px;
+
+			&:after {
+				content: ":";
+			}
+
+			&:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				display: block;
+				width: 200%;
+				border-bottom: $border;
+			}
+		}
+
+		dd {
+			float: right;
+			font-family: $font-standard-bold;
+			width: 10%;
+			text-align: right;
+			margin: 0 0 10px;
+			padding-bottom: 10px;
+		}
+	}
+}
+
+.side-report-active {
+	@include breakpoint($report-sidebar-view 1430px) {
+		#promotion_form {
+			.add li {
+				clear: none !important;
+				margin-left: 2% !important;
+				width: 47.5% !important;
+
+				&:nth-of-type(odd) {
+					clear: left !important;
+					margin-left: 0 !important;
+				}
+			}
+		}
+	}
+
+	// Move the positioned History button over to line up
+	// with gutters when sidebar reports view is active
+	@include breakpoint(1500px) {
+		.edit .object-tools {
+			@include transform(translateX(-470px));
+			@include transition(right .6s #{$cubic-bezier}, transform .6s #{$cubic-bezier});
+		}
+	}
+}
+
+@include breakpoint($report-sidebar-view) {
+	#promotion_form {
+		@include transition(width .3s #{$cubic-bezier}); // 2/2 Quickly transition out
+	}
+
+	.report-container {
+		border-left: $border;
+		bottom: 0;
+		margin: 0;
+		max-height: 100%;
+		overflow-y: auto;
+		padding: 78px 30px;
+		position: fixed;
+		right: -$report-sidebar-width;
+		top: 0;
+		@include transition(right .3s #{$cubic-bezier}, transform .3s #{$cubic-bezier}); // 2/2 Quickly transition out
+		width: $report-sidebar-width;
+
+		h2 {
+			font-size: 16px;
+		}
+
+		.date_ranges {
+			left: 30px;
+			margin-right: 0;
+			position: absolute;
+			right: 20px;
+			top: 590px;
+			width: auto;
+
+    		li {
+    			margin: 0 2.5% 10px 0 !important;
+				width: 47.5% !important;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+    		}
+
+    		.custom-select {
+    			border: $border;
+				left: 0;
+    			margin-top: -29px;
+    			min-width: 0;
+				right: 11px;
+
+    			label ~ label {
+					margin-top: 0;
+				}
+    		}
+
+    		button[data-range="custom"] {
+				background: none;
+				border: 0;
+				font-size: 11px;
+				height: auto;
+				letter-spacing: .1em;
+				line-height: normal;
+				padding: 0;
+				text-align: left;
+    		}
+		}
+	}
+
+	.side-report-active {
+		@include report-sidebar-active;
+
+		// .object-tools {
+		// 	right: 500px;
+		// }
+
+		// .report-container {
+		// 	right: 0;
+		// }
+	}
+}
+
+// Side report open by default on buff screens
+@include breakpoint(2020px) {
+	html:not(.side-report-hidden) .edit {
+		@include report-sidebar-active;
+
+		.report-container:before { // so we can check if were in the default view via js
+			content: "report-aside-open-big-screen";
+			font-size: 0;
+			height: 0;
+			left: auto;
+			overflow: hidden;
+			position: absolute;
+			top: auto;
+			visibility: hidden;
+			z-index: -10;
+			width: 0;
+		}
+	}
+
+	html.no-csstransforms:not(.side-report-hidden) .edit {
+		.object-tools {
+			right: 520px;
+		}
+
+		.report-container {
+			right: 0;
+		}
+	}
+
+	html:not(.side-report-hidden).side-report-active {
+		@include report-sidebar-active;
+	}
+
+	html.no-csstransforms.side-report-active:not(.side-report-hidden) {
+		.object-tools {
+			right: 520px;
+		}
+
+		.report-container {
+			right: 0;
+		}
+	}
+}
+
+#product_order_report {
+	margin-bottom: 15px;
+}

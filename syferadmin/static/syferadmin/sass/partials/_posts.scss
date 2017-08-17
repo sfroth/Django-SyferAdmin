@@ -1,0 +1,41 @@
+// ----- Posts ----- //
+
+.posts.index {
+	#changelist-form .actions {
+		min-width: 140px;
+	}
+
+	#result_list {
+		.column-modified, .column-status {
+			min-width: 145px;
+		}
+
+		.column-publish_date {
+			min-width: 190px;
+		}
+	}
+}
+
+.sidepost-category.form .chosen-container + {
+	.add-another, .add-related { // .add-another becomes .add-related in django 1.8
+		@include breakpoint($display-phone-landscape) {
+			height: em(41px);
+			line-height: em(41px);
+		}
+	}
+}
+
+.sidepost-post.form {
+	.inline-group ul li,
+	.inline-group ol li {
+
+		.inline-deletelink {
+			display: none;
+		}
+
+		.delete:after {
+			content: "Delete";
+			display: inline;
+		}
+	}
+}

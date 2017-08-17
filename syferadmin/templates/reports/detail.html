@@ -1,0 +1,264 @@
+{% extends "admin/base.html" %}
+{% load i18n admin_static admin_list %}
+{% load admin_extras %}
+
+{% block title %}Reports / {{ block.super }}{% endblock %}
+
+{% block bodyclass %}{{ cl.opts.verbose_name_plural|lower }}reports index{% endblock %}
+
+{% block stylesheets %}
+	{{ block.super }}
+	<link href="{% static "syferadmin/css/reports.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block javascript %}
+	{{ block.super }}
+	{{ form.media }}
+	<script type="text/javascript">
+	  currentDashboard = '{{ report_title }}';
+	</script>
+	<script src="{% static "syferadmin/libs/d3/d3.js" %}"></script>
+	<script src="{% static "syferadmin/libs/nvd3/nvd3.js" %}"></script>
+	<script src="{% static "syferadmin/libs/jquery.cookie.js" %}"></script>
+	<script src="{% static "syferadmin/libs/dateFormat.js" %}"></script>
+	<script src="{% static "syferadmin/libs/countUp.js" %}"></script>
+	<script src="{% static "syferadmin/js/currency.js" %}"></script>
+	<script src="{% static "syferadmin/js/reports.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+
+	<header data-tz="{{ region.timezone }}" data-tz-abbrev="{% now 'e' %}">
+		<h2>
+			{{ report.title }}
+			{% if report.show_record_count %}
+				<span class="record-count"></span>
+			{% endif %}
+			<span class="dashboard-date-range" title="All times are {{ region.timezone }}">
+				<span data-start-date>{% now "m/d/Y e" %}</span>
+				<span class="date-range-divider">-</span>
+				<span data-end-date>{% now "m/d/Y e" %}</span>
+			</span>
+		</h2>
+
+		{% if not error and report.date_dependent %}
+			<menu id="tools">
+				<button type="button" class="refresh" data-action="refresh">Refresh</button>
+				<ul class="date_ranges" data-ranges>
+					{% if 'day' in report.date_ranges %}
+						<li><button type="button" data-range="day" title="12:00AM - Now">Today</button></li>
+					{% endif %}
+					{% if 'week' in report.date_ranges %}
+						<li><button type="button" data-range="week" title="Last 7 days">This Week</button></li>
+					{% endif %}
+					{% if 'month' in report.date_ranges %}
+						<li class="active"><button type="button" data-range="month" title="Last 30 days">This Month</button></li>
+					{% endif %}
+					{% if 'year' in report.date_ranges %}
+						<li><button type="button" data-range="year" title="Last 12 months">This Year</button></li>
+					{% endif %}
+					{% if 'custom' in report.date_ranges %}
+						<li>
+							<button type="button" data-range="custom" title="Enter a custom date range">Custom...</button>
+							<div class="custom-select" data-ui="custom" style="display: none;">
+								<label for="start_date">Start Date:</label> {{ form.start_date }}
+								<label for="end_date">End Date:</label> {{ form.end_date }}
+								<input id="custom" type="submit" value="Go">
+							</div>
+						</li>
+					{% endif %}
+				</ul>
+			</menu>
+		{% endif %}
+		{% if report.field_options or report.filters %}
+			<div id="changelist-filter"  class="filters-on-right">
+				<h2>Filter</h2>
+				<ul>
+				<form method="get">
+					{% if report.field_options %}
+						<li>
+							<h3> Fields </h3>
+							<ul>
+								<li style="display:none;"></li>{% comment %}Empty LI to get around styling issues{% endcomment %}
+								{% for opt in report.field_option_list %}
+									<li {% if opt.selected %}class="selected"{% endif %}>
+										<a href="{{ opt.query }}">{{ opt.text }}</a>
+									</li>
+								{% endfor %}
+							</ul>
+						</li>
+					{% endif %}
+					{% if report.filters %}
+						{% for filter in report.filters %}
+							<li>
+								<h3> By {{ filter.0 }} </h3>
+								<ul>
+									{% for key, options in report.filter_option_list.items %}
+										{% if key == filter.1 %}
+											{% if options|length == 0 %}
+												<li>
+													<input type="search" name="{{ key }}" value="{{ report.filter_value_list|lookup:key }}" class="filter-box" />
+												</li>
+											{% elif options|length < 10 %}
+												{% for opt in options %}
+													<li {% if opt.selected %}class="selected"{% endif %}>
+														<a href="{{ opt.query }}">{{ opt.text }}</a>
+													</li>
+												{% endfor %}
+											{% else %}
+												<li>
+													<select class="filterer">
+													{% for opt in options %}
+														<option value="{{ opt.query|iriencode }}"{% if opt.selected %} selected="selected"{% endif %}>{{ opt.text }}</option>
+													{% endfor %}
+													</select>
+												</li>
+											{% endif %}
+										{% endif %}
+									{% endfor %}
+								</ul>
+							</li>
+						{% endfor %}
+					{% endif %}
+					{% for key, val in report.filter_notext_value_list.items %}
+						<input type="hidden" name="{{ key }}" value="{{ val }}">
+					{% endfor %}
+					<input type="submit" value="apply" style="display:none;">
+				</form>
+				</ul>
+			</div>
+		{% endif %}
+	</header>
+	<div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
+		<div class="results">
+			{% if report.help_text %}
+			<section class="help-info">
+				<p class="help-info-text">{{ report.help_text }}</p>
+			</section>
+			{% endif %}
+
+			<div id="{{ report.token }}" class="report" data-report="{{ report.token }}">
+				{% if report.include_map %}
+					<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+					<div class="region_map" style="margin-left:auto;margin-right:auto;width:500px;"></div>
+				{% endif %}
+				<script type="text/javascript">
+					var params = {};
+					{% if report.params %}
+						{% for key,value in report.params.items %}
+							params['{{ key }}'] = '{{ value }}';
+						{% endfor %}
+					{% endif %}
+					{% if report.include_map %}
+						params['map_number_currency'] = {{ report.map_number_currency|yesno:'true,false' }};
+					{% endif %}
+					{% if report.fields_selected %}
+						params['fields'] = '{{ report.fields_selected|join:',' }}';
+					{% endif %}
+					Dashboard.add({token: "{{ report.token }}", detail: true, parameters: params})
+				</script>
+				<table id="result_list" class="table-striped">
+					<thead>
+						<tr>
+							{% for i in report.fields %}
+								{% if i.2 != 'hidden' %}
+									{% if i.2 != 'image' and i.2 != 'html' %}
+										<th class="sortable" data-field="{{ i.1 }}">
+											<div><span class="column-title"><a href="javascript:void(0)">{{ i.0 }}</a></span></div>
+										</th>
+									{% else %}
+										<th>{{ i.0 }}</th>
+									{% endif %}
+								{% endif %}
+							{% endfor %}
+						</tr>
+					</thead>
+					<tbody class="data-body" data-body>
+					</tbody>
+				</table>
+				<script type="text/template" data-template>
+					<% var totals = {}; %>
+					{% for i in report.fields %}
+						{% if i.2 == 'currency' or i.2 == 'number' %}
+							<% totals['{{ i.1 }}'] = 0; %>
+						{% endif %}
+					{% endfor %}
+
+					<% _.each(results, function(e) { %>
+						<tr>
+							{% for i in report.fields %}
+								{% if i.2 != 'hidden' %}
+									<td>
+										{% if i.2 == 'currency' %}
+											<%- e.{{ i.1 }}.currency() %>
+										{% elif i.2 == 'datetime' %}
+											<% if (e.{{ i.1 }} != null) { %>
+												<%- d3.time.format('%x %X')(d3.time.format.iso.parse(e.{{ i.1 }})) %>
+											<% } %>
+										{% elif i.2 == 'date' %}
+											{% comment %}Javascript is interpreting the date as UTC, then parsing to the user's local. Bypass that.{% endcomment %}
+											<% if (e.{{ i.1 }} != null) { %>
+												<% var record_dt = e.{{ i.1 }}.split('-'); %>
+												<%- d3.time.format('%x')(new Date(record_dt[0], record_dt[1]-1, record_dt[2])) %>
+											<% } %>
+										{% elif i.2 == 'image' %}
+											<% if (e.{{ i.1 }}) { %>
+												<div class="thumb"><img src="<%- e.{{ i.1 }} %>" /></div>
+											<% } %>
+										{% elif i.2 == 'bool' %}
+											<% if (e.{{ i.1 }}) { %>
+												<img src="/static/admin/img/icon-yes.gif" alt="True">
+											<% } else { %>
+												<img src="/static/admin/img/icon-no.gif" alt="False">
+											<% } %>
+										{% elif i.2 == 'html' %}
+											<%= e.{{ i.1 }} %>
+										{% else %}
+											<%- e.{{ i.1 }} %>
+										{% endif %}
+									</td>
+								{% endif %}
+								{% if i.2 == 'currency' or i.2 == 'number' %}
+									<% totals['{{ i.1 }}'] += e.{{ i.1 }}; %>
+								{% endif %}
+							{% endfor %}
+						</tr>
+					<% }); %>
+					{% if not report.hide_totals %}
+						<tr class="totals">
+							{% for i in report.fields %}
+								{% if i.2 != 'hidden' %}
+									<td>
+										{% if i.2 == 'currency' %}
+											<%- totals['{{ i.1 }}'].currency() %>
+										{% elif i.2 == 'number' %}
+											<%- totals['{{ i.1 }}'] %>
+										{% else %}
+											&nbsp;
+										{% endif %}
+									</td>
+								{% endif %}
+							{% endfor %}
+						</tr>
+					{% endif %}
+				</script>
+			</div>
+			{% if settings.SYFERADMIN_EXPORT_EXCEL %}
+			<button type="button" class="export" data-format="xl">Export Excel</button>
+			{% endif %}
+			<button type="button" class="export" data-format="csv">Export CSV</button>
+		</div>
+	</div>
+	<div id="report-block-overlay" style="
+		position: fixed;
+		left: 110px;
+		right: 0;
+		top: 50px;
+		bottom: 0;
+		-moz-opacity:0;
+		filter:alpha(opacity=0);
+		opacity:0;
+		z-index: 10000000;
+		display:none;
+		"></div>
+{% endblock %}

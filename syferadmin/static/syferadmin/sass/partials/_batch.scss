@@ -1,0 +1,47 @@
+// ----- Batch ----- //
+
+.batch {
+	main {
+		form {
+			margin-top: 1.5em;
+		}
+
+		h1 {
+			margin-bottom: em(22px, 20px);
+
+			+ p {
+				margin-bottom: 0;
+
+				+ p {
+					margin-top: em(8px);
+				}
+			}
+		}
+
+		input[type=submit] {
+		    margin-right: em(10px);
+
+		    + a {
+		    	@extend %btn;
+		    }
+		}
+	}
+
+	.chosen-container {
+    	margin-bottom: 5px;
+    	max-width: 440px;
+	}
+
+	.helptext {
+		display: block;
+		font-size: smaller;
+		font-style: italic;
+		margin-bottom: 3em;
+	}
+
+	.submit-row.well {
+		clear: both;
+		float: left;
+		margin-top: 30px;
+	}
+}

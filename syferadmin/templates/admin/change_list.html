@@ -1,0 +1,96 @@
+{% extends "admin/base.html" %}
+{% load i18n admin_static admin_list %}
+{% load admin_urls %}
+
+{% block title %}{{ cl.opts.verbose_name_plural|title }} / {{ block.super }}{% endblock %}
+
+{% block bodyclass %}{{ cl.opts.verbose_name_plural|lower }} index{% endblock %}
+
+{% block content %}
+
+	{{ media.js }}
+	<script type="text/javascript">
+	(function($) {
+		$(document).ready(function($) {
+			var $action_select = $("tr input.action-select");
+			if($action_select.length > 0) {
+				$action_select.actions();
+			}
+		});
+	})(django.jQuery);
+	</script>
+
+	{% block list-title %}
+		<h2>{{ cl.opts.verbose_name_plural|capfirst }} <span class="record-count">{{ cl.full_result_count }}</span></h2>
+	{% endblock %}
+
+	{% block object-tools %}
+		<ul class="object-tools">
+			{% block object-tools-items %}
+				{% if has_add_permission %}
+					<li>
+						<a href="{% url cl.opts|admin_urlname:'add' %}{% if is_popup %}?_popup=1{% endif %}" class="add">{% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}</a>
+					</li>
+				{% endif %}
+				{% if cl.model_admin.sortable %}
+					<li>
+						<a href="{% url cl.opts|admin_urlname:'sort' %}{% if is_popup %}?_popup=1{% endif %}" class="sort">{% trans "Save Sorting" %}</a>
+					</li>
+				{% endif %}
+			{% endblock %}
+		</ul>
+	{% endblock %}
+
+	{% if cl.model_admin.sortable %}<p class="drag-drop">Drag and drop to sort</p>{% endif %}
+
+	{% if cl.formset.errors %}
+			<p class="errornote">
+			{% blocktrans count cl.formset.errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+			</p>
+			{{ cl.formset.non_form_errors }}
+	{% endif %}
+	<div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
+		{% block date_hierarchy %}{% date_hierarchy cl %}{% endblock %}
+
+		{% block filters %}
+			{% if cl.has_filters %}
+				<div id="changelist-filter">
+					<h2>{% trans 'Filter' %}</h2>
+					<ul>
+						{% for spec in cl.filter_specs %}<li>{% admin_list_filter cl spec %}</li>{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+		{% endblock %}
+
+		{% block search %}{% search_form cl %}{% endblock %}
+		<form id="changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+		{% if cl.formset %}
+			<div>{{ cl.formset.management_form }}</div>
+		{% endif %}
+
+		{% if cl.result_list %}
+			{% block result_list %}
+					{% if action_form and actions_on_top and cl.full_result_count %}{% admin_actions %}{% endif %}
+					{% result_list cl %}
+					{% if action_form and actions_on_bottom and cl.full_result_count %}{% admin_actions %}{% endif %}
+			{% endblock %}
+			{% block pagination %}{% pagination cl %}{% endblock %}
+		{% elif cl.query %}
+			<p class="no-entries">
+				No {{ cl.opts.verbose_name_plural }} found!
+			</p>
+		{% else %}
+			<p class="no-entries">
+				No {{ cl.opts.verbose_name_plural }} in the system yet.
+				{% if has_add_permission %}<a href="{% url cl.opts|admin_urlname:'add' %}">Start adding!</a>{% endif %}
+			</p>
+		{% endif %}
+
+		</form>
+	</div>
+{% endblock %}
+
+{% block stylesheets %}{{ block.super }}
+{{ media.css }}
+{% endblock %}

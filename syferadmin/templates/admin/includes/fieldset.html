@@ -1,0 +1,19 @@
+{% load admin_extras %}
+<fieldset class="module aligned {{ fieldset.classes }}">
+	{% if fieldset.name %}<legend>{{ fieldset.name }}</legend>{% endif %}
+	{% if fieldset.description %}
+		<div class="description">{{ fieldset.description|safe }}</div>
+	{% endif %}
+	{% for line in fieldset %}
+		<div class="form-group{% if line.fields|length_is:'1' and line.errors %} errors{% endif %}{% for field in line %}{% if field.field.field.default_field %} trans-field-default{% endif %}{% if field.field.field.translateable %} trans-field{% endif %}{% if field.field.field.hide_translation %} hide-trans-field{% endif %}{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% endfor %}">
+			{% for field in line %}
+				{% if field.is_readonly %}
+					{{ field.label_tag }}
+					<p>{{ field.contents|linebreaksbr }}</p>
+				{% else %}
+					{% render_field field.field %}
+				{% endif %}
+			{% endfor %}
+		</div>
+	{% endfor %}
+</fieldset>

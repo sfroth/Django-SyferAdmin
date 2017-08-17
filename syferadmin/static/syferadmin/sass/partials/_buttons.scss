@@ -1,0 +1,28 @@
+// ----- Buttons ----- //
+
+input[type=submit], .btn {
+	@extend %btn;
+}
+
+.btn-lg {
+	@extend %btn;
+	width: 100%;
+}
+
+.btn-reset {
+	border: 0;
+	height: auto;
+	line-height: normal;
+	padding: 0;
+}
+
+// .btn-red {
+// 	@extend .btn;
+// 	border-color: $red;
+// 	color: $red;
+
+// 	&:hover {
+// 		color: $red;
+// 		background: $light-red;
+// 	}
+// }

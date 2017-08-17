@@ -1,0 +1,32 @@
+{% extends 'base.jinja' %}
+
+{% block bodyclass %}{% endblock %}
+
+{% block content %}
+
+	<div class="oops">
+		<style>
+			.oops {
+				margin: 0 auto;
+				max-width: 700px;
+				padding: 70px 20px;
+				text-align: center;
+			}
+			.oops__link {
+				color: inherit;
+				text-decoration: underline;
+			}
+			.oops__title {
+				margin-bottom: 15px;
+			}
+			.oops__copy {
+				margin-bottom: 15px;
+			}
+		</style>
+		<h1 class="oops__title">Oops! It looks like you were doing something<br> that you weren't supposed to be doing.</h1>
+		{% if request.GET.get('event_id', None) %}
+		<p class="oops__copy">Event Code: <strong>{{ request.GET.get('event_id')|e }}</strong></p>
+		{% endif %}
+	</div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block bodyclass %}blocks add{% endblock %}
+
+{% block content %}
+
+	<h2>Add Block</h2>
+
+	<h3>What type of Block would you like to create?</h3>
+	<ul>
+		{% for b in blocks %}
+		<li class="block-{{ b.type|slugify }}">
+			<a href="{{ b.admin_url }}">
+				<h4>{{ b.type }}</h4>
+				{% if b.block_description %}
+					{{ b.block_description|linebreaks }}
+				{% endif %}
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+
+{% endblock %}

@@ -1,0 +1,140 @@
+{% load staticfiles i18n %}
+<!DOCTYPE html>
+<html class="no-js" lang="en-US"{% if settings.Company.name %} data-brand-name="{{ settings.Company.name|slugify }}"{% endif %}>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="theme-color" content="#424242">
+		{% block meta_tags %}{% endblock %}
+		<title>{% block title %}{{ settings.Company.name }} Admin{% endblock %}</title>
+		{% block favicon %}
+		<link href="{% static "syferadmin/img/favicon.ico" %}" type="image/x-icon" rel="shortcut icon">
+		<link href="{% static "syferadmin/img/favicon.ico" %}" type="image/x-icon" rel="icon">
+		{% endblock %}
+		{% block stylesheets %}
+		<link href="{% static "syferadmin/libs/jquery.fancybox.css" %}" rel="stylesheet">
+		<link href="{% static "syferadmin/libs/chosen/chosen.min.css" %}" rel="stylesheet">
+		<!--[if gt IE 8]><!--> <link href="{% static "syferadmin/css/main.css" %}" rel="stylesheet"> <!--<![endif]-->
+		<!--[if lt IE 9]>
+			<link href="{% static "syferadmin/css/old-ie.css" %}" rel="stylesheet">
+		<![endif]-->
+		<link href="{% static "syferadmin/css/brand.css" %}" rel="stylesheet">
+		{% endblock %}
+		{% block extra_head %}{% endblock %}
+		<!--[if lt IE 9]>
+			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+			<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+			<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+			<script>window.jQuery || document.write('<script src="/js/libs/jquery-2.0.0.min.js"><\/script>')</script>
+		<!--<![endif]-->
+		{% block javascript %}
+		{% if user.is_authenticated %}<script src="{% url 'admin:jsi18n' %}"></script>{% endif %}
+		<script src="{% static "syferadmin/libs/underscore.min.js" %}" type="text/javascript"></script>
+		<script src="{% static "syferadmin/libs/jquery.fancybox.js" %}" type="text/javascript"></script>
+		<script src="{% static "syferadmin/libs/chosen/chosen.jquery.js" %}"></script>
+		<script src="{% static "syferadmin/libs/chosen/jquery-chosen-sortable.js" %}"></script>
+		<script src="{% static "syferadmin/libs/jquery.menuaim.js" %}"></script>
+		<script src="{% static "syferadmin/js/admin.js" %}"></script>
+		<script src="{% static "syferadmin/js/brand.js" %}"></script>
+		{% endblock %}
+		<script src="{% static "syferadmin/libs/jquery.html5-placeholder-shim.js" %}"></script>
+		<script src="{% static "syferadmin/libs/modernizr.js" %}"></script>
+		<script>
+			currency = '{% if region.currency %}{{ region.currency.sign }}{% endif %}';
+		</script>
+	</head>
+    {% block body %}
+	<body class="{% block bodyclass %}{% endblock %} loading {% if is_popup %}popup{% endif %}">
+		<!-- Google Tag Manager -->
+		<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NCV9XF"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-NCV9XF');</script>
+		<!-- End Google Tag Manager -->
+
+		{% if not is_popup %}
+		<header>
+			<div class="wrapper">
+				<span class="menu-toggle" tabindex="0">Menu</span>
+
+				<ul>
+					<li>
+						<a href="/" title="View Site" class="view-site">View Site</a>
+					</li>
+					{% if regions|length > 1 %}
+						<li class="dropdown" id="user-tools">
+							<a title="Choose Region">{{ region }}</a>
+							<ul>
+							{% for other_region in user_regions %}
+								<li{% if region == other_region %} class="active"{% endif %}>
+									<a href="{{ request.path }}?region={{ other_region.slug }}" title="Timezone: {{ other_region.timezone }}">
+										{{ other_region.admin_name }}
+									</a>
+								</li>
+							{% endfor %}
+							</ul>
+						</li>
+					{% endif %}
+					<li class="dropdown" id="user-tools">
+						<a title="My Profile" href="{% url 'admin:syferadmin_user_change' user.id %}">{{ user.greeting }}</a>
+						<ul>
+							<li><a href="{% url 'admin:syferadmin_user_change' user.id %}">My Settings</a></li>
+							<li><a href="{% url 'admin:logout' %}">Log Out</a></li>
+						</ul>
+					</li>
+				</ul>
+
+				<h1><a href="{% url 'admin:dashboard' %}">{{ settings.Company.name }}</a></h1>
+			</div>
+		</header>
+
+		<nav role="navigation" class="nav-main">
+			<ul class="nav-items">
+				<li class="dashboard nav-item{% if request.path == '/admin/' %} active{% endif %}" title="Dashboard"><a href="{% url 'admin:dashboard' %}" class="nav-top-level">Dashboard</a></li>
+				{# Dynamic admin menu (add to this via syferadmin.site.register) #}
+				{% for section in sections %}
+					{% if section.children %}
+					<li class="nav-item {{ section.token }}{{ section.active|yesno:" active," }}">
+						<strong title="{{ section.name }}" class="nav-top-level" data-toggle-item=".nav-wrapper" data-toggle-max-width="480">{{ section.name }}</strong>
+						<div class="wrapper nav-wrapper"><div class="nav-wrapper-inner">
+							<span class="nav-title">{{ section.title }}</span>
+							<ul class="nav-sub-menu">
+								{% for subsection in section.children %}
+								<li class="nav-sub-item{{ subsection.active|yesno:" active," }}">
+									<a href="{% url subsection.url %}" class="nav-link">{{ subsection.text }}</a>
+									{% if subsection.add_url %}
+										<a href="{% url subsection.add_url %}" class="nav-add" title="Add new {{ subsection.text|lower }}">+</a>
+									{% endif %}
+								</li>
+								{% endfor %}
+							</ul>
+							<span class="close nav-close">Close</span>
+						</div></div>
+					</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</nav>
+		{% endif %}
+
+		<main>
+
+			{% include "admin/messages.html" %}
+
+			{% block content %}{% endblock %}
+
+		</main>
+
+		{% if not is_popup %}
+		<footer>&copy; {{ settings.Company.name }}, {% now 'Y' %}</footer>
+		{% endif %}
+
+	</body>
+	{% endblock %}
+</html>

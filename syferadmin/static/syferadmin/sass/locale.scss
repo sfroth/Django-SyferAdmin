@@ -1,0 +1,79 @@
+@import "compass";
+@import "breakpoint";
+
+// Partials:
+@import "partials/variables";
+@import "partials/icon-mixins";
+@import "partials/reusables";
+@import "partials/fonts";
+@import "partials/general";
+
+// ----- Translation Styles ----- //
+
+.trans-field {
+	// Dont apply any styles to the first field (En)
+	+ .trans-field:not(.trans-field-default) {
+		border: 1px solid #dadada;
+		background-color: #f2fafc;
+		display: none;
+		margin-bottom: 20px;
+		padding: 20px 25px 25px;
+		-webkit-box-sizing: border-box !important;
+		-moz-box-sizing: border-box !important;
+		box-sizing: border-box !important;
+		margin-top: -1.2em;
+
+		// Triangles
+		&:after {
+			background: transparent url('#{$image-dir}select-tip-top.png');
+			@include background-size(15px 8px);
+			content: "";
+			height: 8px;
+			position: absolute;
+			left: 26px;
+			top: -8px;
+			width: 15px;
+			z-index: 2;
+		}
+
+		&:before {
+			border: 8px solid transparent;
+			content: "";
+			border-color: transparent transparent #f2fafc;
+			height: 8px;
+			position: absolute;
+			left: 26px;
+			top: -14px;
+			width: 15px;
+			z-index: 3;
+		}
+
+	}
+
+	.editor {
+		background-color: #fff;
+	}
+}
+
+.hide-trans-field{
+	display: none;
+}
+
+// Active Translation styles
+// Floated fields need to be full width so the trans field underneath can line up properly
+.trans-active {
+	.trans-field {
+	    clear: left !important;
+	    float: none !important;
+	    // max-width: none !important;
+	    // width: 100% !important;
+	}
+
+	#product_form .trans-field + .field-code {
+	    margin-left: 0;
+	}
+
+	#variation_set-group .field-price {
+	    clear: left;
+	}
+}

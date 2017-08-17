@@ -1,0 +1,1 @@
+[{"pk": 1, "model": "syferadmin.region", "fields": {"sort": 1, "name": "United States", "parent": null, "countries": ["840"], "locale": null, "admin": true, "timezone": "America/Los_Angeles", "slug": "us"}}]

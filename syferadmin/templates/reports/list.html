@@ -1,0 +1,11 @@
+<% if (!results.length) { %>
+	<h2>No data found</h2>
+<% } else { %>
+	<ol class="list-view">
+		<% _.each(results, function(e) { %>
+			<li>
+				<%- e.detail %> <span class="count">(<%- e.count %>)</span>
+			</li>
+		<% }); %>
+	</ol>
+<% } %>

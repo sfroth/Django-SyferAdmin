@@ -1,0 +1,134 @@
+{% extends "admin/base.html" %}
+{% load i18n admin_static admin_list %}
+{% load admin_urls %}
+
+{% block bodyclass %}{{ cl.opts.verbose_name_plural|lower }} emails{% endblock %}
+
+{% block javascript %}
+	{{ block.super }}
+	<script>
+		$(function(){
+			function getUrl() {
+				var email = $('[name="email"]').val(),
+					type = $('[name="type"]').val(),
+					param = $('[name="param"]').val(),
+					url = '';
+
+				if(email) {
+					url += email;
+					if(param) {
+						url += param + '/';
+					}
+					url += '?type=' + type;
+				}
+				return url
+			}
+			function setHash() {
+				var email = $('[name="email"] option:selected').data('label'),
+					type = $('[name="type"]').val(),
+					param = $('[name="param"]').val();
+				if(email) {
+					window.location.hash = '#' + email + '/' + type + '/' + param;
+				}
+			}
+			function getHash() {
+				var parts = $.map(window.location.hash.substr(1).split('/'), function(v){return v === '' ? null : v});
+				if(parts.length >= 0) {
+					$('[name="email"] [data-label="' + parts[0] + '"]').prop('selected', true).trigger('change').trigger('chosen:updated');
+				}
+				if(parts.length >= 1) {
+					$('[name="type"] [value="' + parts[1] + '"]').prop('selected', true).trigger('change').trigger('chosen:updated');
+				}
+				if(parts.length >= 2) {
+					$('[name="param"]').val(parts[2]);
+				}
+			}
+			$(window).on('resize', function(e){
+				$('main iframe').css('height', $(window).height() - 220);
+			}).trigger('resize');
+			getHash();
+			$('[name="email"], [name="type"], [name="param"]').on('change', function(e){
+				setHash();
+				$('main iframe').attr('src', getUrl());
+			});
+			$('[name="send"]').on('click', function(e){
+				var to = $('[name="to"]').val(),
+					url = getUrl();
+				if(to && url) {
+					$('main iframe').attr('src', getUrl() + '&to=' + to);
+				}
+			});
+			$('[name="email"]').trigger('change');
+		});
+	</script>
+	<style>
+		main h1 {
+			float: left;
+		}
+
+		main select, main .chosen-container, main input[name="param"] {
+			margin: 0 !important;
+			float: right;
+			margin-left: 10px !important;
+		}
+
+		main input[name="param"] {
+			width: 75px;
+		}
+
+		@media(max-width: 590px) {
+			main select[name="type"], main select[name="type"] + div {
+				display: none;
+			}
+		}
+
+		@media(max-width: 675px) {
+			main input[name="param"] {
+				display: none;
+			}
+		}
+
+		main iframe {
+			border: 1px solid #DDD;
+			margin: 10px 0;
+		}
+
+		main .wrapper {
+			display: flex;
+			flex-direction: row;
+		}
+
+		main .wrapper * {
+			flex-grow: 1;
+		}
+
+		main input {
+			margin-right: 10px;
+		}
+
+		footer {
+			display: none;
+		}
+	</style>
+{% endblock %}
+
+{% block content %}
+	<h1>Emails</h1>
+	
+	<select name="email">
+		<option value="">Select an Email</option>
+		{% for email in emails %}
+			<option value="{{ email.url }}" data-label="{{ email.label }}">{{ email.name }}</option>
+		{% endfor %}
+	</select>
+	<select name="type">
+		<option value="html" selected="selected">HTML</option>
+		<option value="text">Text</option>
+	</select>
+	<input type="text" name="param" placeholder="Lookup">
+	<iframe src="about:blank" frameborder="0" id="email-iframe" width="100%" height="80%"></iframe>
+	<div class="wrapper">
+		<input type="email" name="to" value="{{ request.user.email }}">
+		<button name="send">Send&nbsp;Sample&nbsp;Email</button>
+	</div>
+{% endblock %}

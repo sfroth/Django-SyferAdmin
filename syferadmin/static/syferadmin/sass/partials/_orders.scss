@@ -1,0 +1,193 @@
+// ----- Orders ----- //
+
+body {
+	@media print {
+		&.orders-order, &.orders-print {
+			font-size: 0 !important;
+
+			article {
+				.add, .edit, .map {
+					display: none !important;
+				}
+
+				> div {
+					float: left !important;
+					min-height: 0 !important;
+					width: 100% !important;
+				}
+
+				h2 {
+					font-size: 14px !important;
+				}
+			}
+
+			#basic,
+			#billing,
+			#payment_method,
+			#shipping {
+				min-height: 0 !important;
+				max-height: none !important;
+				padding-top: 0 !important;
+			}
+
+			#basic,
+			#billing,
+			#payment_method,
+			#shipping {
+				float: left !important;
+				padding-bottom: 30px;
+				width: 50% !important;
+			}
+
+			#items {
+				overflow: hidden !important;
+				padding-top: 0;
+
+				li {
+					display: inline-block !important;
+					font-size: 12px;
+					float: none !important;
+					margin: 40px 0 0 !important;
+					vertical-align: top !important;
+					width: 50% !important;
+				}
+
+				ul {
+					font-size: 0;
+					display: block !important;;
+					letter-spacing: 0 !important;
+					overflow: hidden !important;
+					width: 100% !important;
+				}
+			}
+
+			#log {
+				padding-top: 10px;
+
+				> div {
+					padding: 0;
+				}
+
+				form + div {
+					min-height: 0 !important;
+				}
+
+				table {
+					border-bottom: $border;
+				}
+
+				tbody td {
+					padding: 15px 10px !important;
+				}
+
+				thead th {
+					color: #666 !important;
+				}
+			}
+
+			#log,
+			#items,
+			#shipments,
+			#summary {
+				float: left !important;
+				height: auto !important;
+				min-height: 0 !important;
+				max-height: none !important;
+				width: 100% !important;
+			}
+
+			main {
+				margin: 0 !important;
+				padding: 0 !important;
+			}
+
+			section {
+				border: none !important;
+				font-size: 12px !important;
+				line-height: 1.4 !important;
+				overflow: hidden !important;
+				page-break-after: avoid !important;
+				page-break-before: avoid !important;
+
+				h4 {
+					margin-bottom: 5px !important;
+				}
+			}
+
+			#shipments {
+				padding-top: 0;
+
+				table tbody td {
+					padding: 15px 10px;
+				}
+			}
+
+			&.split-view article section {
+				div,
+				ul {
+					line-height: 1.4 !important;
+				}
+
+				&#basic {
+					dd:first-of-type {
+						margin-bottom: 5px !important;
+					}
+
+					dt:first-of-type {
+						margin-bottom: 5px !important;
+					}
+				}
+
+				dt {
+					margin-bottom: 0 !important;
+				}
+			}
+
+			#status {
+				color: #666 !important;
+				letter-spacing: 0;
+				margin-bottom: 0 !important;
+				padding-left: 0;
+				text-align: left;
+				text-transform: capitalize;
+			}
+
+			#summary {
+				padding-bottom: 0;
+				padding-top: 0;
+
+				table {
+					padding-right: 180px;
+					width: auto !important;
+				}
+
+				td {
+					display: inline-block;
+					padding-right: 20px;
+					text-align: left;
+				}
+
+				.total {
+					margin-top: -10px;
+					top: 50% !important;
+				}
+			}
+
+			table {
+				clear: both !important;
+				float: left !important;
+				height: auto !important;
+				min-height: 0 !important;
+				max-height: none !important;
+				overflow: hidden !important;
+				page-break-after: avoid !important;
+				page-break-before: avoid !important;
+				width: 100% !important;
+			}
+
+			thead {
+				break-inside: auto !important;
+			}
+		}
+	}
+}

@@ -1,0 +1,80 @@
+// Video widget styles
+
+@import "compass/css3";
+@import "breakpoint";
+@import "vendor/bootstrap/variables";
+@import "vendor/bootstrap/mixins";
+@import "vendor/bootstrap/buttons";
+@import "partials/variables";
+@import "partials/icon-mixins";
+@import "partials/reusables";
+
+.inline-group {
+	@include clearfix;
+
+	ul, ol {
+		@include clearfix;
+		@extend %sortable-ul;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		li {
+			@extend %filebox;
+			@extend %delete-container;
+			width: 208px;
+
+			&.placeholder {
+				border: 1px dashed blue;
+			}
+
+			&.ui-sortable-helper {
+				border: 1px dashed #AAA;
+			}
+
+			img {
+				max-width: 100%;
+				max-height: 100%;
+				margin-bottom: 5px;
+			}
+
+			label {
+				display: none;
+			}
+
+			.delete {
+				label {
+					display: inline;
+					cursor: pointer;
+				}
+			}
+
+			.form-group {
+				margin-bottom: 5px;
+
+				input {
+					width: 100%;
+				}
+
+				textarea {
+					display: inline-block;
+					max-height: 80px;
+					width: 100%;
+				}
+
+				&:last-child {
+					margin: 0;
+				}
+			}
+
+			[name$="DELETE"] {
+				display: none;
+			}
+
+		}
+	}
+
+	.add-row {
+		clear: both;
+	}
+}

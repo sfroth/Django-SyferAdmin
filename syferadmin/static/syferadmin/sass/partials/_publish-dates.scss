@@ -1,0 +1,57 @@
+// ----- Publish Dates ----- //
+// These show up in related items when viewing a block or mantle or whatever that has a start / end date set.
+
+.publish_dates {
+    border-top: 1px solid $grey-2;
+    bottom: 0;
+    font-size: 11px;
+    letter-spacing: 0;
+    left: 0;
+    position: absolute;
+    padding: 6px 1px 3px 7px;
+    right: 0;
+}
+
+.publish_date {
+	float: left;
+    white-space: nowrap;
+
+	span {
+	    display: inline-block;
+	}
+
+	.publish-title {
+		display: none;
+	}
+
+	&:first-child {
+		@include icon($icon-clock);
+		&:before {
+			font-size: 12px;
+			-webkit-font-smoothing: antialiased;
+			padding-right: 2px;
+		}
+  	}
+
+	&:only-child {
+		.date:after {
+			content: ",";
+		}
+
+		.publish-separator {
+			display: none;
+		}
+
+		.publish-title {
+			display: inline-block;
+		}
+
+		.time:before {
+			content: "@ ";
+		}
+	}
+}
+
+.publish-separator {
+	margin: 0 5px 0 3px;
+}

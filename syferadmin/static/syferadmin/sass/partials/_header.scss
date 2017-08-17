@@ -1,0 +1,297 @@
+// ----- Header ----- //
+
+body > header {
+	min-height: 50px;
+
+	h1 {
+		float: left; // make sure it doesnt becomea link all the way across the header
+		letter-spacing: 0.05em;
+		margin: 0;
+
+		a {
+			// @extend %text-ellipsis;
+			border-bottom: 1px solid transparent;
+			color: #fff;
+			display: block;
+			height: 100%;
+			max-width: 100%;
+			min-width: 100px;
+			overflow: hidden;
+			padding: 0 17px;
+			text-overflow: ellipsis;
+			@include transition(background-color .3s ease-in-out, color .3s ease-in-out);
+
+			&:hover {
+				color: #fff;
+			}
+		}
+
+		@include breakpoint((max-width 766px)) {
+			font-size: em(12px);
+			white-space: nowrap;
+
+			a {
+				min-width: 70px;
+				padding: 0 10px;
+			}
+		}
+
+		@include breakpoint($bp-buffness) {
+			a {
+				min-width: 110px;
+			}
+		}
+	}
+
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	@include breakpoint($display-phone-landscape) {
+		h1 {
+			// display: block;
+			// float: left;
+			margin: 0;
+		}
+
+		.menu-toggle {
+			display: none;
+		}
+	}
+
+	.wrapper {
+		@extend %clear-fix;
+		background: #000;
+		height: 50px;
+		line-height: 50px;
+		position: relative;
+		z-index: 100;
+
+		> ul {
+			@extend %clear-fix;
+			float: right;
+			overflow: visible;
+
+			> li {
+				border-left: 1px solid $nav-outline-grey;
+				float: left;
+				height: 50px;
+				position: relative;
+				width: 50px;
+
+				> a, > span {
+					@include transition(background 0.3s);
+				}
+
+				> a {
+					@extend %hide-text;
+					display: block;
+					height: 100%;
+					left: 0;
+					position: absolute;
+					top: 0;
+					width: 100%;
+
+					&:hover {
+						background: $gray-status;
+					}
+				}
+
+				> a:hover, .hover {
+					background: $gray-status;
+				}
+
+				> span {
+					cursor: pointer;
+				}
+			}
+		}
+
+		@media (min-width: 480px) and (min-height: 451px) {
+			left: 0;
+			position: fixed;
+			right: 0;
+			top: 0;
+
+			~ main {
+				margin-top: 50px;
+			}
+		}
+	}
+}
+
+// View on site link:
+
+.view-site:before {
+	color: #fff;
+	content: "\e600";
+	display: block;
+	font-family: "AdminIcons";
+	font-size: em(11px);
+	text-align: center;
+	text-indent: 0;
+}
+
+#user-tools {
+	&:hover ul {
+		margin-top: 0;
+		@include opacity(1);
+	}
+
+	> a {
+		@extend %hide-text;
+		color: $text-grey;
+		display: block;
+		padding: 0;
+		position: relative;
+		z-index: 110;
+
+		&:before {
+			color: #fff;
+			content: "\e61f";
+			font-family: "AdminIcons";
+			font-size: 1em;
+			display: block;
+			height: 100%;
+			text-align: center;
+			text-indent: 0;
+			width: 100%;
+		}
+
+		&:after {
+			content: "\e618";
+			display: none;
+			float: right;
+			font-family: "AdminIcons";
+			font-size: 5px;
+			padding-left: 17px;
+		}
+
+		&:hover {
+			.no-touch & {
+				background: inherit;
+			}
+
+			.touch & {
+				background-color: $gray-status;
+				color: #fff;
+
+
+				&:after {
+					color: #fff;
+				}
+			}
+		}
+	}
+
+	li {
+		background: #fff;
+		border: $border;
+		border-bottom: none;
+		@include transition(background 0.3s);
+
+		&:hover {
+			background: $light-blue;
+		}
+
+		a {
+			display: block;
+			font-size: 12px;
+			letter-spacing: 0.05em;
+			padding: 0 17px;
+			text-transform: uppercase;
+			white-space: nowrap;
+
+			&:hover {
+				color: $blue;
+			}
+		}
+	}
+
+	ul {
+		border-bottom: $border;
+		line-height: 40px;
+		margin-top: -9999px;
+		@include opacity(0);
+		overflow: visible;
+		padding-top: 16px;
+		position: absolute;
+		right: 10px;
+		top: 50px;
+		@include transition(opacity 0.3s);
+		z-index: 105;
+
+		&:after {
+			background: transparent url(#{$image-dir}select-tip-top.png);
+			background-size: 15px 8px;
+			content: "";
+			display: block;
+			height: 8px;
+			position: absolute;
+			right: 8px;
+			top: 9px;
+			width: 15px;
+			z-index: 2;
+		}
+	}
+
+	@include breakpoint($display-phone-landscape) {
+		width: auto;
+
+		> a {
+			padding: 0 30px;
+			text-indent: 0;
+
+			&:after {
+				display: block;
+			}
+
+			&:before {
+				display: none;
+			}
+		}
+
+		ul {
+			right: 15px;
+
+			&:after {
+				right: 13px;
+			}
+		}
+	}
+}
+
+.menu-toggle {
+	@extend %hide-text;
+	border-right: 1px solid $nav-outline-grey;
+	cursor: pointer;
+	float: left;
+	height: 50px;
+	position: relative;
+	@include transition(background 0.3s);
+	width: 50px;
+
+	&:hover {
+		background: $gray-status;
+	}
+
+	&:after {
+		color: #fff;
+		content: "\e603";
+		display: block;
+		font-family: "AdminIcons";
+		font-size: 1.1em;
+		left: 0;
+		position: absolute;
+		text-align: center;
+		text-indent: 0;
+		top: 0;
+		width: 100%;
+
+		.nav-open & {
+			content: "\e61b"; // close button
+		}
+	}
+}

@@ -1,0 +1,31 @@
+{% load i18n admin_static sort %}
+<div class="inline-group" id="{{ inline_admin_formset.formset.prefix }}-group">
+	<h2>{{ inline_admin_formset.opts.verbose_name_plural|title }}</h2>
+	<div class="description">{{ inline_admin_formset.description }}</div>
+
+	{{ inline_admin_formset.formset.management_form }}
+	{{ inline_admin_formset.formset.non_form_errors }}
+	<input type="hidden" name="parent_id" value="{{ original.pk }}" />
+
+	{% for inline_admin_form in inline_admin_formset %}
+	<div class="inline-related{% if forloop.last %} empty-form last-related{% endif %}" id="{{ inline_admin_formset.formset.prefix }}-{% if not forloop.last %}{{ forloop.counter0 }}{% else %}empty{% endif %}">
+		
+		{% if inline_admin_form.form.non_field_errors %}{{ inline_admin_form.form.non_field_errors }}{% endif %}
+		{% for fieldset in inline_admin_form %}
+			{% with form=fieldset.form %}
+				{% include "admin/admin_rule.html" %}
+			{% endwith %}
+		{% endfor %}
+		
+	</div>
+	{% endfor %}
+
+	<div class="add">
+		<h5>Add new {{ inline_admin_formset.opts.verbose_name }}</h5>
+		<ul>
+		{% for type in inline_admin_formset.opts.types %}
+			<li><button type="button" name="{{ type.0 }}">{{ type.1.meta.verbose_name }}</button></li>
+		{% endfor %}
+		</ul>
+	</div>
+</div>

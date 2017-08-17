@@ -1,0 +1,271 @@
+// ----- Upload Widget ----- //
+
+@import "compass/css3";
+@import "breakpoint";
+@import "partials/variables";
+@import "partials/icon-mixins";
+@import "partials/reusables";
+
+@include keyframes(rotation) {
+    from { @include transform(rotateZ(0deg)); }
+	to { @include transform(rotateZ(360deg)); }
+}
+
+@include keyframes(stripescroll) {
+    from { background-position: 0 0; }
+	to { background-position: -40px 0; }
+}
+
+body.dragging .uploader .upload-button {
+	display: none !important;
+}
+
+.inline-group li {
+	@include border-radius(0 !important);
+	border-color: $outline-grey !important;
+}
+
+.uploader {
+	&:after {
+		display: block;
+		content: '';
+		clear: both;
+	}
+
+	img {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	li, .upload-button, .drop-area {
+		@include border-radius(0 !important);
+		border-color: $outline-grey !important;
+
+		img {
+			display: block;
+		}
+	}
+
+	li {
+		@extend %filebox;
+		@extend %delete-container;
+		min-width: 170px;
+		text-align: center;
+
+		&:before, &:after {
+			content: "\f013";
+			font-family: FontAwesome;
+			@include animation(rotation 1.5s linear infinite);
+			@include transition(opacity .7s);
+			display: inline-block;
+			position: absolute;
+			text-align: center;
+			top: 50%;
+			left: 50%;
+			margin-top: -.5em;
+			margin-left: -.5em;
+			font-size: 6em;
+			color: #E2E2E2;
+			width: 1em;
+			opacity: 0;
+			height: 1em;
+			border-radius: .5em;
+			vertical-align: baseline;
+			line-height: 1.05em;
+		}
+
+		&:after {
+			font-size: 3em;
+			@include animation-direction(reverse);
+			@include animation-duration(1s);
+			color: #aaa;
+		}
+
+		.delete {
+			background: $red;
+			border-radius: 3px;
+			color: #fff !important;
+			cursor: pointer;
+
+			&:before, &:hover:before {
+				color: #fff;
+			}
+		}
+
+		&.encoding, &.loading {
+			&:before, &:after {
+				opacity: 1;
+			}
+		}
+
+		.progress {
+			background-color: rgba(77, 172, 100, 0.75);
+			bottom: 9px;
+			display: block;
+			height: 40px;
+			left: -34px;
+			position: absolute;
+			@include transform(scale(.65)); // quick fix to keep this from overflowing container
+			width: 0%;
+
+		    &:after {
+		        content: attr(data-progress);
+		        display: inline-block;
+		        left: 100%;
+		        font-size: 12px;
+		        margin: -7px 0 0 8px;
+		        position: absolute;
+		        top: 50%;
+		    }
+
+			&:before {
+				bottom: -12px;
+				left: -12px;
+				position: absolute;
+				right: -47px;
+				top: -12px;
+		    }
+		}
+	}
+
+	p {
+		margin-top: 0;
+	}
+
+	ul {
+		@extend %sortable-ul;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+
+		&:empty ~ .upload-button {
+			margin-left: 0;
+		}
+	}
+
+	ul.ui-sortable {
+		min-height: 10px;
+		padding-top: 10px;
+	}
+
+	.drop-area {
+		@extend %filebox;
+		border: dashed 1px #999;
+		@include background(linear-gradient(left bottom, #dddddd 0%, #eeeeee 25%, #ffffff 25%, #ffffff 50%, #dddddd 50%, #eeeeee 75%, #ffffff 75%));
+		background-size: 20px 20px;
+		@include animation(stripescroll 1s linear infinite);
+		display: none;
+
+		span {
+			text-align: center;
+			width: 100%;
+			display: block;
+			position: absolute;
+			top: 50%;
+			margin-top: -1em;
+			font-size: .8em;
+			left: 0;
+		}
+
+		&.hover {
+			border: solid 1px #66AFE9;
+			// @include box-shadow(unquote("inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6)"));
+			@include animation-duration(.5s);
+		}
+
+		// Match drop area to size of upload button
+		@include breakpoint($bp-480) {
+			height: 160px;
+			max-width: 240px;
+			width: 48%;
+		}
+	}
+
+	.message {
+	    background-color: #333;
+	    border-radius: 3px;
+	    color: #fff;
+	    font-size: 14px;
+	    left: 100%;
+	    letter-spacing: .05em;
+	    margin-left: 15px;
+	    position: absolute;
+	    top: 33%;
+	    padding: 15px 30px;
+	    width: 240px;
+
+		&:before {
+		    border-color: transparent #333 transparent transparent;
+		    border-style: solid;
+		    border-width: 9px;
+		    content:  "";
+		    margin-top: -9px;
+		    position: absolute;
+		    right: 100%;
+		    top: 50%;
+		}
+	}
+
+	.upload-button {
+		@extend %filebox;
+		border-style: dashed;
+		margin-left: 1em;
+		text-indent: -9000px;
+
+		&:before {
+			content: "\f067";
+			font-family: FontAwesome;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			font-size: 4em;
+			margin-top: -.55em;
+			margin-left: -.5em;
+			display: block;
+			line-height: 1em;
+			text-align: center;
+			width: 1em;
+			color: #AAA;
+			padding-top: .1em;
+			text-indent: 0;
+			@include transition(all .3s);
+		}
+
+		&:hover {
+
+			&:before {
+				@include transform(rotateZ(90deg));
+				color: #222;
+			}
+		}
+	}
+
+	.zoom, .file-zoom {
+		@include box-sizing(border-box);
+		background-color: $blue;
+		border-radius: 3px;
+		color: #fff;
+		@include icon-inline($icon-zoom, $size: 15px, $padding: 6px, $position: relative, $top: 3px, $margin: (0 0 0 2px));
+		display: inline-block;
+		font-size: 11px;
+		left: 10px;
+		letter-spacing: .05em;
+		line-height: 9px;
+		max-width: 27px;
+		opacity: 0;
+		overflow: hidden;
+		padding: 4px 10px 9px 4px;
+		position: absolute;
+		top: 10px;
+		@include transition(all .3s);
+		white-space: nowrap;
+
+		&:hover {
+			max-width: 110px;
+		}
+	}
+
+	li:hover .zoom, li:hover .file-zoom {
+		opacity: 1;
+	}
+}

@@ -1,0 +1,190 @@
+{% load i18n admin_static admin_extras admin_urls %}
+<fieldset class="inline-group {{inline_admin_formset.opts.verbose_name_plural}} accordion-group" id="{{ inline_admin_formset.formset.prefix }}-group" data-prefix="{{ inline_admin_formset.formset.prefix }}" style="{% if not adminform.form.instance.get_related_models %}display:none;{% endif %}">
+	<legend data-slide-toggle=".toggle-wrap">{{ inline_admin_formset.opts.verbose_name_plural|title }}</legend>
+
+	<div class="toggle-wrap">
+		{{ inline_admin_formset.formset.management_form }}
+		{{ inline_admin_formset.formset.non_form_errors }}
+
+		{% for group, related_model, extra_fields, title in adminform.form.instance.get_related_models %}
+		<legend>{{ title|title }}</legend>
+		<div class="related-items" data-url="{% url 'related_lookup' %}" data-group="{{ group }}" data-vars-fields='{{ extra_fields|json }}'>
+			<ul data-sortable>
+				{% for inline_admin_form in inline_admin_formset %}
+					{% if related_model|class_name == inline_admin_form.original.related_content_object|class_name and group == inline_admin_form.original.group or forloop.last %}
+					{% with related_content_object=inline_admin_form.original.related_content_object|downcast %}
+						<li class="inline-related{% if forloop.last %} empty-form last-related{% endif %}" id="{{ inline_admin_formset.formset.prefix }}-{% if not forloop.last %}{{ forloop.counter0 }}{% else %}empty{% endif %}" data-item>
+						{% if inline_admin_form.form.non_field_errors %}{{ inline_admin_form.form.non_field_errors }}{% endif %}
+						{% for fieldset in inline_admin_form %}
+							<img src='{% if related_content_object.admin_thumb %}{{ related_content_object.admin_thumb.url }}{% else %}{% static "syferadmin/img/related_image_not_found.png" %}{% endif %}' />
+							<span class="name">{% if related_content_object.related_admin_name %}{{ related_content_object.related_admin_name }}{% else %}{{ related_content_object.name }}{% endif %}</span>
+							{% if related_content_object.start_date or related_content_object.end_date %}
+								<div class="publish_dates">
+								{% if related_content_object.start_date %}
+									<span class="start_date publish_date {% if related_content_object.start_date|future %}future{% else %}past{% endif %}" title="{% if related_content_object.start_date|future %}Starts{% else %}Started{% endif %} at {{ related_content_object.start_date|date:"Y-m-d H:i:s" }}">
+										<span class="publish-title">{% if related_content_object.start_date|future %}Starts{% else %}Started{% endif %}</span>
+										<span class="month">{{ related_content_object.start_date|date:"M" }}</span>
+										<span class="date">{{ related_content_object.start_date|date:"j" }}</span>
+										<span class="time">{{ related_content_object.start_date|date:"g:iA"|lower }}</span>
+										<span class="publish-separator">—</span>
+									</span>
+								{% endif %}
+								{% if related_content_object.end_date %}
+									<span class="end_date publish_date {% if related_content_object.end_date|future %}future{% else %}past{% endif %}" title="{% if related_content_object.end_date|future %}Ends{% else %}Ended{% endif %} at {{ related_content_object.end_date|date:"Y-m-d H:i:s" }}">
+										<span class="publish-title">{% if related_content_object.end_date|future %}Ends{% else %}Ended{% endif %}</span>
+										<span class="month">{{ related_content_object.end_date|date:"M" }}</span>
+										<span class="date">{{ related_content_object.end_date|date:"j" }}</span>
+										<span class="time">{{ related_content_object.end_date|date:"g:iA"|lower }}</span>
+									</span>
+								{% endif %}
+								</div>
+							{% endif %}
+							{{ related_content_object.region_display|safe }}
+							<span class="delete" data-action="delete">Delete</span>
+							{% class_permission related_model "change" as change_perm %}
+							{% if change_perm and related_content_object.pk %}
+							<a href="{% url related_model|class_opts|admin_urlname:'change' related_content_object.pk|admin_urlquote %}" class="edit">Edit</a>
+							{% endif %}
+							{% include "admin/includes/fieldset.html" %}
+							{% if inline_admin_form.original %}{{ inline_admin_form.deletion_field.field }}{% endif %}
+						{% endfor %}
+						{% if inline_admin_form.needs_explicit_pk_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
+						{{ inline_admin_form.fk_field.field }}
+						</li>
+					{% endwith %}
+					{% endif %}
+				{% endfor %}
+			</ul>
+			<button type="button" class="btn add" data-action="add-item" data-content-type-id="{{ related_model|class_content_type_id }}">Add {{ title|title }}</button>
+			{% class_permission related_model "add" as add_perm %}
+			{% if add_perm %}
+			<a href="{% url related_model|class_opts|admin_urlname:'add' %}" class="btn--add-plus" id="" onclick="return showAddAnotherPopup(this);"><img src="/static/admin/img/icon_addlink.gif" width="10" height="10" alt="Add Another"></a>
+			{% endif %}
+		</div>
+		{% endfor %}
+	</div>
+
+	{% with "Select 1 or more items to be related then click or tap add." as browser_message %}
+		{% include "syferadmin/includes/model_browser_widget.html" %}
+	{% endwith %}
+
+	<script type="text/javascript">
+		function parse_date(datestr, format) {
+			var date = new Date(Date.parse(datestr));
+			var now = new Date();
+			var formats = {
+				'M': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+				'F': ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+				'D': ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+				'N': ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+			}
+			var hours = date.getHours() % 12 || 12;
+			var parts = {
+				'date': date,
+				'future': date > now,
+				'past': date <= now,
+				'M': formats.M[date.getMonth()],
+				'F': formats.M[date.getMonth()],
+				'n': date.getMonth() + 1,
+				'm': ('0' + (date.getMonth() + 1)).slice(-2),
+				'Y': date.getFullYear(),
+				'y': ('' + date.getFullYear()).slice(-2),
+				'd': ('0' + date.getDate()).slice(-2),
+				'j': date.getDate(),
+				'D': formats.D[date.getDay()],
+				'N': formats.N[date.getDay()],
+				'g': hours,
+				'G': date.getHours(),
+				'h': ('0' + hours).slice(-2),
+				'H': ('0' + date.getHours()).slice(-2),
+				'i': ('0' + date.getMinutes()).slice(-2),
+				's': ('0' + date.getSeconds()).slice(-2),
+				'a': date.getHours() < 12 ? 'am' : 'pm',
+				'A': date.getHours() < 12 ? 'AM' : 'PM',
+			}
+			if(format) {
+				var formatted = ''
+				for(var i=0; i<format.length; i++) {
+					if(format[i] in parts) {
+						formatted += parts[format[i]];
+					} else {
+						formatted += format[i];
+					}
+				}
+				parts['formatted'] = formatted;
+			}
+			return parts;
+		}
+	</script>
+
+	<script type="text/template" data-template="item">
+		<li class="tile <%- !active ? 'inactive' : 'active' %>" data-item-id="<%=obj['content_type_id']%>-<%=obj['id']%>" data-object='<%= JSON.stringify(obj).replace(/\'/g, "") %>' data-result>
+			<img src="<% if (thumb) { %><%= thumb %><% } else { %>{% static "syferadmin/img/related_image_not_found.png" %}<% } %>" />
+			<span class="name"><%- name %></span><br/>
+			<% if (('start_date' in obj && start_date) || ('end_date' in obj && end_date)) { %>
+				<div class="publish_dates">
+				<% if('start_date' in obj && start_date) { %>
+					<span class="start_date publish_date <% if(parse_date(start_date).future) { %>future<% } else { %>past<% } %>" title="<% if(parse_date(start_date).future) { %>Starts<% } else { %>Started<% } %> at <%- parse_date(start_date, 'Y-m-d H:i:s').formatted %>">
+						<span class="publish-title"><% if(parse_date(start_date).future) { %>Starts<% } else { %>Started<% } %>:</span>
+						<span class="month"><%- parse_date(start_date).M %></span>
+						<span class="date"><%- parse_date(start_date).j %></span>
+						<span class="time"><%- parse_date(start_date, 'g:ia').formatted %></span>
+						<span class="publish-separator">—</span>
+					</span>
+				<% } %>
+				<% if('end_date' in obj && end_date) { %>
+					<span class="end_date publish_date <% if(parse_date(end_date).future) { %>future<% } else { %>past<% } %>" title="<% if(parse_date(end_date).future) { %>Ends<% } else { %>Ended<% } %> at <%- parse_date(end_date, 'Y-m-d H:i:s').formatted %>">
+						<span class="publish-title"><% if(parse_date(end_date).future) { %>Ends<% } else { %>Ended<% } %>:</span>
+						<span class="month"><%- parse_date(end_date).M %></span>
+						<span class="date"><%- parse_date(end_date).j %></span>
+						<span class="time"><%- parse_date(end_date, 'g:ia').formatted %></span>
+					</span>
+				<% } %>
+				</div>
+			<% } %>
+			<%= regions %>
+		</li>
+	</script>
+
+	<script type="text/template" data-template="lineitem">
+		<li data-item>
+			<img src="<% if (thumb) { %><%= thumb %><% } else { %>{% static "syferadmin/img/related_image_not_found.png" %}<% } %>" />
+			<span class="name"><%- name %></span><br/>
+			<% if (('start_date' in obj && start_date) || ('end_date' in obj && end_date)) { %>
+				<div class="publish_dates">
+				<% if('start_date' in obj && start_date) { %>
+					<span class="start_date publish_date <% if(parse_date(start_date).future) { %>future<% } else { %>past<% } %>" title="<% if(parse_date(start_date).future) { %>Starts<% } else { %>Started<% } %> at <%- parse_date(start_date, 'Y-m-d H:i:s').formatted %>">
+						<span class="publish-title"><% if(parse_date(start_date).future) { %>Starts<% } else { %>Started<% } %>:</span>
+						<span class="month"><%- parse_date(start_date).M %></span>
+						<span class="date"><%- parse_date(start_date).j %></span>
+						<span class="time"><%- parse_date(start_date, 'g:ia').formatted %></span>
+						<span class="publish-separator">—</span>
+					</span>
+				<% } %>
+				<% if('end_date' in obj && end_date) { %>
+					<span class="end_date publish_date <% if(parse_date(end_date).future) { %>future<% } else { %>past<% } %>" title="<% if(parse_date(end_date).future) { %>Ends<% } else { %>Ended<% } %> at <%- parse_date(end_date, 'Y-m-d H:i:s').formatted %>">
+						<span class="publish-title"><% if(parse_date(end_date).future) { %>Ends<% } else { %>Ended<% } %>:</span>
+						<span class="month"><%- parse_date(end_date).M %></span>
+						<span class="date"><%- parse_date(end_date).j %></span>
+						<span class="time"><%- parse_date(end_date, 'g:ia').formatted %></span>
+					</span>
+				<% } %>
+				</div>
+			<% } %>
+			<span class="delete" data-action="delete">Delete</span>
+			<input id="id_syferadmin-related-content_type-object_id-<%- index %>-sort" name="syferadmin-related-content_type-object_id-<%- index %>-sort" type="hidden" value="<%- sort %>">
+			<input id="id_syferadmin-related-content_type-object_id-<%- index %>-group" name="syferadmin-related-content_type-object_id-<%- index %>-group" type="hidden" value="<%- group %>">
+			<input id="id_syferadmin-related-content_type-object_id-<%- index %>-vars" name="syferadmin-related-content_type-object_id-<%- index %>-vars" type="hidden">
+			<input id="id_syferadmin-related-content_type-object_id-<%- index %>-related_content_type" name="syferadmin-related-content_type-object_id-<%- index %>-related_content_type" type="hidden" value="<%- content_type_id %>">
+			<input id="id_syferadmin-related-content_type-object_id-<%- index %>-related_object_id" name="syferadmin-related-content_type-object_id-<%- index %>-related_object_id" type="hidden" value="<%- id %>">
+		</li>
+	</script>
+
+	<script type="text/template" data-template="extra-fields">
+		<div class="field-related-vars" data-extra-fields>
+			<div>
+				<input id="extra-fields-<%- slug %>" name="extra-fields-<%- slug %>" data-slug="<%- slug %>" type="<%- type %>" placeholder="<%- name %>" value="<%- value %>" />
+			</div>
+		</div>
+	</script>
+</fieldset>

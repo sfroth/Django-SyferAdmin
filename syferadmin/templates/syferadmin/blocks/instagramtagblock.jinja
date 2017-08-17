@@ -1,0 +1,14 @@
+{% set images = block.get_images(1) %}
+{% if images %}
+<a href="{{ images[0]['link'] }}" alt="instagramtagblock">
+	<img src="{{ images[0]['images']['standard_resolution']['url'] }}" alt="{{ block.username }} Instagram"/>
+{% else %}
+<a href="https://instagram.com/" class="instagramtagblock">
+{%endif %}
+
+	{% if block.title %}
+		<span>{{ block.title }}</span>
+	{% else %}
+		<span>{{ block.username }}</span>
+	{% endif %}
+</a>

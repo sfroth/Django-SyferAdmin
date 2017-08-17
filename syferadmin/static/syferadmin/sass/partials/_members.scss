@@ -1,0 +1,26 @@
+// ----- Members ----- //
+
+.members.index {
+	.nested-sortable {
+		.category {
+			display: block;
+			font-size: 11px;
+			padding: 10px 0;
+		}
+
+		.label {
+			margin-left: 0;
+		}
+
+		@include breakpoint($bp-768) {
+			.category {
+				display: inline-block;
+				padding: 0 10px;
+			}
+
+			.label {
+				margin-left: .4em;
+			}
+		}
+	}
+}

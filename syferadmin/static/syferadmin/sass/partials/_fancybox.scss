@@ -1,0 +1,29 @@
+// ----- Fancybox ----- //
+
+.fancybox-close {
+	background-image: none;
+}
+
+.fancybox-lock {
+	margin: 0 !important;
+
+	.fancybox-overlay {
+		overflow: hidden;
+		overflow-y: auto;
+	}
+}
+
+.fancybox-opened .fancybox-skin {
+	@include box-shadow(0 0px 12px rgba(0, 0, 0, 0.2));
+}
+
+.fancybox-overlay {
+	background-color: #fff;
+	background: rgba(0, 0, 0, 0.6);
+}
+
+.fancybox-skin {
+	background-color: #fff;
+	border-radius: 0;
+	padding: 0 !important;
+}

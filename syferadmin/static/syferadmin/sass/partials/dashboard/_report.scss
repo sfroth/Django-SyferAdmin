@@ -1,0 +1,79 @@
+// ----- Report ----- //
+
+body.reports.index {
+	#changelist img {
+		max-width: 100px;
+	}
+
+	// On report detail pages, .data-body is a tbody so min-height wont work
+	// Adding min-height to table wrapper instead, so the loading class doesnt look bad
+	.results > div {
+	    min-height: 300px;
+
+	    &.loaded {
+			min-height: 80px;
+	    }
+	}
+}
+
+// Export Button
+.export {
+	@extend %margin;
+	float: right;
+	margin-top: 30px;
+}
+
+.export + .export {
+	margin-right: -35px;
+}
+
+.report { // module container
+	border: $border;
+
+	> header {
+		border-bottom: $border;
+		padding: 12px 0 12px 15px;
+		position: relative;
+		@include transition(none);
+
+		h3 {
+			@extend %db-heading;
+			display: inline-block;
+			padding-right: 50px;
+		}
+
+		@include breakpoint($bp-1500) {
+			padding: 17px 0 16px 20px;
+		}
+	}
+
+	&.closed header {
+		border-bottom-color: transparent;
+		@include transition(border-color 0s .5s ease-in-out);
+	}
+
+	// .data-body > *:not(.total) { // dont want the counter fading in since its counting up
+	.data-body .chart {
+		-webkit-animation: fadeIn 1.5s;
+                animation: fadeIn 1.5s;
+		@include transition(opacity .5s ease-in-out);
+	}
+
+	&.loaded {
+		&:hover .report-toolbox {
+			@include opacity(1);
+		}
+
+		.data-body {
+			min-height: 80px;
+		}
+	}
+
+	~ .report {
+		margin-top: 30px;
+
+		@include breakpoint($bp-1500) {
+			margin-top: 50px;
+		}
+	}
+}

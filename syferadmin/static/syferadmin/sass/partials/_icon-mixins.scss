@@ -1,0 +1,121 @@
+// ----- Icon Mixins ----- //
+
+// Icons
+@mixin font-icon {
+	font-family: $font-icon;
+	-webkit-font-smoothing: antialiased; // Better Font Rendering
+	-moz-osx-font-smoothing: grayscale; // Better Font Rendering
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	speak: none;
+	text-transform: none;
+}
+%font-icon {
+	@include font-icon;
+}
+
+// Icon Inline
+@mixin icon-inline($icon: "", $before-or-after: "before", $padding: "5px", $size: null, $position: null, $top: null, $margin: null) {
+	&:#{$before-or-after} {
+		@extend %font-icon;
+		content: $icon;
+		display: inline-block;
+		font-size: $size;
+		line-height: 1;
+		margin: $margin;
+		position: $position;
+		top: $top;
+
+		@if $before-or-after == after {
+			padding-left: #{$padding};
+		}
+
+		@else {
+			padding-right: #{$padding};
+		}
+	}
+}
+
+// // Icon No Text
+@mixin icon-no-text($icon: "", $display: "block", $before-or-after: "before") {
+	display: #{$display};
+	position: relative;
+	text-align: center;
+	text-indent: -999em;
+
+	&:#{$before-or-after} {
+		@extend %font-icon;
+		content: $icon;
+		height: 100%;
+		left: 0;
+		line-height: inherit;
+		position: absolute;
+		right: 0;
+		text-align: center;
+		text-indent: 0;
+		top: 0;
+		zoom: 1;
+	}
+}
+
+// Icon Text After Min-Width
+@mixin icon-text-later($icon, $min-width: $tablet, $before-or-after: "before", $padding: "5px", $width: 0) {
+	@include icon($icon, $before-or-after: "before");
+	min-width: #{$width};
+
+	@include breakpoint($min-width, $no-query: "") {
+		text-indent: 0;
+
+		&:#{$before-or-after} {
+			display: inline-block;
+			height: auto;
+			position: relative;
+			vertical-align: top;
+
+			@if $before-or-after == after {
+				padding-left: #{$padding};
+			}
+
+			@else {
+				padding-right: #{$padding};
+			}
+		}
+	}
+}
+
+// Icon Later Min-Width
+@mixin icon-later($icon, $min-width: $tablet, $before-or-after: "before", $padding: "5px", $width: 0) {
+	&:#{$before-or-after} {
+		@extend %font-icon;
+	}
+
+	@include breakpoint($min-width, $no-query: "") {
+		&:#{$before-or-after} {
+			content: $icon;
+			display: inline-block;
+			height: 100%;
+			line-height: inherit;
+
+			@if $before-or-after == after {
+				padding-left: #{$padding};
+			}
+
+			@else {
+				padding-right: #{$padding};
+			}
+		}
+	}
+}
+
+@mixin icon-text-later-no-icon($icon, $min-width: $tablet, $before-or-after: "before") {
+	@include icon($icon, $display: "block", $before-or-after: "before");
+
+	@include breakpoint($min-width, $no-query: "") {
+		text-indent: 0;
+
+		&:#{$before-or-after} {
+			display: none;
+		}
+	}
+}

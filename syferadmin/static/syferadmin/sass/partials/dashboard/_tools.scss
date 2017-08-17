@@ -1,0 +1,208 @@
+// ----- Dashboard Tools ----- //
+// (Header buttons/filters)
+
+#tools {
+	clear: left;
+	margin: 0;
+	padding: 0;
+
+	button {
+		@extend %btn;
+		padding: 0;
+		width: 100%;
+	}
+
+	@include breakpoint($bp-1100) {
+		clear: right;
+		float: right;
+	}
+
+	.active button {
+		background-color: $blue;
+		color: #fff;
+
+		@include icon("\f00c");
+	}
+
+	input[type="submit"] {
+		width: 100%;
+		margin-bottom: 0;
+	}
+
+	.refresh {
+		float: right;
+		height: 40px;
+		padding: 0;
+	    position: absolute;
+	    right: 0;
+		text-indent: -999em;
+	    top: 20px;
+		width: 40px;
+
+		&:before {
+			bottom: 0;
+			content: "\f021";
+			font-family: "FontAwesome";
+			left: 0;
+			position: absolute;
+			right: 0;
+			text-indent: 0;
+			top: 0;
+		}
+	}
+
+	@include breakpoint($bp-1100) {
+		button {
+			padding: 0 20px;
+		}
+
+		.refresh {
+			padding: 0;
+			position: relative;
+			top: 0;
+		}
+	}
+}
+
+.custom-select-compare {
+	display: none;
+
+	input[name="compare"]:checked ~ & {
+		clear: both;
+		display: block;
+		padding-top: 20px;
+	}
+}
+
+.date_ranges {
+	font-size: 0;
+	padding: 0;
+	width: 100%;
+
+	@include breakpoint($bp-1100) {
+		margin-right: 40px;
+		width: auto;
+	}
+
+	button {
+		min-width: 140px;
+	}
+
+	li {
+		font-size: $base-font-px;
+		list-style: none;
+		margin-bottom: 10px;
+		display: inline-block;
+		vertical-align: top;
+		width: 100%;
+
+		@include breakpoint($bp-420) {
+			margin-left: 3%;
+			margin-bottom: 3%;
+			width: 48.5%;
+
+			&:nth-of-type(2n+1) {
+				margin-left: 0;
+			}
+		}
+
+		@include breakpoint(580px) {
+			margin-bottom: 1.5%;
+			margin-left: 1.5%;
+			width: 32.333%;
+
+			&:nth-of-type(2n+1) {
+				margin-left: 1.5%;
+			}
+
+			&:nth-of-type(3n+1) {
+				margin-left: 0;
+			}
+		}
+
+		@include breakpoint(860px) {
+			margin-bottom: 0;
+			margin-left: 1%;
+			width: 19.2%;
+
+			&:nth-of-type(2n+1), &:nth-of-type(3n+1) {
+				margin-left: 1%;
+			}
+
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+
+		@include breakpoint($bp-1100) {
+			margin-left: 0;
+			margin-right: 10px;
+			width: auto;
+
+			&:nth-of-type(2n+1), &:nth-of-type(3n+1) {
+				margin-left: 0;
+			}
+		}
+	}
+
+	.custom-select {
+		padding-top: 20px;
+
+		label {
+			margin-bottom: 0px;
+		}
+
+		input {
+			margin-bottom: 20px;
+		}
+
+		@include breakpoint($bp-phone) {
+			min-width: 315px;
+
+			input, label {
+				float: left;
+				width: 46%;
+				min-width: 155px; // Make sure the dates don't get cut off from chrome's UI
+			}
+
+			label:first-child, label:first-child + input {
+				clear: left;
+			}
+
+			label + input ~ input, label ~ label {
+				clear: right;
+				float: right;
+			}
+
+			label ~ label {
+				margin-top: -20px;
+
+				&[for="compare_to"] {
+					clear: both;
+					float: left;
+					margin-top: 5px;
+				}
+			}
+		}
+
+		@include breakpoint(580px) {
+			background-color: #fff;
+			background-color: transparentize(#fff, .1);
+			border-color: #ddd;
+			border-style: solid;
+			border-width: 0 0 1px 1px;
+			float: right;
+			margin-top: 1px;
+			min-width: 420px;
+			padding: 30px;
+			position: absolute;
+			right: 0;
+			top: 100%;
+			z-index: 50;
+		}
+
+		@include breakpoint($bp-1500) {
+			padding: 30px 50px;
+		}
+	}
+}

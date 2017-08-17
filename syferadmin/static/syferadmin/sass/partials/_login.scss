@@ -1,0 +1,106 @@
+// ----- Login ----- //
+
+.login-logo {
+	display: block;
+	margin: 0 auto 20px;
+}
+
+body.login {
+	@include align-items(center);
+	@include flexbox;
+	height: 100%;
+	width: 100%;
+
+	h1 {
+		margin: 0;
+	}
+
+	h2, .form-group label {
+		display: none;
+	}
+
+	#id_password {
+		margin-bottom: 0;
+	}
+
+	#password-reset {
+		display: inline-block;
+		font-size: em(12px);
+		margin-top: 30px;
+	}
+
+	.btn {
+		margin: 3px 0 15px;
+		width: 100%;
+	}
+
+	.form-group {
+		font-size: em(15px);
+		padding-bottom: em(20px, 15px);
+	}
+
+	.logo-large {
+		height: 60px;
+		margin-bottom: 20px;
+
+		h1 {
+			background-position: center center;
+			background-repeat: no-repeat;
+			@include background-size(contain);
+			height: 100%;
+			text-align: center;
+		}
+	}
+
+	.password-reset-form {
+		margin-top: 24px;
+
+		label {
+			display: block;
+		}
+	}
+
+	.submit-row {
+		margin-left: 0;
+		min-width: 0;
+		padding: 0;
+		width: 100%;
+
+		&:last-last-of-type {
+			padding-top: 0;
+		}
+	}
+
+	.wrapper {
+		margin: auto;
+		max-width: 280px;
+		padding: 20px 0;
+		position: relative;
+		width: 90%;
+
+		@media (min-height: 660px) {
+			padding: 0;
+			top: -40px;
+
+			.no-flexbox.no-flexboxlegacy & {
+				left: 0;
+				position: absolute;
+				right: 0;
+				top: 30%;
+			}
+
+			#id_password {
+				margin-bottom: 20px;
+			}
+
+			.logo-large {
+				height: 102px;
+				margin-bottom: 50px;
+			}
+		}
+	}
+}
+
+label[for="id_password1"] {
+	margin-top: 40px; // space on top of page to reset password in admin
+}

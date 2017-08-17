@@ -1,0 +1,40 @@
+{% load i18n staticfiles %}
+	<link href="{% static "syferadmin/libs/nvd3/nvd3.css" %}" rel="stylesheet">
+	<link href="{% static "syferadmin/css/reports.css" %}" rel="stylesheet">
+	<script src="{% static "syferadmin/libs/d3/d3.js" %}"></script>
+	<script src="{% static "syferadmin/libs/nvd3/nvd3.js" %}"></script>
+	<script src="{% static "syferadmin/libs/jquery.cookie.js" %}"></script>
+	<script src="{% static "syferadmin/libs/dateFormat.js" %}"></script>
+	<script src="{% static "syferadmin/libs/countUp.js" %}"></script>
+	<script src="{% static "syferadmin/js/reports.js" %}"></script>
+	<input type="hidden" name="force_start_date" value="{{ report.start_date|date:"Y-m-d" }}" />
+	<input type="hidden" name="force_end_date" value="{{ report.end_date|date:"Y-m-d" }}" />
+
+	<div id="{{ report.token }}" class="report" data-report="{{ report.token }}">
+		{% if report.params %}
+			<script type="text/javascript">
+				var params = {};
+				{% for key,value in report.params.items %}
+					params['{{ key }}'] = '{{ value }}';
+				{% endfor %}
+			</script>
+		{% endif %}
+
+		{% if report.media %}
+			{{ report.media }}
+		{% else %}
+			<script type="text/javascript">
+				Dashboard.add({token: "{{ report.token }}"})
+			</script>
+		{% endif %}
+		<header data-drag-handle>
+			<h3>{{ report.title }}</h3>
+			<ul class="report-toolbox">
+				<li><button type="button" class="toggle" data-action="toggle" title="Toggle">Toggle</button></li>
+			</ul>
+		</header>
+		<div class="data-body" data-body></div>
+		<script type="text/template" data-template>
+			{% include report.template %}
+		</script>
+	</div>

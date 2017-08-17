@@ -1,0 +1,42 @@
+<ul>
+	<li>
+		<h3>Revenue</h3>
+		<div>
+			<strong>$<%- numberWithCommas(revenue.current) %><span class="label"> <%- period.current %></span></strong>
+			<span class="previous">$<%- numberWithCommas(revenue.prev) %><span class="label"> <%- period.prev %></span></span>
+			<span class="change <% if (revenue.difference < 0) { %>negative<% } else { %>positive<% } %>"><%- revenue.difference %>%<span class="label"> Change</span></span>
+		</div>
+	</li>
+	<li>
+		<h3>Orders</h3>
+		<div>
+			<strong><%- orders.current %><span class="label"><%- period.current %></span></strong>
+			<span class="previous"><%- orders.prev %><span class="label"><%- period.prev %></span></span>
+			<span class="change <% if (orders.difference < 0) { %>negative<% } else { %>positive<% } %>"><%- orders.difference %>%<span class="label">Change</span></span>
+		</div>
+	</li>
+	<li>
+		<h3>Visitors</h3>
+		<div>
+			<strong><%- visitors.current %><span class="label"><%- period.current %></span></strong>
+			<span class="previous"><%- visitors.prev %><span class="label"><%- period.prev %></span></span>
+			<span class="change <% if (visitors.difference < 0) { %>negative<% } else { %>positive<% } %>"><%- visitors.difference %>%<span class="label">Change</span></span>
+		</div>
+	</li>
+	<li>
+		<h3>Conversion</h3>
+		<div>
+			<strong><%- conversions.current %><span class="label"><%- period.current %></span></strong>
+			<span class="previous"><%- conversions.prev %><span class="label"><%- period.prev %></span></span>
+			<span class="change <% if (conversions.difference < 0) { %>negative<% } else { %>positive<% } %>"><%- conversions.difference %>%<span class="label">Change</span></span>
+		</div>
+	</li>
+	<li>
+		<h3>Average Order Value</h3>
+		<div>
+			<strong>$<%- aov.current %><span class="label"><%- period.current %></span></strong>
+			<span class="previous">$<%- aov.prev %><span class="label"><%- period.prev %></span></span>
+			<span class="change <% if (aov.difference < 0) { %>negative<% } else { %>positive<% } %>"><%- aov.difference %>%<span class="label">Change</span></span>
+		</div>
+	</li>
+</ul>

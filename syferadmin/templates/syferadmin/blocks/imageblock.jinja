@@ -1,0 +1,4 @@
+<a href="{{ block.url }}" class="image-block">
+	<img src="{{ block.resized(width=dimensions[0], height=dimensions[1], crop=True, upscale=True).url }}" alt="{{ block.title }}">
+	<span>{{ block.title }}</span>
+</a>

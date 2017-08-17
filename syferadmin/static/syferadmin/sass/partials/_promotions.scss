@@ -1,0 +1,704 @@
+// ----- Promotions ----- //
+
+@mixin dash-divider($pseudo: after) {
+	&:#{$pseudo} {
+		content: "-";
+		float: left;
+		height: 40px;
+		line-height: 40px;
+		margin: 0 10px;
+
+		@include breakpoint(680px) {
+	    	content: "---";
+	    	margin: 0 15px;
+	    }
+	}
+}
+
+%dash-divider { @include dash-divider; }
+
+#promotion_report + a {
+	margin-top: 10px;
+}
+
+.add_single_use:hover {
+	color: $text-grey;
+}
+
+.empty-promo-warning {
+	color: $red;
+	margin: 0;
+
+	.form-group & {
+		margin-top: 10px;
+	}
+
+	@include icon-inline($icon-warning, $size: 20px, $position: relative, $top: 3px);
+}
+
+form .add {
+	// Buttons
+	button {
+		border: 1px solid #666;
+		color: #666;
+		letter-spacing: .05em;
+		line-height: 1.4;
+		min-height: 60px;
+		overflow: hidden;
+		padding: 12px 15px;
+		text-align: left;
+		text-overflow: ellipsis;
+		text-transform: uppercase;
+		white-space: nowrap;
+		width: 100%;
+
+		&:before {
+			display: inline-block;
+			font-family: "AdminIcons";
+			font-size: 24px;
+			-webkit-font-smoothing: antialiased;
+			font-style: normal;
+			padding-right: 5px;
+			position: relative;
+			speak: none;
+			text-transform: none;
+			top: -1px;
+			vertical-align: middle;
+		}
+
+		&:hover {
+			background-color: #666;
+			border-color: #666;
+			color: #fff;
+		}
+
+		&[name="ContainsName"], &[name="AddressContains"], &[name="AddressFieldContains"], &[name="NameContains"], &[name="EmailContains"] {
+			&:before {
+				content: $icon-contains;
+			}
+		}
+
+		&[name="FreeItem"] {
+			&:before {
+				content: $icon-free-item;
+			}
+		}
+
+		&[name="NotContainsName"], &[name="URLNotEquals"], &[name="ShippingBillingMatch"], &[name="NotEmailContains"]{
+			&:before {
+				content: $icon-contains-not;
+			}
+		}
+
+		&[name="URLEquals"], &[name="SearchTermEquals"] {
+			&:before {
+				content: $icon-contains-does;
+				font-size: 1.7em;
+			}
+		}
+
+		&[name="URLContains"], &[name="SearchTermContains"] {
+			&:before {
+				content: $icon-url-contains;
+				font-size: 1.7em;
+			}
+		}
+
+		&[name="URLNotContains"] {
+			&:before {
+				content: $icon-url-contains-not;
+				font-size: 1.7em;
+			}
+		}
+
+		&[name="URLNotFound"] {
+			&:before {
+				content: "\f127";
+				font-family: "FontAwesome";
+				font-size: 1.7em;
+			}
+		}
+
+		&[name="URLStartsWith"] {
+			&:before {
+				content: $icon-chevron-up;
+				font-size: 1.0em;
+			}
+		}
+
+		&[name="ReferringDomainContains"] {
+			&:before {
+				content: $icon-referrer;
+			}
+		}
+
+		&[name="ReferringDomainNotContains"] {
+			&:before {
+				content: $icon-referrer-not;
+			}
+		}
+
+		&[name="InCategory"], &[name="IpAddressIn"], &[name="GeoIpAddressResolvesTo"], &[name="EmailIn"], &[name="CustomerInGroup"], &[name="PaymentReasonCodeIn"], &[name="DiscountedItemInCategory"], &[name="InBrand"] {
+			&:before {
+				content: $icon-category;
+			}
+		}
+
+		&[name="NotInCategory"], &[name="NotInBrand"] {
+			&:before {
+				content: $icon-category-not;
+			}
+		}
+
+		&[name="MaxQuantity"] {
+			&:before {
+				content: $icon-quantity-below;
+			}
+		}
+
+		&[name="MaxAmount"] {
+			&:before {
+				content: $icon-amount-below;
+			}
+		}
+
+		&[name="MinAmount"] {
+			&:before {
+				content: $icon-amount-over;
+			}
+		}
+
+		&[name="MinQuantity"], &[name="PaymentAttempts"] {
+			&:before {
+				content: $icon-quantity-above;
+			}
+		}
+
+		&[name="BuyXGetY"] {
+			&:before {
+				content: $icon-buy-x-get-y;
+			}
+		}
+
+		&[name="Fixed"] {
+			&:before {
+				content: $icon-fixed-discount;
+			}
+		}
+
+		&[name="FreeShipping"] {
+			&:before {
+				content: $icon-free-shipping;
+			}
+		}
+
+		&[name="FreeShippingDisabled"] {
+			&:before {
+				content: $icon-error-outline;
+			}
+		}
+
+		&[name="Percent"], &[name="MinDiscount"] {
+			&:before {
+				content: $icon-percentage;
+			}
+		}
+
+		&[name="Sale"] {
+			&:before {
+				content: $icon-tag;
+				min-width: 35px;
+			}
+		}
+
+		&[name="FraudService"], &[name="SignifyD"] {
+			&:before {
+				content: "\f0c2";
+				min-width: 35px;
+				font-family: FontAwesome;
+			}
+		}
+
+		&[name="TaxFree"] {
+			&:before {
+				content: $icon-tax-free;
+				min-width: 35px;
+			}
+		}
+
+		&[name="Tiered"] {
+			&:before {
+				content: $icon-tiered;
+			}
+		}
+
+		&[name="TieredFixed"] {
+			&:before {
+				content: $icon-tiered-fixed;
+			}
+		}
+
+		&[name="TieredPercent"] {
+			&:before {
+				content: $icon-tiered-percent;
+			}
+		}
+	}
+
+	li {
+		float: left;
+		margin: 0 0 10px;
+		width: 100%;
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+		@include breakpoint($bp-600) { // 2 across
+			margin-bottom: 3%;
+			margin-left: 3%;
+			width: 47.5%;
+
+			&:nth-child(2n+1) {
+				clear: left;
+				margin-left: 0;
+			}
+		}
+
+		@include breakpoint($bp-870) { // 3 across
+			clear: none;
+			margin-bottom: 2%;
+			margin-left: 2%;
+			width: 32%;
+
+			&:nth-child(2n+1) {
+				clear: none;
+				margin-left: 2%;
+			}
+
+			&:nth-child(3n+1) {
+				clear: left;
+				margin-left: 0;
+			}
+
+			button {
+				font-size: 12px;
+			}
+		}
+
+		@include breakpoint($bp-1140) { // 4 across
+			clear: none;
+			width: 23.5%;
+
+			&:nth-child(3n+1) {
+				clear: none;
+				margin-left: 2%;
+			}
+
+			&:nth-child(4n+1) {
+				clear: left;
+				margin-left: 0;
+			}
+		}
+
+		@include breakpoint($bp-1430) { // 5 across
+			clear: none;
+			width: 18.4%;
+
+			&:nth-child(4n+1) {
+				clear: none;
+				margin-left: 2%;
+			}
+
+			&:nth-child(5n+1) {
+				clear: left;
+				margin-left: 0;
+			}
+		}
+	}
+
+	ul {
+		@extend %clear-fix;
+		list-style: none;
+		margin: 0;
+		max-width: 1400px;
+		padding-left: 0;
+	}
+}
+
+#effects-empty, .empty-form {
+	+ .inline-related {
+		padding-top: 10px;
+	}
+}
+
+#conditions-group {
+	.add {
+		margin-top: 30px;
+	}
+}
+
+#conditions-group, #effects-group {
+	.inline-related {
+		background-color: #FAFAFA;
+		border: 1px solid #e9e9e9;
+		margin: 0 -20px 20px;
+		padding: 30px 20px;
+		position: relative;
+
+		input[type="number"] {
+			background: #fff !important;
+			width: 118px;
+		}
+
+		@include breakpoint($bp-600) {
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
+
+	.remove {
+		margin-top: 0;
+		position: absolute !important;
+		right: 15px;
+		top: 15px;
+	}
+
+	@include breakpoint($bp-480) {
+		.inline-related {
+			padding: 30px;
+		}
+
+		input {
+			min-width: 100px;
+		}
+	}
+}
+
+div[class*="field-tier"] {
+	clear: left;
+    float: left;
+    margin-top: 75px;
+    padding-top: 10px;
+    position: relative;
+}
+
+div[class*="tier_1"] + div[class*="tier_1"], div[class*="tier_2"] + div[class*="tier_2"], div[class*="tier_3"] + div[class*="tier_3"], div[class*="tier_4"] + div[class*="tier_4"] {
+    clear: none;
+
+    &:after {
+    	display: none;
+    }
+}
+
+.field-buy_quantity {
+	@extend %dash-divider;
+}
+
+.field-free_quantity {
+	@include breakpoint(680px) {
+		@include dash-divider;
+	}
+}
+
+.field-periods, .field-shipping, .field-percentage, .field-amount {
+	clear: both;
+    display: block;
+    float: left;
+    margin-bottom: 10px;
+}
+
+
+.field-limit {
+	clear: left;
+	margin-top: 30px;
+
+	@include breakpoint(680px) {
+		clear: none;
+		margin-top: 0;
+	}
+}
+
+div[class*="tier"] {
+	@extend %dash-divider;
+
+	&:before {
+	    bottom: 100%;
+		color: #333;
+		font-family: "Proxima Nova Regular", Helvetica, Arial, sans-serif;
+	    font-size: 1.07143em;
+	    font-weight: bold;
+	    left: 0;
+		margin-bottom: 20px;
+		padding-bottom: 3px;
+	    position: absolute;
+		text-transform: uppercase;
+		width: 280px;
+	    white-space: nowrap;
+
+		@include breakpoint($bp-480) {
+	    	border-bottom: 1px solid #E9E9E9;
+		}
+	}
+}
+
+div[class*="tier_1"] {
+	&:before {
+    	content: "TIER 1";
+    }
+
+    + div[class*="tier_1"]:before {
+    	display: none;
+    }
+}
+
+div[class*="tier_2"] {
+	&:before {
+		content: "TIER 2";
+	}
+
+	+ div[class*="tier_2"]:before {
+		display: none;
+	}
+}
+
+div[class*="tier_3"] {
+	&:before {
+    	content: "TIER 3";
+    }
+
+    + div[class*="tier_3"]:before {
+    	display: none;
+    }
+}
+
+div[class*="tier_4"] {
+	&:before {
+    	content: "TIER 4";
+    }
+
+    + div[class*="tier_4"]:before {
+    	display: none;
+    }
+}
+
+div[class*="field-tier_1_amount"] {
+    position: static !important;
+
+	&:before {
+		border: 0;
+	    color: #999;
+	    display: block;
+	    content: "* One Tier minimum";
+	    font-size: 12px;
+	    font-style: italic;
+	    left: 20px;
+	    position: absolute;
+	    top: 20px;
+
+	    @include breakpoint($bp-480) {
+	    	left: 30px;
+	    }
+	}
+}
+
+.field-single_use_codes {
+	@include flexbox;
+	@include flex-direction(row);
+
+	> div {
+		border: $border;
+		@include flex; // keep these side by side divs always the same height
+		margin-bottom: -1px;
+		padding: em(30px);
+	}
+
+	 @include breakpoint($bp-tablet) {
+	    @include clear-fix;
+
+	    > div {
+	    	float: left;
+	    	margin: 0 0 0 -1px;
+	    	min-height: 135px;
+			width: 50%;
+	    }
+	}
+}
+
+.form-group.codes {
+	border: $border;
+	margin-bottom: em(30px);
+	padding: em(30px);
+
+	h5 {
+		border-bottom: $border;
+		margin-bottom: em(20px);
+		padding-bottom: em(10px);
+	}
+
+	strong, .amount {
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	.amount {
+		color: $link-color;
+		font-size: em(20px);
+	}
+
+	.btn {
+		display: block;
+		margin-top: em(10px);
+		width: 100px;
+	}
+}
+
+.object-history main h2 {
+	float: none;
+}
+
+
+.promotions.index, .announcements.index, .fraud.index, .redirects.index {
+	#result_list tbody {
+		th, td {
+			padding: 10px;
+		}
+	}
+
+	.code {
+		color: #61AA9D;
+		cursor: text;
+		margin-bottom: em(10px);
+
+		&:not(:empty) {
+			border: 1px solid darken($outline-grey, 5%);
+			display: block;
+			float: left;
+			margin-bottom: 15px;
+			padding: 10px 15px;
+
+			&:before {
+				color: #333;
+				content: "Promo code: ";
+			}
+		}
+	}
+
+	.code_display {
+		color: #333;
+		cursor: text;
+		border: 1px solid darken($outline-grey, 5%);
+		display: block;
+		float: left;
+		margin-bottom: 15px;
+		padding: 10px 15px;
+
+		span {
+			color: #61AA9D;
+			margin-bottom: em(10px);
+		}
+	}
+
+	.name {
+		clear: both;
+		display: block;
+		font-size: em(18px);
+		margin-bottom: em(10px, 18px);
+	}
+
+	.summary {
+		clear: both;
+	    margin-bottom: 1em;
+	}
+}
+
+.announcements-announcement, .fraud-fraudcheck, .redirects-redirect {
+	@extend %position-object-tools;
+}
+
+.promotions-promotion, .announcements-announcement, .fraud-fraudcheck, .redirects-redirect {
+	form {
+		.inline-group {
+			@extend %clear-fix;
+			border-top: $border;
+			padding-bottom: 20px;
+			padding-top: 40px;
+			position: relative;
+
+			h5 {
+				font-size: em(15px);
+				margin-bottom: 8px;
+				text-transform: uppercase;
+			}
+		}
+
+		.inline-related {
+			@extend %clear-fix;
+			padding-bottom: 2em;
+		}
+	}
+
+	.add_single_use {
+		background: none;
+		border: 0;
+		float: right;
+		height: auto;
+		letter-spacing: .1em;
+		line-height: 20px;
+		padding: 0;
+	}
+
+	.field-buy_quantity, .field-limit, .field-free_quantity {
+		float: left;
+	}
+
+	.field-code {
+		max-width: 280px;
+
+		@include breakpoint($bp-550) {
+			max-width: 315px;
+		}
+	}
+
+	.field-limit + .remove {
+		margin-top: em(26px, 11px);
+	}
+
+	.inline-group {
+		input {
+			width: 80%;
+			@include calc("width", "100% - 44px");
+		}
+
+		.chosen-container-multi {
+			float: left;
+			max-width: 80%;
+			@include calc("max-width", "100% - 44px");
+		}
+
+		.field-box input {
+			float: left;
+		}
+
+		.field-DELETE {
+			display: none;
+		}
+
+		.remove {
+			@extend %delete-icon;
+			float: left;
+			margin-left: 4px;
+		}
+	}
+}
+
+body.promotions-promotion.add {
+	.well .btn {
+		margin-right: 0;
+	}
+
+	.submit-row.well:last-of-type {
+		margin-left: -50px;
+		padding-left: 50px;
+	}
+}

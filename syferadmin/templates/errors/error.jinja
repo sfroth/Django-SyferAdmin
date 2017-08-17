@@ -1,0 +1,13 @@
+{% extends "base.jinja" %}
+
+{% block bodyclass %}error-page error-{{ error_code }}{% endblock %} 
+
+{% block content %}
+
+	<div class="wrap">
+		<h2>Oops, looks like something went wrong. <span>(Error {{ error_code }}, {{ reason_phrase }})</span></h2>
+
+		<p>Wait a few seconds and give it another shot or go to the <a href="/">Home Page</a>.</p>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "admin/base.html" %}
+{% load i18n admin_static admin_list %}
+{% load admin_extras %}
+
+{% block bodyclass %}{{ cl.opts.verbose_name_plural|lower }}releasenotes index{% endblock %}
+
+{% block javascript %}
+	{{ block.super }}
+
+	<script src="{% static "syferadmin/libs/jquery.cookie.js" %}"></script>
+	<script src="{% static "syferadmin/js/release-notes.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+	<header class="releasenotes-header">
+		<h1 class="releasenotes-title">Release Notes</h1>
+	</header>
+	{% if releasenotes.count > 0 %}
+		<ol class="releasenotes-list">
+		{% for note in releasenotes.recent %}
+			<li class="releasenote" data-title="{{ note.title }}" data-id="{{ note.hash }}" data-date="{{ note.date|date:"c" }}">
+			{{ note.html|safe }}
+			</li>
+		{% endfor %}
+		</ol>
+	{% else %}
+	<h2>No Release Notes Yet</h2>
+	{% endif %}
+{% endblock %}

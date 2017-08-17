@@ -1,0 +1,207 @@
+// ----- Help ----- //
+
+// Help button
+form {
+	label {
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	.help {
+		@extend %icon-help;
+	}
+}
+
+// ----- Overlay ----- //
+
+.overlay-active {
+	.chosen-container-multi .chosen-choices {
+		border-color: #e5e5e5 !important;
+	}
+
+	.chosen-drop {
+		display: none;
+	}
+}
+
+.overlay-container {
+	max-width: 600px;
+
+	// Fade In
+	// @include modal-fade-in($duration-in: .5s, $duration-out: .3s, $activeClass: help-active, $transparency: null, $zindex: 110);
+
+	// Slide in from left
+	@include modal-slide-in($duration-in: .5s, $duration-out: .3s, $direction: left, $activeClass: overlay-active, $transparency: null, $zindex: 110);
+
+	// Slide in from right
+	// @include modal-slide-in($direction: right, $activeClass: help-active, $transparency: null, $zindex: 110);
+
+	// Slide in from top
+	// @include modal-slide-in($direction: top, $activeClass: help-active, $transparency: null, $zindex: 110);
+
+	// Slide in from bottom
+	// @include zoom-slide-in($direction: bottom, $activeClass: help-active, $transparency: null, $zindex: 110);
+
+	@include align-items(center);
+	@include flexbox;
+	@include flex-direction(column);
+}
+
+// .overlay-container--image {
+// 	@media (min-width: 1430px) {
+// 		max-width: 35%;
+// 	}
+// }
+
+// .overlay-container--image {
+// 	overflow: hidden;
+
+// 	.overlay-content-wrapper {
+// 		overflow: hidden;
+// 	}
+// }
+
+.overlay-container-wrapper {
+	height: 100%;
+  	width: 100%;
+}
+
+.overlay-content-wrapper {
+	max-height: 100%;
+  	@include calc('max-height', '100% - 50px');
+	overflow: auto;
+
+	.overlay-container--help & {
+		padding: 10% em(26px) 100px;
+	}
+
+	.overlay-container--image & {
+		padding: 25px;
+	}
+
+	.touch & {
+		overflow: scroll;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	img {
+		display: block;
+		margin-bottom: 5px;
+		// @include transition(max-width .5s ease-in-out);
+	}
+}
+
+.overlay-content {
+	font-size: em(17px);
+	line-height: 1.6;
+
+	dt {
+		width: 30%;
+		display: inline-block;
+		float: left;
+		font-weight: bold;
+		text-transform: capitalize;
+	}
+
+	h3 {
+		font-size: 1.2em;
+	}
+	.media-mediafile &{
+		text-align: center;
+
+		img{
+			margin: 0px auto;
+		}
+	}
+}
+
+.overlay-title {
+	@include icon-inline($icon-chevron-left);
+	// reset button styles so it looks like a title
+	background-color: transparent;
+	border-width: 0 0 1px;
+	border-color: #efefef;
+	color: #333;
+	min-height: 50px;
+	overflow: hidden;
+	text-align: left;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100%;
+
+	&:hover {
+		background-color: #efefef;
+		border-color: #efefef;
+		color: #333;
+	}
+}
+
+// Overlay that covers page:
+// click anywhere to close
+.overlay-close {
+	background-color: #333;
+	background-color: transparentize(#000, .5);
+	border: 0;
+	height: 100%;
+	left: 0;
+	opacity: 0;
+	outline: 0;
+	position: fixed;
+	top: 0;
+	@include transition(opacity .3s ease-in-out, visibility 0s .3s);
+	visibility: hidden;
+	width: 100%;
+	z-index: 100;
+
+	.overlay-active & {
+		opacity: 1;
+		@include transition(opacity .5s ease-in-out);
+		visibility: visible;
+	}
+
+	&:hover {
+		background-color: #333;
+		background-color: transparentize(#000, .5);
+	}
+}
+
+.overlay-container--image-link {
+	display: block;
+	font-size: 13px;
+
+	&:not(.zoomable):not(.zoomed) {
+		color: #999;
+		display: initial;
+		cursor: text;
+
+		img {
+			cursor: default;
+		}
+	}
+}
+
+
+
+.chosen-results {
+	display: none !important;
+
+	html:not(.overlay-active) & {
+		display: block !important;
+	}
+}
+
+.overlay-active {
+	body {
+		overflow: hidden;
+	}
+}
+
+.zoomable {
+	cursor: pointer;
+	cursor: -webkit-zoom-in;
+}
+
+.zoomed {
+	cursor: pointer;
+	cursor: -webkit-zoom-out;
+	// max-width: none;
+}

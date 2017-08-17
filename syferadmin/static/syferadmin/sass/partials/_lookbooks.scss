@@ -1,0 +1,16 @@
+// ----- Lookbooks ----- //
+
+#lookbook_form h2 {
+	@extend %floated-heading;
+	@extend %heading-title;
+}
+
+#lookbook_form {
+	.submit-row + .module.aligned, .submit-row + .errornote + .module.aligned {
+		@extend %padding;
+
+		~ fieldset {
+			@extend %toggle-container;
+		}
+	}
+}

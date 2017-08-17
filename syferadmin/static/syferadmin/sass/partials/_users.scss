@@ -1,0 +1,67 @@
+// ----- Users ----- //
+
+#id_password {
+    @extend %general-inputs;
+    margin-bottom: em(20px);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+    strong {
+    	color: inherit;
+    }
+}
+
+// Hide the hash field when editing a user
+.syferadmin-user #id_password {
+	display: none;
+}
+
+#user_form > div > p:first-child {
+	font-family: $font-standard-bold;
+	font-size: em(20px);
+	line-height: 1.2em;
+	margin-bottom: 1.4em;
+	padding-top: 0.4em;
+	text-transform: uppercase;
+}
+
+.field-last_login, .field-date_joined {
+	label {
+		color: #333;
+		font-family: $font-standard-bold;
+		font-size: em(13px);
+		text-transform: uppercase;
+	}
+}
+
+// ----- History ----- //
+
+.object-history #content-main {
+	border-top: $border;
+	margin: 0 -20px;
+	padding: 40px 20px;
+	overflow: hidden;
+
+	@include breakpoint($bp-tablet) {
+		margin-left: -30px;
+		margin-right: -30px;
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+
+	@include breakpoint($bp-buffness) {
+		margin-left: -50px;
+		margin-right: -50px;
+		padding-left: 50px;
+		padding-right: 50px;
+	}
+}
+
+.syferadmin-user.change-form #content-main .module {
+    margin: 0;
+
+    .form-row {
+    	padding-bottom: 2em;
+    }
+}

@@ -1,0 +1,177 @@
+// ---- Add Group ----- //
+
+.auth-group .submit-row:first-child {
+	display: none;
+}
+
+// ----- STORE SETTINGS ----- //
+
+.settings.edit {
+	form {
+		> section {
+			@extend %clear-fix;
+			border-top: 1px solid $outline-light-grey;
+			clear: both;
+			padding-top: 40px;
+
+			+ section {
+				margin-top: 40px;
+			}
+		}
+
+		h3 {
+			font-size: em(16px);
+			margin-top: em(12px, 16px);
+		}
+		> .form-group:last-of-type {
+				border-bottom: 4px solid #dadada;
+				margin-bottom: 2em;
+				padding-bottom: 40px;
+		}
+	}
+
+	section > h2 {
+		@extend %heading-title;
+	}
+
+	.form-group .input-holder {
+	    overflow: visible;
+	    width: 90%;
+	    @include calc("width", "100% - 65px");
+	}
+
+	.form-group {
+
+		.label.label-default {
+		    width: 57px;
+		    padding: 0;
+		    margin-left: 8px;
+		    text-align: center;
+		}
+	}
+
+	// Admin flag
+	.label {
+		float: right;
+		display: block;
+		background: $light-blue;
+		color: $blue;
+		margin-left: 0.7em;
+		height: 3.3em;
+		line-height: 3.4em;
+		padding: 0 10px;
+		font-size: 0.8em;
+		text-transform: uppercase;
+	}
+
+	.save {
+		margin-right: 0;
+	}
+
+	.suffix {
+		display: none;
+	}
+
+	@include breakpoint($bp-thunderbolt) {
+		form > section + section {
+			float: none;
+
+			> .form-group {
+				clear: none;
+				float: right;
+				@include calc("width", "100% - 320px");
+			}
+		}
+
+		input[type="hidden"] + .inline-related {
+			margin-top: -40px;
+		}
+
+		section {
+			> h2 {
+				clear: left;
+				float: left;
+				width: 260px;
+			}
+
+			section {
+				clear: none;
+				float: right;
+				@include calc("width", "100% - 320px");
+			}
+		}
+
+		> .add-row {
+			left: 0;
+			right: auto;
+			top: 110px;
+		}
+	}
+}
+
+// Settings
+.settings {
+	&.index {
+		main {
+			padding-left: 0;
+			padding-right: 0;
+
+			> h2 {
+				@extend %padding-left;
+			}
+
+			.messages {
+				@extend %padding;
+			}
+		}
+
+		td {
+			@include transition(color .05s ease-in-out);
+		}
+
+		tr {
+			@include transition(background-color .05s ease-in-out);
+		}
+
+		tbody tr:hover, tbody tr:nth-of-type(odd):hover {
+			// background-color: #2C2C2C;
+			background-color: $blue;
+			cursor: pointer;
+
+			td {
+				color: #fff;
+			}
+
+			a {
+				color: #fff;
+
+				&:hover {
+					color: #ddd;
+				}
+			}
+		}
+	}
+
+	.module {
+		overflow: hidden;
+		overflow-x: auto;
+	}
+
+	.table {
+		@extend %table;
+	}
+
+	.well {
+		@extend %clear-fix;
+		@extend %padding-margin;
+		border-top: 4px solid $outline-light-grey;
+		@include box-sizing(content-box);
+		margin-top: 20px;
+		padding-top: 30px;
+		width: 100%;
+
+		a {
+			margin-left: 10px;
+		}
+	}
+}

@@ -1,0 +1,110 @@
+{% extends "admin/base.html" %}
+{% load i18n admin_static admin_modify admin_extras %}
+{% load admin_urls %}
+
+{% block title %}{{ original }} / {{ opts.verbose_name_plural|title }} / {{ block.super }}{% endblock %}
+
+{% block coltype %}{% if ordered_objects %}colMS{% else %}colM{% endif %}{% endblock %}
+
+{% block bodyclass %}{{ opts.app_label }}-{{ opts.object_name.lower }} form{% endblock %}
+
+{% block content %}
+	{{ media.js }}
+	{% block object-tools %}
+	{% if change %}{% if not is_popup %}
+		<ul class="object-tools">
+			{% block object-tools-items %}
+				<li><a href="{% url opts|admin_urlname:'history' original.pk|admin_urlquote %}" class="history">{% trans "History" %}</a></li>
+				{% if has_absolute_url %}<li><a href="{% url 'admin:view_on_site' content_type_id original.pk %}" class="view">{% trans "View on site" %}</a></li>{% endif %}
+				{% if original.related_to %}<li><a href="#used-on" class="used-on">{% trans "Used On" %}</a></li>{% endif %}
+				{% if has_translations %}
+					{% get_current_language as LANGUAGE_CODE %}
+					{% get_available_languages as LANGUAGES %}
+					{% get_language_info_list for LANGUAGES as languages %}
+					<div class="translate-group dropdown">
+						<div class="translate btn">
+							Translate
+							<span data-toggle="save-options" class="caret"></span>
+						</div>
+						<ul class="translate-options">
+							{% for language in languages %}
+								{% if language.code not in LANGUAGE_CODE %}
+								<li class="btn"> <input type="checkbox" name="{{ language.code }}" id="lang-{{ language.code }}" data-id="{{ language.code }}"> <label for="lang-{{ language.code }}" >{{ language.name }}</label>
+								{% endif %}
+							{% endfor %}
+						</ul>
+
+					</div>
+				{% endif %}
+			{% endblock %}
+		</ul>
+	{% endif %}{% endif %}
+	{% endblock %}
+	<form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.model_name }}_form">{% csrf_token %}{% block form_top %}{% endblock %}
+		{% block edit-title %}
+		<h2>{{ change|yesno:"Edit,Add" }} {{ opts.verbose_name|capfirst }}</h2>
+		{% endblock %}
+		<div>
+			{% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
+			{% block submit_buttons_top %}{% submit_row %}{% endblock %}
+			{% if errors %}
+				<p class="errornote">
+				{% blocktrans count counter=errors|length %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+				</p>
+				{{ adminform.form.non_field_errors }}
+			{% endif %}
+
+			{% if original %}
+			<div class="metadata" style="display: none;">{% block metadata %}{% endblock %}</div>
+			<div class="used-on" data-title="Used in {{ original.related_to|length }} Places" style="display: none;">
+				{% if original.related_to %}
+					<h4><strong>{{ original }}</strong> is used on</h4>
+					{% regroup original.related_to by content_type.name as used_on %}
+					<ul>
+					{% for ct in used_on %}
+						<li>
+							<a href="{{ ct.list.0.content_object.admin_url }}">{{ ct.grouper|title }}</a>
+							<ul>
+							{% for item in ct.list %}
+								<li><a href="{{ item.content_object.admin_change }}">{{ item.content_object.name }}</a></li>
+							{% endfor %}
+							</ul>
+						</li>
+					{% endfor %}
+					</ul>
+				{% endif %}
+			</div>
+			{% endif %}
+
+			{% block field_sets %}
+			{% for fieldset in adminform %}
+				{% include "admin/includes/fieldset.html" %}
+			{% endfor %}
+			{% endblock %}
+
+			{% block after_field_sets %}{% endblock %}
+
+			{% block inline_field_sets %}
+				{% for inline_admin_formset in inline_admin_formsets %}
+					{% include inline_admin_formset.opts.template %}
+				{% endfor %}
+			{% endblock %}
+
+			{% block after_related_objects %}{% endblock %}
+
+			{% block submit_buttons_bottom %}{% submit_row %}{% endblock %}
+
+			{% if adminform.first_field and add %}
+				 <script type="text/javascript">document.getElementById("{{ adminform.first_field.id_for_label }}").focus();</script>
+			{% endif %}
+
+			{# JavaScript for prepopulated fields #}
+			{% prepopulated_fields_js %}
+
+		</div>
+	</form>
+{% endblock %}
+
+{% block stylesheets %}{{ block.super }}
+{{ media.css }}
+{% endblock %}

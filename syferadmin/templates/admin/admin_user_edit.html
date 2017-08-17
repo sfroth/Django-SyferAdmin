@@ -1,0 +1,52 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_urls %}
+
+{% block object-tools-items %}
+	{{ block.super }}
+	<li><a href="{% url opts|admin_urlname:'activity' original.pk|admin_urlquote %}" class="activity" title="{% trans "Activity" %}">{% trans "Activity" %}</a></li>
+	{# <li><a href="{% url opts|admin_urlname:'downgrade' original.pk|admin_urlquote %}" class="downgrade" title="{% trans "Downgrade to Customer" %}">{% trans "Downgrade to Customer" %}</a></li> #}
+{% endblock %}
+
+
+{% block field_sets %}
+	{{ block.super }}
+	{% if original.pk %}
+	<section id="logins">
+		<h4>Logins <span class="record-count">{{ original.userlogin_set.count }}</span></h4>
+
+		{% if logins %}
+			<div class="table-wrap">
+				<table>
+					<thead>
+						<tr>
+							<td>&nbsp;</td>
+							<td>Date</td>
+							<td>Success</td>
+							<td>Region</td>
+							<td>IP Address</td>
+							<td>User Agent</td>
+						</tr>
+					</thead>
+					<tbody>
+					{% for login in logins %}
+						<tr>
+							<td title="OS: {{ login.os|title }}&#013;Browser: {{ login.browser|title }}">
+								<span class="os os-{{ login.os }}">{{ login.os|title }}</span>
+								<span class="browser browser-{{ login.browser }}">{{ login.browser|title }}</span>
+							</td>
+							<td>{{ login.created|date:"SHORT_DATE_FORMAT" }}<br>{{ login.created|date:"TIME_FORMAT" }}</td>
+							<td><span class="{{ login.successful|yesno:"success,failure," }}">{{ login.successful|yesno:"Yes,No,N/A" }}</span></td>
+							<td>{{ login.region }}</td>
+							<td class="nowrap">{{ login.ip_address }} <a href="https://ipinfo.io/{{ login.ip_address }}" data-address="{{ login.ip_address }}" class="map">Map</a></td>
+							<td class="ua browser-{{ login.browser }} os-{{ login.os }}" title="{{ login.user_agent|escape }}">{{ login.user_agent|truncatechars:256 }}</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		{% else %}
+			<p>Hasn't logged in yet</p>
+		{% endif %}
+	</section>
+	{% endif %}
+{% endblock %}

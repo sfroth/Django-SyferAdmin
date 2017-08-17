@@ -1,0 +1,30 @@
+<div style="display:none;">
+	<div data-browser data-page="1">
+		<header>
+			<h2>Add Items</h2>
+			{% if browser_message %}<p>{{ browser_message }}</p>{% endif %}
+			<button type="button" class="btn cancel" data-action="cancel">Cancel</button>
+
+			<div class="search-container">
+				<div class="input-group-btn">
+					<button type="button" class="btn add" data-action="add">Add</button>
+				</div>
+
+				<div class="search-holder">
+					<input type="search" placeholder="Search Items" />
+				</div>
+
+				<div class="search-counter">
+					<strong>Showing <span data-count></span> of <span data-total></span></strong>
+				</div>
+			</div>
+		</header>
+
+		<div data-results-container><ul data-results></ul></div>
+
+		<footer>
+			<button type="button" class="btn add" data-action="add">Add</button>
+			<button type="button" class="btn cancel" data-action="cancel">Cancel</button>
+		</footer>
+	</div>
+</div>

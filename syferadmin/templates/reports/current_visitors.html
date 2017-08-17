@@ -1,0 +1,9 @@
+<div class="total">
+	<span><%- active_users %></span>
+	<h5>Active Users On Site</h5>
+</div>
+<ol class="devices">
+<% _.each(devices, function(device) { %>
+	<li class="<%- device.name %>"><span class="percentage"><%- device.percentage %>%</span> <span class="name"><%- device.name %></span></li>
+<% }); %>
+</ol>

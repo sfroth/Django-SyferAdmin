@@ -1,0 +1,30 @@
+{% macro meta(request, title, description, image=None) -%}
+	<meta name="description" content="{{ description|striptags|truncate(160)|e }}" />
+	
+	<meta property="og:title" content="{{ title|e }}" />
+	<meta property="og:description" content="{{ description|striptags|truncate(160)|e }}" />
+	{%- if image %}
+	<meta property="og:image" content="{{ image.url|absolute }}" />
+	{% endif -%}
+{%- endmacro %}
+
+{% macro site_datalayer(request) %}
+	dataLayer.push({
+		'region': {{ request.region.name|json }}
+		, 'regionID': {{ request.region.id|json }}
+		, 'currency': {{ request.region.currency.iso_id|json }}
+		{%- if request.user.is_authenticated() %}
+		, 'userEmailHash': {{ request.user.email|lower|hash|json }}
+		, 'userID': {{ request.user.id|json }}
+		, 'userAuthenticated': true
+		{%- else %}
+		, 'userAuthenticated': false
+		{%- endif %}
+	});
+{% endmacro %}
+
+{% macro datalayer(values={}) %}
+	{%- if values %}
+	dataLayer.push({{ values|json }});
+	{%- endif %}
+{% endmacro %}

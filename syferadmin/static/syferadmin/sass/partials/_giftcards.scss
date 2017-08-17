@@ -1,0 +1,45 @@
+// ----- Giftcards ----- //
+
+.designs.index {
+	.nested-sortable {
+		li > div {
+		    overflow: hidden;
+		}
+
+		.label {
+		    float: left;
+			margin: 10px 0 0;
+		}
+
+		.name {
+	    	display: block;
+		}
+	}
+
+	.thumb_display {
+	    margin-right: 10px;
+
+	    a {
+		    overflow: hidden;
+		    display: block;
+		}
+
+		@include breakpoint($bp-400) {
+			float: left;
+		}
+	}
+}
+
+.giftcards-design {
+	@extend %position-object-tools;
+}
+
+// Hide the django 1.8 edit and remove buttons
+#add_id_design:after, #change_id_design, #delete_id_design {
+	display: none;
+}
+
+// [+] button next to select
+#id_design + .chosen-container {
+	@extend %select-add;
+}

@@ -1,0 +1,20 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block body %}
+<body class="login">
+
+	<div class="wrapper">
+
+		<header>
+			<img src="{{ settings.Admin.login_logo }}" class="login-logo">
+		</header>
+
+		{% include "admin/messages.html" %}
+
+		{% block content %}{% endblock %}
+
+	</div>
+
+</body>
+{% endblock %}

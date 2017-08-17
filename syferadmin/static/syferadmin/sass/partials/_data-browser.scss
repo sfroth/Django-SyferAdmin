@@ -1,0 +1,289 @@
+// ----- data-browser ----- //
+
+$grid-3-col: 800px, $no-query;
+
+[data-browser] {
+	background: $light-grey;
+
+	footer, header {
+		@extend %padding;
+	}
+
+	footer, header {
+		background-color: #fff;
+		left: 0;
+		right: 0;
+		z-index: 1;
+
+		button {
+			float: right;
+		}
+	}
+
+	footer {
+		border-top: 4px solid $outline-light-grey;
+		bottom: 0;
+		padding-bottom: 20px;
+		padding-top: 20px;
+		position: fixed;
+
+		button {
+			margin-left: 10px;
+		}
+	}
+
+	header {
+		border-bottom: $border;
+		padding-bottom: 20px;
+		padding-top: 30px;
+		position: relative;
+
+		h2 + button + .search-container {
+			@include breakpoint(min-height 768px) {
+				padding-top: 1.5em;
+			}
+		}
+
+		.cancel {
+			@extend %btn-responsive;
+			@extend %ico-close;
+			position: absolute;
+			right: 20px;
+			top: 20px;
+
+			@include breakpoint($bp-tablet) { // 767px
+				right: 30px
+			}
+
+			@include breakpoint($bp-buffness) { // 1500px
+				right: 50px
+			}
+		}
+
+		.wrapper {
+			position: static;
+		}
+	}
+
+	img {
+		display: block;
+		margin: auto;
+	}
+
+	&.loading {
+		@extend %loading-icon;
+
+		header {
+			@extend %loading-icon;
+
+			&:before {
+				bottom: 30px;
+				left: 30px;
+				margin-bottom: -2px;
+				z-index: 2;
+			}
+		}
+
+		&:before {
+			bottom: 30px;
+			left: 30px;
+			position: fixed;
+			z-index: 2;
+		}
+
+		.search-counter strong {
+			padding-left: 30px;
+
+			@include breakpoint($grid-3-col) {
+				padding-left: 0;
+			}
+		}
+
+		@include breakpoint($bp-tablet) { // 767px
+			&:before, header:before {
+				left: 40px;
+			}
+		}
+
+		@include breakpoint($grid-3-col) { // 800px
+			&:before, header:before {
+				left: 50%;
+			}
+
+			header:before {
+				margin-bottom: -8px;
+			}
+		}
+	}
+
+	.code {
+		margin-bottom: 5px;
+	}
+
+	.name, .code {
+		color: #333;
+		display: block;
+		font-size: em(13px);
+		word-wrap: break-word;
+	}
+
+	.name {
+		padding-top: 1em;
+	}
+
+	.search-counter strong {
+		@include transition(padding-left .25s ease-in-out);
+
+	}
+
+	// Mmobile view
+	@include breakpoint(max-height 767px) {
+		footer {
+			border-top: 2px solid #dadada;
+			padding-bottom: 15px;
+			padding-top: 15px;
+		}
+
+		header {
+		    padding-bottom: 20px;
+		    padding-top: 15px;
+
+		    .cancel {
+		    	display: none;
+		    }
+		}
+
+		&.loading {
+			header:before {
+				display: none;
+			}
+
+			&:before {
+				bottom: 20px;
+			}
+		}
+
+		.search-counter {
+		    font-size: 10px;
+		    position: absolute;
+		    top: 18px;
+		    right: 20px;
+		}
+
+		.search-holder {
+			padding-bottom: 0;
+		}
+	}
+
+	.search-counter {
+		@include breakpoint(767px (max-height 767px)) {
+			right: 30px;
+		}
+
+		@include breakpoint(1500px (max-height 767px)) {
+			right: 50px;
+		}
+	}
+
+	@include breakpoint(min-height 1100px) {
+		header {
+			min-height: 191px;
+			position: fixed;
+			top: 0;
+
+			.wrapper {
+				left: 0;
+				position: fixed;
+				right: 0;
+				top: 0;
+			}
+		}
+
+		> div {
+			position: fixed;
+		}
+	}
+}
+
+[data-results-container] {
+	background-color: #fafafa;
+	bottom: 84px;
+	left: 0;
+	overflow: hidden;
+	overflow-y: auto;
+	padding-top: 30px;
+	position: absolute;
+	top: 191px;
+	right: 0;
+
+	@include breakpoint(max-height 767px) {
+		bottom: 71px;
+		padding-top: 30px;
+		top: 106px;
+	}
+}
+
+[data-results] {
+	@extend %padding;
+	@extend %tiles;
+
+	> li {
+		padding-bottom: 20px;
+	}
+}
+
+[data-result] {
+	-webkit-tap-highlight-color: transparent;
+	cursor: pointer;
+
+	&:before { // check mark
+		background: $green-border;
+		border-radius: 50%;
+		color: #fff;
+		content: "\e607";
+		font-family: "AdminIcons";
+		font-size: em(10px);
+		height: 28px;
+		line-height: 28px;
+		@include opacity(0);
+		position: absolute;
+		text-align: center;
+		top: -14px;
+		@include transition(opacity .3s);
+		right: -14px;;
+		width: 28px;
+	}
+
+	&.inactive {
+		@include opacity(.5);
+	}
+
+	&.selected {
+		border-color: $green-border;
+
+		&:before {
+			@include opacity(1);
+		}
+	}
+
+	&:hover {
+		.no-touch & {
+			border-color: $green-border;
+
+			&:before {
+				@include opacity(1);
+			}
+		}
+	}
+}
+
+.fancybox-wrap.data-browser {
+	left: 0 !important; // override inline fancybox.js styles
+	right: 0;
+	top: 0 !important;
+	width: auto !important; // override inline fancybox.js styles
+
+	.fancybox-inner {
+		width: auto !important; // override inline fancybox.js styles
+	}
+}

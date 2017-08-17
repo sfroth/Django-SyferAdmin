@@ -1,0 +1,281 @@
+@import "compass/css3";
+@import "breakpoint"; // Media query mixin that lets you output styles to an ie conditional or appended to your main.css with a .ie8 prefix
+
+@import "../variables";
+@import "../icon-mixins";
+@import "../reusables";
+@import "../fonts";
+
+// ----- SORTING ----- //
+
+#admin-controls {
+	background-color: $sidenav-dark-grey;
+	background-color: transparentize($sidenav-dark-grey, .1);
+	bottom: 0;
+	color: #fff;
+	left: 0;
+	min-height: 40px;
+	padding: 15px 20px 25px;
+	position: fixed;
+	right: 0;
+	z-index: 1000;
+
+	a {
+		color: #fff;
+		font-size: 12px;
+		display: inline-block;
+		@include icon("\f0d9");
+		padding-top: 4px;
+		vertical-align: middle;
+
+		&:hover {
+			color: #666;
+			text-decoration: none;
+		}
+
+		@include breakpoint($bp-tablet) {
+			padding-top: 0;
+			text-transform: uppercase;
+		}
+	}
+
+	 ~ footer {
+		padding-bottom: 100px;
+	}
+
+	h1 {
+		font-family: $font-standard;
+		font-size: em(18px);
+		letter-spacing: 1px;
+		line-height: normal;
+		text-transform: none;
+		color: #fff;
+
+		@include breakpoint($bp-480) {
+			font-size: em(21px);
+		}
+
+		@include breakpoint($bp-tablet) {
+			font-size: em(27px);
+		}
+	}
+
+	~ main .messages {
+		bottom: 80px;
+		position: fixed;
+		right: 0;
+		left: 0;
+		width: 100%;
+		z-index: 1000;
+	}
+
+	.buttons {
+		button {
+			font-family: $font-standard-bold;
+			background-color: #fff;
+			background-color: transparentize(#fff, .2);
+			color: #666;
+			cursor: pointer;
+			font-size: em(11px);
+			height: 40px;
+			outline: 0;
+			position: absolute;
+			letter-spacing: .1em;
+			text-transform: uppercase;
+
+			&.save, &.sort-children {
+				border: 1px solid transparent;
+				height: 24px;
+				padding: 0 18px;
+				right: 10px;
+				bottom: 10px;
+				@include transition(background-color .25s ease-in-out, border-color .2s ease-in-out, color .2s ease-in-out);
+
+				&:focus, &:hover {
+					background-color: transparent;
+					border-color: #fff;
+					color: #fff;
+				}
+
+				@include breakpoint($bp-480) {
+					height: 34px;
+				}
+			}
+
+			&.sort-children {
+				display: none;
+				right: 200px;
+			}
+
+			@include breakpoint($bp-870) {
+				&.sort-children {
+					display: block;
+				}
+			}
+
+			@include breakpoint($bp-tablet) {
+				font-size: em(12px);
+
+				&.save, &.sort-children {
+					bottom: 50%;
+					height: 40px;
+					padding-left: 25px;
+					padding-right: 25px;
+					margin-bottom: -20px;
+					right: 20px;
+				}
+				&.sort-children {
+					right: 200px;
+				}
+			}
+		}
+	}
+
+	.controls {
+		list-style: none;
+	}
+
+	.sort-bottom, .sort-top {
+		-webkit-backface-visibility: hidden;
+		border-color: #666;
+		border-style: solid;
+		border-width: 0;
+		bottom: 50%;
+		opacity: 0;
+		@include transition(background-color .25s ease-in-out, bottom 0s .5s cubic-bezier(0.17, 0.04, 0.03, 0.94), color .25s ease-in-out, opacity .5s ease-in-out);
+		width: 50%;
+		z-index: -1;
+
+		&:focus, &:hover {
+			background-color: transparentize($sidenav-dark-grey, .1);
+			border-color: transparentize($sidenav-dark-grey, .1);
+			color: #fff;
+		}
+
+		.sortable-selected & {
+			bottom: 100%;
+			opacity: 1;
+			@include transition(background-color .25s ease-in-out, bottom .5s cubic-bezier(0.17, 0.04, 0.03, 0.94), color .25s ease-in-out, opacity .5s ease-in-out);
+		}
+	}
+
+	.sort-bottom {
+		border-width: 1px 0 0 1px;
+		right: 0;
+		@include icon($icon: "\f175", $before-or-after: after);
+	}
+
+	.sort-top {
+		border-width: 1px 0 0 0;
+		left: 0;
+		@include icon($icon: "\f176", $before-or-after: after);
+	}
+}
+
+// ----- SORTING HELPERS ----- //
+.products.ui-sortable, .product-list.ui-sortable, [data-product-wall].ui-sortable {
+	overflow: hidden;
+	position: relative;
+
+	button {
+		font-family: $font-standard-bold;
+		@include appearance(none);
+		background-color: transparent;
+		border: 1px solid #666;
+		color: #666;
+		cursor: pointer;
+		font-size: 10px;
+		height: auto;
+		letter-spacing: .1em;
+		line-height: 29px;
+		margin: 3px;
+		outline: 0;
+		padding: 0 8px;
+		text-transform: uppercase;
+		@include transition(background-color .25s ease-in-out, color .25s ease-in-out, opacity .25s ease-in-out);
+
+		&:focus, &:hover {
+			background-color: #666;
+			color: #fff;
+		}
+	}
+
+	li {
+		background: #fff;
+
+		&[data-product-id] {
+			&:before { // move icon
+				background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NDkxMSwgMjAxMy8xMC8yOS0xMTo0NzoxNiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkUxNUI5Q0ZEQjgzMjExRTNCNkVEQzk4MTQ5RjE4OTY2IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkUxNUI5Q0ZFQjgzMjExRTNCNkVEQzk4MTQ5RjE4OTY2Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RTE1QjlDRkJCODMyMTFFM0I2RURDOTgxNDlGMTg5NjYiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RTE1QjlDRkNCODMyMTFFM0I2RURDOTgxNDlGMTg5NjYiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz50i7ytAAAAqklEQVR42mJgwA24gHgvFHMxkAhAGvYB8X8o3keqIZuQNMPwJmwKmXEY8BuIHwGxFZTfA8TbgPgaKa4wQLLdAJciJiQ/g5wYQoTBIVC14DBhgTK2ALEjEN8E4jtQhepImpDZ5kDsC9XjwwCNpv9k4r1MDFQAyHHeDQ0wEA5HsikcSbwbW9rAFoi4YgElECmORmY8UeWJlJC+ADE/KQmJ6KRMs8xEdHYGCDAAFElDQqF0wDkAAAAASUVORK5CYII=);
+				background-repeat: no-repeat;
+				content: "";
+				font-size: 20px;
+				height: 16px;
+				position: absolute;
+				right: 15px;
+				top: 15px;
+				width: 16px;
+				z-index: 1;
+			}
+		}
+
+		&:hover {
+			&:before, button {
+				opacity: 1;
+			}
+		}
+	}
+
+	.active {
+		button {
+			opacity: 1;
+		}
+
+		.sort-select {
+			background-color: $sidenav-dark-grey;
+			border-color: darken($sidenav-dark-grey, 10%);
+			color: #fff;
+			@include icon($icon: "\f14a", $before-or-after: after);
+		}
+	}
+
+	.sort-bottom {
+		@include icon($icon: "\f175", $before-or-after: after);
+	}
+
+	.sort-top {
+		@include icon($icon: "\f176", $before-or-after: after);
+	}
+
+	.sort-bottom, .sort-top, .sort-select {
+		&:after {
+			line-height: 1em;
+		}
+	}
+
+	.placeholder {
+		background: #fafafa;
+		border: 1px dashed darken(#fafafa, 15%);
+		display: inline-block;
+		font-size: 100px;
+		position: relative;
+		@include transition(all .25s ease-in-out);
+		vertical-align: top;
+	}
+
+	.add-cart, .prev, .next, .swatches {
+		display: none !important;
+	}
+
+	.ui-sortable-helper {
+		border: 1px solid #dbdbdb;
+		opacity: .7;
+
+		&:before {
+			opacity: 0 !important;
+		}
+
+		img {
+			border-color: transparent;
+		}
+	}
+}

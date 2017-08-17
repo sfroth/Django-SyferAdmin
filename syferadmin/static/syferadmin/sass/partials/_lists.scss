@@ -1,0 +1,301 @@
+// ----- Lists ----- //
+
+#action-toggle {
+	&:hover + label:after {
+		opacity: 1;
+	    @include transition(opacity .3s);
+	    visibility: visible;
+	}
+
+	&:checked + label:after {
+		content: "* Deselect all";
+	}
+
+	+ label:after {
+	    color: $text-light-grey;;
+	    content: "* Select all";
+	    font-size: smaller;
+	    font-style: italic;
+	    left: 0;
+	    opacity: 0;
+	    position: absolute;
+	    top: -20px;
+	    @include transition(opacity .3s, visibility 0s .3s);
+	    visibility: hidden;
+	    white-space: nowrap;
+	}
+}
+
+#changelist-form {
+	table .actions {
+		min-width: 100px;
+	}
+
+	.actions {
+		margin-bottom: 1em;
+
+		> label {
+			margin-bottom: 1em;
+		}
+
+		> span {
+			display: block;
+			float: left;
+			margin-right: 2em;
+			padding: .4em 0;
+
+			&:first-of-type {
+			    clear: left;
+			}
+
+			&:last-of-type {
+				margin-right: 0;
+			}
+		}
+
+		@include breakpoint($bp-1050) {
+			margin-bottom: 1.5em;
+
+			> label {
+				margin-bottom: 0;
+			}
+
+			> span {
+				display: inline-block;
+				float: none;
+				margin: 0;
+				padding: 0;
+
+				a {
+					border: 1px solid transparent;
+					display: block;
+					padding: .8em 1em;
+					@include transition(background-color .3s ,border-color .3s);
+
+					&:hover {
+						background-color: $light-blue;
+						border-color: $blue;
+						color: $blue;
+					}
+				}
+
+				&:first-of-type {
+					margin-left: 1em;
+				}
+			}
+		}
+	}
+}
+
+#changelist #result_list {
+	[class*="action-checkbox"] {
+		@extend %padding-left;
+	}
+}
+
+
+// COLUMN SORTING //
+#result_list {
+	.sortable > div {
+		display: inline-block;
+		position: relative;
+		text-align: center;
+
+		> span {
+			display: inline-block;
+		}
+
+		&:hover .sortremove {
+			opacity: 1;
+		}
+	}
+
+	.sorted {
+		&.ascending .column-title a:after {
+			content: "\e614";
+		}
+
+		&.descending .column-title a:after {
+			content: "\e618";
+		}
+
+		.column-title {
+			position: relative;
+
+			a:after {
+				display: inline-block;
+				font-family: "AdminIcons";
+				font-size: 6px;
+				padding-left: 7px;
+				position: relative;
+				top: -1.5px;
+			}
+		}
+	}
+
+	.sortpriority {
+		color: $blue;
+		font-size: em(13px);
+	}
+
+	.sortremove {
+		opacity: 0;
+		@include transition(opacity .3s ease-in-out);
+
+		a {
+			border: 1px solid $red;
+			color: $red;
+			display: block;
+			height: 20px;
+			left: 4px;
+			line-height: 20px;
+			position: relative;
+			@include transition(background-color .3s ease-in-out, color .3s ease-in-out);
+			width: 20px;
+
+			&:before {
+				content: "\e60f";
+				font-family: "AdminIcons";
+				font-size: 8px;
+				position: relative;
+				top: -1px;
+			}
+
+			&:hover {
+				background-color: $red;
+				color: #fff;
+			}
+		}
+	}
+}
+
+.mantles h2 {
+	float: left;
+	width: 50%;
+}
+
+.nested-sortable {
+	font-size: em(11px);
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 0;
+
+	li {
+		margin: 4px 0;
+
+		> div {
+			@extend %clear-fix;
+			background-color: $background-grey;
+			border: 1px solid darken($background-grey, 15%);
+			padding: em(15px) 0 em(15px) em(15px);
+
+			@include transition(border-color .2s ease-in-out);
+
+			&:hover {
+				border-color: darken($background-grey, 30%);
+			}
+		}
+
+		.module & {
+			padding-top: 0;
+		}
+	}
+
+	> li {
+		list-style: none;
+
+		.nested-sortable > li {
+			@include transition(border-color .2s ease-in-out);
+
+			&:hover {
+				border-color: darken($background-grey, 30%);
+			}
+		}
+	}
+
+
+	li.placeholder {
+		background: $light-blue;
+
+		&:after {
+			content: "\0000A0"; // non-breaking space
+			font-size: 1.2em;
+		}
+	}
+
+	.actions {
+		float: right;
+
+		li {
+			display: inline-block;
+			margin: 0;
+			text-align: center;
+			vertical-align: middle;
+		}
+
+		+ strong {
+			font-size: 1.1em;
+			text-transform: uppercase;
+		}
+
+		ul {
+			padding: 0;
+		}
+
+		.visit,
+		.sort,
+		.edit,
+		.delete {
+			margin-right: em(12px);
+		}
+
+		.edit,
+		.delete {
+			font-size: 1.15em;
+		}
+	}
+
+	.label {
+		border: $border;
+		color: #999;
+		font-size: em(9px);
+		letter-spacing: .1em;
+		margin-left: em(4px, 10px);
+		padding: em(2.5px, 10px) em(5px, 10px) 0;
+		position: relative;
+		text-transform: uppercase;
+		top: em(-2.2px, 11px);
+		@include transition(background-color .3s);
+
+		&:hover {
+			background-color: $grey-1;
+		}
+
+		&.active {
+			border-color: $green;
+			color: $green;
+
+			&:hover {
+				background-color: $light-green;
+			}
+		}
+	}
+
+	@include breakpoint($bp-480) {
+		font-size: 1em;
+
+		.actions {
+			.visit,
+			.sort,
+			.edit,
+			.delete {
+				margin-right: em(15px);
+			}
+
+			.edit,
+			.delete {
+				font-size: 1em;
+			}
+		}
+	}
+}

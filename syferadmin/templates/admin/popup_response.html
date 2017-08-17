@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head><title></title></head>
+  <body>
+    <script type="text/javascript">
+      if(opener) {
+        {% if action == 'change' %}
+          opener.dismissChangeRelatedObjectPopup(window, "{{ value|escapejs }}", "{{ obj|escapejs }}", "{{ new_value|escapejs }}");
+        {% elif action == 'delete' %}
+          opener.dismissDeleteRelatedObjectPopup(window, "{{ value|escapejs }}");
+        {% else %}
+          opener.dismissAddAnotherPopup(window, "{{ value|escapejs }}", "{{ obj|escapejs }}");
+        {% endif %}
+      } else {
+        parent.dismissAddRelatedObjectIframe(window, "{{ value|escapejs }}", "{{ obj|escapejs }}");
+      }
+    </script>
+  </body>
+</html>

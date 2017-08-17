@@ -1,0 +1,1050 @@
+// ----- Form Elements ----- //
+
+fieldset,
+form {
+	border-style: none;
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+fieldset {
+	min-width: 100%;
+	width: 100%;
+}
+
+form > div > {
+	fieldset, section, .inline-group {
+		@extend %padding-margin;
+	}
+
+	fieldset {
+		@include box-sizing(content-box);
+		width: 100%;
+
+		~ .submit-row {
+			@extend %padding-margin;
+			border-top: 4px solid $outline-light-grey;
+			padding-top: 2em;
+			position: relative;
+		}
+	}
+}
+
+form {
+	> div {
+		@extend %clear-fix;
+	}
+
+	> p {
+		margin-bottom: 1.5em;
+	}
+
+	> .field-box {
+		font-size: em(15px);
+		padding-bottom: 2em;
+		position: relative;
+	}
+}
+
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+textarea {
+    @extend %general-inputs;
+    @extend %general-placeholder;
+}
+
+input, textarea {
+    &[readonly] {
+    	color: $placeholder-grey;
+    	cursor: not-allowed;
+    }
+}
+
+input {
+	&[type="datetime-local"], &[type="number"] {
+		max-width: 100%;
+		width: auto;
+	}
+
+	&[type="file"] {
+	    margin-bottom: 2em;
+	}
+
+	// Number
+	&[type="number"] {
+		@extend %input-grey-background;
+
+		&.white {
+			@extend %input-white-background;
+		}
+	}
+
+	&[type="search"], &[type="submit"] {
+		-webkit-appearance: none;
+	}
+}
+
+// Checkboxes
+.action-checkbox input[type=checkbox] {
+	cursor: pointer;
+	display: block;
+}
+
+input[type=checkbox] {
+	display: none;
+
+	&:checked + label:before {
+		background-color: #F1F0EE;
+		color: $aqua;
+		content: "\f00c";
+	}
+
+	+ label {
+		@extend %user-select;
+		cursor: pointer;
+		display: block;
+		margin-bottom: 0;
+		padding-left: 30px;
+		position: relative;
+
+		&:before {
+			background: $grey-1;
+			border: 1px solid #D2D2D2;
+			color: #434e5b;
+			content: "";
+			display: inline-block;
+			font-family: "FontAwesome";
+			font-size: 10px;
+			height: 18px;
+			left: 0;
+			line-height: 20px;
+			margin-top: -2px;
+ 			position: absolute;
+			text-align: center;
+			text-indent: 0;
+			top: 50%;
+			@include transform(translateY(-50%));
+			@include transition(background-color .3s);
+			width: 18px;
+
+			@include old-ie {
+				top: 5px;
+			}
+		}
+
+		.help {
+			margin-top: -2px;
+		}
+	}
+}
+
+// Action checkboxes
+.action-checkbox, .action-checkbox-column {
+	input[type="checkbox"] {
+		cursor: pointer;
+		display: block;
+		height: 20px;
+		@include opacity(0);
+		position: relative;
+		top: 6px;
+		width: 20px;
+		z-index: 1;
+
+		+ label {
+			cursor: default;
+			float: left;
+			left: 2px;
+			top: -14px;
+
+			&:before {
+				margin-top: 0;
+			}
+		}
+	}
+}
+
+.selected .action-checkbox {
+	label:before {
+		background-color: #F1F0EE;
+		content: "\f00c";
+	}
+}
+
+// Radios
+input[type=radio] {
+	display: none;
+
+	&:checked + label {
+		color: #434e5b;
+
+		&:before {
+			content: "\f111";
+		}
+	}
+
+	+ label {
+		clear: left;
+		cursor: pointer;
+		display: block;
+		float: left;
+		line-height: 20px;
+		margin-bottom: 0;
+		padding-left: 30px;
+		position: relative;
+
+		&:before {
+			background-color: #F1F0EE;
+			border: 1px solid #D2D2D2;
+			border-radius: 50%;
+			color: #434e5b;
+			content: "";
+			display: inline-block;
+			font-family: "FontAwesome";
+			font-size: 10px;
+			height: 19px;
+			left: 0;
+			line-height: 20px;
+			position: absolute;
+			right: 0;
+			text-align: center;
+			text-indent: em(.5px, 10px);
+			top: 50%;
+			@include transform(translateY(-50%));
+			width: 19px;
+
+			@include old-ie {
+				top: 5px;
+			}
+		}
+	}
+}
+
+label {
+	@extend %label;
+}
+
+legend {
+	clear: both;
+	color: #333;
+	float: left;
+	font-family: $font-standard-bold;
+	font-size: em(20px);
+	-webkit-font-smoothing: antialiased;
+	margin: 0 0 1em 0;
+	padding: 0;
+	width: 100%;
+
+	+ .description {
+		clear: left;
+		float: left;
+		margin: em(-12px) 0 em(20px);
+	}
+}
+
+select {
+	height: 40px;
+
+	&[multiple=multiple] {
+		max-width: 320px;
+		width: 100%;
+	}
+}
+
+// Textarea
+textarea {
+	line-height: 1.3em;
+	padding: 8px 1px 1px 10px;
+	min-height: 100px;
+	resize: vertical;
+
+	&:-moz-placeholder {
+		line-height: 1.3em;
+	}
+
+    &::-moz-placeholder { // Mozilla Firefox 19+
+    	line-height: 1.3em;
+    }
+
+    &:-ms-input-placeholder {
+    	line-height: 1.3em;
+    }
+
+    &::-webkit-input-placeholder {
+    	line-height: 1.3em;
+    }
+}
+
+#galleryimage_form {
+	.dropdown {
+		button {
+			// float: right;
+
+			&[value="approved"] {
+				margin-left: 7px;
+			}
+			&[value="rejected"] {
+				margin-left: 6px;
+			}
+		}
+	}
+
+	// Make this look like an input
+	.field-status p {
+		border: 1px solid #e5e5e5;
+		color: #878787;
+		height: 40px;
+		line-height: 40px;
+		padding: 0 10px;
+	}
+
+	.uploader li {
+		min-height: 0;
+	}
+}
+
+.btn--add-plus {
+	@include add-plus(
+		$float: null, 
+		$vertical-align: bottom
+	);
+}
+
+.chosen-container {
+	max-width: 100%;
+
+	.field-parent & { // make space for the add button and keep it from breaking under
+		margin-right: -55px;
+		padding-right: 55px;
+	}
+}
+
+// Chosen multi select overides
+.chosen-container-multi {
+
+	.chosen-drop {
+		z-index: 10 !important;
+	}
+
+	.chosen-choices {
+		background-image: none;
+		border-color: $outline-grey !important;
+		@extend %input-white-background;
+
+		li.search-field input[type="text"] {
+			font: 15px/40px $font-standard !important;
+			color: $text-dark-grey !important;
+			margin: 0 !important;
+			padding: 0 10px !important;
+			height: 40px !important;
+			width: auto !important;
+		}
+
+		li.search-choice {
+			font-family: $font-standard-bold;
+			letter-spacing: 0.05em;
+			color: $blue !important;
+			@include border-radius(26px !important);
+			background: $light-blue !important;
+			height: 26px;
+			border: none !important;
+			padding: 0 13px !important;
+			line-height: 28px !important;
+			margin: 4px 0 4px 4px !important;
+
+			span {
+				padding-right: 7px;
+			}
+
+			.search-choice-close {
+				position: static !important;
+				display: inline-block !important;
+				width: auto !important;
+				height: 100% !important;
+				background: none !important;
+				font-size: 1em !important;
+
+
+				&:after {
+					font: 9px/1em "AdminIcons";
+					content: "\e60f";
+					@include transition(color 0.3s);
+				}
+				&:hover:after {
+					color: $red;
+				}
+			}
+
+			&.ui-sortable-helper {
+				.search-choice-close {
+					display: none !important;
+				}
+			}
+		}
+
+		li.placeholder {
+			float: left;
+			@include border-radius(26px !important);
+			background: $grey-1 !important;
+			width: 50px;
+			height: 26px;
+			border: none !important;
+			padding: 0 13px !important;
+			line-height: 28px !important;
+			margin: 4px 0 4px 4px !important;
+		}
+	}
+
+	&.chosen-container-active .chosen-choices {
+		border-color: $blue !important;
+		@include box-shadow(none !important);
+	}
+
+	.chosen-results li.highlighted {
+		background: $blue !important;
+	}
+}
+
+// Chosen single select overides
+// setting this to em messes up on the categories page
+select {
+	font-size: 15px;
+	-webkit-appearance: menulist-button;
+}
+
+.chosen-container-single {
+	font-size: 15px;
+	min-width: 175px;
+
+	.chosen-single {
+		padding: 0 0 0 10px !important;
+		@include box-shadow(none !important);
+		height: 40px !important;
+		line-height: 40px !important;
+		@include border-radius(0 !important);
+		background: $grey-1 !important;
+		border-color: $outline-select-grey !important;
+		color: $text-dark-grey !important;
+
+		div {
+			&:after {
+			    background: $grey-2;
+		    	border-left: 1px solid $outline-select-grey;
+				color: $text-dark-grey;
+				content: "\e618";
+				display: block;
+				font: 5px/36px "AdminIcons";
+				height: 100%;
+				position: absolute;
+				right: 0;
+				text-align: center;
+				top: 0;
+				width: 38px;
+			}
+
+			b {
+				display: none;
+			}
+		}
+	}
+
+	&.chosen-container .chosen-results {
+		margin: 0 !important;
+		max-height: 260px;
+		padding: 0 !important;
+
+		li {
+			border-top: 1px solid $outline-select-grey;
+			height: 37px;
+			line-height: 37px !important;
+			min-height: 0;
+			overflow: hidden;
+			padding: 0 10px !important;
+			position: relative;
+			white-space: nowrap;
+			text-align: left;
+			text-overflow: ellipsis;
+			width: 100%;
+
+			&:first-child {
+				@include hover-triangle($grey-1);
+
+				&:before {
+					@include transition(none);
+				}
+
+				&.highlighted:before {
+					border-bottom-color: $grey-1;
+				}
+			}
+		}
+
+		li.highlighted {
+			background: $grey-1 !important;
+			color: $text-dark-grey !important;
+		}
+	}
+
+	.chosen-drop {
+		margin-top: em(18px) !important;
+		@include border-radius(0 !important);
+		border-color: $outline-select-grey !important;
+		@include box-shadow(none !important);
+
+		&:after {
+			position: absolute;
+			top: -7px;
+			right: 13px;
+			content: "";
+			display: block;
+			width: 15px;
+			height: 8px;
+			background: transparent url(#{$image-dir}select-tip-top.png);
+			background-size: 15px 8px;
+			z-index: 52;
+		}
+	}
+}
+
+// Float checkboxes
+.form-group {
+	&.field-active, &.field-new {
+	    float: left;
+	    width: 100px;
+	}
+
+	&.field-ignore_min_quantity {
+	    float: left;
+	}
+
+	&.field-active +, &.field-required + {
+		.field-featured, .field-filterable, .field-new, .field-new + .field-ignore_min_quantity {
+			clear: none;
+
+			+ .form-group:not(.field-ignore_min_quantity) {
+				clear: left !important;
+			}
+		}
+	}
+
+	&.field-featured, &.field-filterable, &.field-required {
+	    float: left;
+		width: 120px;
+	}
+}
+
+.field-parent {
+	.chosen-container {
+		@extend %select-add;
+	}
+}
+
+.datetime {
+	input {
+		margin-top: em(7px, 15px);
+
+		&:first-of-type {
+			margin-bottom: 1em;
+		}
+	}
+}
+
+.empty-form {
+	display: none !important;
+}
+
+body.form {
+	fieldset {
+		margin-bottom: 0;
+		position: relative;
+
+		&:last-of-type:not(.toggle-container) {
+			margin-bottom: 0;
+
+			.video-upload-container .video-upload-holder {
+				padding-bottom: 1px;
+			}
+		}
+	}
+
+	form {
+		@extend %clear-fix;
+	}
+
+	.add-row {
+		margin-bottom: em(28px);
+
+		a {
+			@extend .btn;
+			@extend %ico-add;
+
+			&:before {
+				padding-right: 10px;
+				width: auto;
+			}
+		}
+	}
+
+	.custom-checkbox + label {
+		display: inline-block;
+		margin-right: 20px;
+	}
+}
+
+.form-group {
+	clear: both;
+	font-size: em(15px);
+	padding-bottom: 2em;
+	position: relative;
+
+	> div {
+		@extend %clear-fix;
+
+		> .add-another { // .add-another becomes .add-related in django 1.8
+			@extend %img-add-btn;
+		}
+	}
+
+	// Hide weird new icons from 1.8
+	select ~ {
+		.delete-related, .change-related {
+			display: none;
+		}
+	}
+
+	.add-related { // .add-another becomes .add-related in django 1.8
+		@extend %img-add-btn;
+	}
+
+	&.field-color {
+		.add-another:after, .add-related:after { // .add-another becomes .add-related in django 1.8
+			top: -4px;
+		}
+	}
+}
+
+.input {
+	margin-top: em(4px, 15px);
+	font-size: em(15px);
+
+	label {
+		color: $label-color;
+		margin-bottom: em(7px, 15px);
+	}
+}
+
+// Meta tags
+.meta-tag {
+	background: $light-blue;
+	border-radius: 26px;
+	color: $blue;
+	cursor: pointer;
+	display: inline-block;
+	font: 12px/28px $font-standard-bold;
+	height: 26px;
+	letter-spacing: 0.05em;
+	padding: 0 13px;
+	text-transform: uppercase;
+
+	&:hover {
+		color: $blue;
+
+		&:after {
+			color: $red;
+			@include opacity(1);
+		}
+	}
+
+	&:after {
+		font: 8px/1em "AdminIcons";
+		content: "\e60f";
+		padding-left: 10px;
+		@include opacity(0.6);
+		@include transition(opacity 0.3s, color 0.3s);
+	}
+}
+
+.radiolist {
+	margin-left: 0;
+	padding-left: 0;
+
+	li {
+		@extend %clear-fix;
+		list-style: none;
+		margin-bottom: .75em;
+	}
+}
+
+// Save group
+.save-group.dropdown {
+	float: right;
+	margin-left: 10px;
+	position: relative;
+
+	&:hover {
+		.save:after {
+			background-color: $blue;
+			color: #fff;
+		}
+
+		.save-options {
+			opacity: 1;
+			@include transition(opacity 0.3s);
+			visibility: visible;
+		}
+	}
+
+	.cancel {
+		float: right;
+	}
+
+	.save {
+		padding-right: 62px;
+		position: relative;
+
+		&:after {
+			background: #fff;
+			border-left: 1px solid $blue;
+			content: "\e618";
+			font-family: "AdminIcons";
+			font-size: 5px;
+			height: 100%;
+			padding-left: 1px;
+			position: absolute;
+			right: 0;
+			text-align: center;
+			top: 0;
+			@include transition(all 0.3s);
+			width: 37px;
+		}
+
+		&:hover:after {
+			background-color: $blue;
+			color: #fff;
+			border-left-color: #fff;
+		}
+	}
+
+	.save-options {
+		border-bottom: $border;
+		line-height: 3.25em;
+		opacity: 0;
+		padding-top: 16px;
+		position: absolute;
+		right: 0;
+		top: 100%;
+		@include transition(opacity 0.3s, visibility 0s .3s);
+		visibility: hidden;
+		white-space: nowrap;
+		z-index: 2;
+
+		&:after {
+			background: transparent url(#{$image-dir}select-tip-top.png);
+			@include background-size(15px 8px);
+			content: "";
+			display: block;
+			height: 8px;
+			position: absolute;
+			right: 13px;
+			top: 9px;
+			width: 15px;
+			z-index: 2;
+		}
+
+		// button:first-child { // fill the white triangle with blue on hover
+		// 	@include hover-triangle($light-blue);
+		// }
+
+		.btn {
+			border: $border;
+			border-bottom: none;
+			display: block;
+			min-width: 100%;
+		}
+	}
+
+	+ .cancel {
+		float: right;
+	}
+}
+
+// Save group
+.translate-group.dropdown {
+	float: right;
+	margin-left: 10px;
+	position: relative;
+
+	&:hover {
+		.translate:after {
+			background-color: $light-blue;
+		}
+
+		.translate-options {
+			opacity: 1;
+			@include transition(opacity 0.3s);
+			visibility: visible;
+		}
+	}
+
+	.translate {
+		padding-right: 62px;
+		position: relative;
+		@include icon-inline($icon-translate, "before");
+
+		&:after {
+			background: #fff;
+			border-left: 1px solid $blue;
+			content: "\e618";
+			font-family: "AdminIcons";
+			font-size: 5px;
+			height: 100%;
+			padding-left: 1px;
+			position: absolute;
+			right: 0;
+			text-align: center;
+			top: 0;
+			@include transition(background-color 0.3s);
+			width: 37px;
+		}
+
+		&:hover:after {
+			background-color: #fff;
+		}
+	}
+
+	.translate-options {
+		border-bottom: $border;
+		line-height: 3.25em;
+		opacity: 0;
+		padding-top: 16px;
+		padding-left: 0px;
+		position: absolute;
+		right: 0;
+		top: 100%;
+		@include transition(opacity 0.3s, visibility 0s .3s);
+		visibility: hidden;
+		white-space: nowrap;
+		z-index: 2;
+
+		&:after {
+			background: transparent url(#{$image-dir}select-tip-top.png);
+			@include background-size(15px 8px);
+			content: "";
+			display: block;
+			height: 8px;
+			position: absolute;
+			right: 13px;
+			top: 9px;
+			width: 15px;
+			z-index: 2;
+		}
+
+		li:first-child { // fill the white triangle with blue on hover
+			@include hover-triangle($light-blue);
+		}
+
+		li {
+			border: $border;
+			border-bottom: none;
+			display: block;
+			min-width: 100%;
+		}
+	}
+
+	+ .cancel {
+		float: right;
+	}
+}
+
+input[name="_popup"] ~ {
+	fieldset {
+		.add-another:after, .add-related:after { // .add-another becomes .add-related in django 1.8
+			display: none;
+		}
+	}
+
+	.submit-row {
+		.save {
+			padding-right: 1.78571em;
+
+			&:after {
+				display: none;
+			}
+		}
+
+		.save-group.dropdown .save-options {
+			display: none;
+		}
+	}
+}
+
+body.add {
+	main > h2 {
+		float: none;
+	}
+
+	.well {
+		margin-left: 0;
+
+		.btn {
+			// float: left;
+			margin-left: 0;
+			margin-right: 10px;
+			text-align: left;
+		}
+
+		.cancel {
+			// float: right;
+		}
+	}
+}
+
+.module, .ui-sortable {
+	@extend %floated-legend;
+}
+
+.prefix {
+	height: 40px;
+	float: left;
+	line-height: 40px;
+	margin-left: -30px;
+	padding: 0 10px;
+	position: relative;
+	right: -30px;
+	z-index: 1;
+
+	+ input {
+		float: left;
+		padding-left: 30px;
+		width: auto;
+		@include calc("width", "100% - 2px");
+	}
+}
+
+.well {
+	@extend %clear-fix;
+	clear: right;
+	display: none;
+	float: right;
+	font-size: em(12px);
+	list-style: none;
+	margin-bottom: 29px;
+	text-align: right;
+	width: 100%;
+
+	@include breakpoint($bp-tablet) {
+		display: block;
+	}
+
+	&:last-of-type {
+		@include box-sizing(content-box); // so the padding makes it stretch wider than 100% to fill screen / overflow main gutters
+		display: block;
+		float: none;
+		padding-top: 30px;
+		width: 100%;
+	}
+
+	> div, > .btn {
+		float: right;
+		margin-left: 10px;
+		width: auto;
+	}
+
+	~ .module {
+		padding-top: 40px;
+	}
+
+	.save-group.dropdown .save.has_options {
+		padding-right: 49px;
+
+		@include breakpoint(480px) {
+			padding-right: 64px;
+		}
+	}
+
+	@include breakpoint($bp-380) {
+		font-size: .85em;
+
+	}
+
+	@include breakpoint($bp-480) {
+		font-size: 1em;
+		margin-left: 10px;
+		white-space: nowrap;
+		width: auto;
+	}
+
+	@include breakpoint(max-width 329px) {
+		font-size: 9px;
+	}
+
+	@include breakpoint(330px 479px) {
+		font-size: 3vw;
+	}
+}
+
+.ui-sortable-helper {
+	@media (min-height: 450px) {
+    	margin-top: -50px;
+	}
+
+	@include old-ie {
+    	margin-top: -50px;
+	}
+}
+
+.ui-sortable {
+	> li {
+		cursor: move;
+	}
+
+	ol {
+		list-style: none;
+		padding-left: 1em;
+
+		@include breakpoint($bp-tablet) {
+			padding-left: 2em;
+		}
+
+		> li {
+			padding-top: 1em;
+			position: relative;
+		}
+
+		ol > li:before {
+			margin-right: 10px;
+		}
+
+		.ui-sortable-helper:before {
+			opacity: 0;
+		}
+	}
+
+	ul {
+		li {
+			padding-top: 0;
+		}
+	}
+
+	.list_actions {
+		position: relative;
+
+		.actions {
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+	}
+}

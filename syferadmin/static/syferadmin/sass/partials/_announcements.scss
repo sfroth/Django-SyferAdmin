@@ -1,0 +1,56 @@
+#announcement_form {
+	h2 {
+		clear: left;
+		width: auto;
+	}
+
+	.submit-row .cancel {
+		float: right;
+	}
+}
+
+.announcements.index {
+	// main > h2 {
+	// 	@extend %floated-heading;
+	// }
+
+	#result_list tbody {
+		th, td {
+			padding: 10px;
+		}
+	}
+
+	.url_display {
+		cursor: text;
+		margin-bottom: em(10px);
+		border: 1px solid darken($outline-grey, 5%);
+		display: block;
+		float: left;
+		margin-bottom: 15px;
+		padding: 10px 15px;
+
+		.url_match {
+			cursor: text;
+			font-weight: bold;
+			color: #000;
+		}
+	}
+
+	.name {
+		clear: both;
+		display: block;
+		font-size: em(18px);
+		margin-bottom: em(10px, 18px);
+	}
+}
+
+body.announcements-announcement.add {
+	.well .btn {
+		margin-right: 0;
+	}
+
+	.submit-row.well:last-of-type {
+		margin-left: -50px;
+		padding-left: 50px;
+	}
+}

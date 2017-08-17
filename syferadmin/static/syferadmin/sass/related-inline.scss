@@ -1,0 +1,308 @@
+// ----- Related Widget ----- //
+
+@import "compass/css3";
+@import "breakpoint";
+@import "partials/variables";
+@import "partials/icon-mixins";
+@import "partials/reusables";
+
+#related-results-container, .related-items {
+	@extend %clear-fix;
+
+	fieldset {
+		margin: 0 !important;
+		padding: 0 !important;
+		width: auto;
+	}
+
+	label {
+		display: none !important;
+	}
+
+	[name$="DELETE"] {
+		display: none;
+	}
+
+	// .delete {
+	// 	@extend %delete-icon;
+	// 	background-color: transparentize(#fff, .15);
+	// 	position: absolute;
+	// 	right: 15px;
+	// 	top: 15px;
+	// }
+	// 
+
+	.field-description {
+		margin-bottom: 0;
+		padding-bottom: 0;
+
+		~ .form-group {
+			display: none;
+		}
+	}
+
+	.form-group {
+		display: none;
+	}
+
+	.field-name {
+		margin-top: .5em;
+		padding-bottom: 1em;
+	}
+
+	.field-sort {
+		display: none;
+	}
+
+	.name {
+		display: block;
+		font-size: em(13px);
+		padding-top: 1em;
+		word-wrap: break-word;
+	}
+
+	.toggle-wrap {
+		margin-bottom: 0;
+	}
+}
+
+// ----- RELATED ITEMS OVERLAY ----- //
+#related-results-container {
+	background: $light-grey;
+	padding-bottom: 0;
+	position: relative;
+
+	footer {
+		background: #fff;
+		border-top: 4px solid $outline-light-grey;
+		bottom: 0px;
+		height: 84px;
+		left: 0;
+		padding: 20px;
+		position: fixed;
+		right: 0;
+
+		.btn {
+			float: right;
+			margin-left: 10px;
+		}
+	}
+
+	header {
+		background: #fff;
+		padding-top: 30px;
+
+		h2, h2 + p { // keep space for absolutely positioned close btn
+			padding-right: 60px;
+			@extend %padding-left;
+		}
+
+		.cancel {
+			@extend %btn-responsive;
+			@extend %ico-close;
+			position: absolute;
+			right: 20px;
+			top: 20px;
+		}
+	}
+
+
+	> ul, .search-container {
+		padding: 20px;
+
+		@include breakpoint(500px) {
+			padding: 30px;
+		}
+
+		@include breakpoint(1100px) {
+			padding: 40px;
+		}
+	}
+
+	&.loading {
+		@extend %loading-icon;
+
+		&:before {
+			bottom: 30px;
+			position: fixed;
+		}
+	}
+
+	.search-container {
+		border-color: $outline-light-grey;
+		border-style: solid;
+		border-width: 1px 0;
+		margin-top: 20px;
+		padding-bottom: 0;
+	}
+
+	.search-counter {
+		margin-bottom: 1.5em;
+	}
+
+	@include breakpoint($bp-tablet) {
+		> ul, .search-container {
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+
+		header .cancel {
+			right: 30px;
+			top: 40px;
+		}
+	}
+
+	@include breakpoint($bp-buffness) {
+		> ul, .search-container {
+			padding-left: 50px;
+			padding-right: 50px;
+		}
+
+		header .cancel {
+			right: 50px;
+		}
+	}
+}
+
+.related-items {
+	> button {
+		min-width: 238px; // add another mantle | add another block | add another variation | buttons were all just a few pixels different and looked staggered
+	}
+
+	li:hover {
+		.delete, .edit {
+			@include opacity(1);
+		}
+	}
+
+	.delete, .edit {
+		@include box-sizing(border-box);
+		border-radius: 3px;
+		color: #fff;
+		cursor: pointer;
+		display: inline-block;
+		font-size: 11px;
+		letter-spacing: .05em;
+		line-height: 9px;
+		max-width: 27px;
+		opacity: 0;
+		overflow: hidden;
+		padding: 4px 10px 9px 4px;
+		position: absolute;
+		top: 10px;
+		@include transition(all .3s);
+		white-space: nowrap;
+
+		&:hover {
+			max-width: 110px;
+		}
+	}
+
+	.delete {
+		background: $red;
+		@include icon-inline($icon-close, $size: 15px, $padding: 6px, $position: relative, $top: 3px, $margin: (0 0 0 2px));
+		right: 10px;
+
+		&:after {
+			content: "" !important;
+		}
+
+		&:before {
+			content: "\f00d";
+			font-family: FontAwesome;
+			left: -1px;
+			position: relative;
+			padding-left: 2px;
+			top: 1px;
+		}
+	}
+
+	.edit {
+		background-color: $blue;
+		@include icon-inline($icon-edit-checkbox, $size: 15px, $padding: 6px, $position: relative, $top: 3px, $margin: (0 0 0 2px));
+		left: 10px;
+
+		&:before {
+			font-size: 12px;
+			padding: 2px 4px 1px 1px;
+			top: 2px;
+		}
+	}
+
+	.field-related-vars {
+		padding-top: 1em;
+	}
+
+	.ui-sortable {
+		@extend %tiles;
+		clear: left;
+		margin: 0 -10px;
+		overflow: auto; // this is required for ui-sortable to work properly
+		padding: 0;
+
+		@include breakpoint(800px) {
+			margin-left: -1.5%;
+			margin-right: 0;
+			padding-right: 1%;
+		}
+
+		@include breakpoint(2000px) {
+			margin-left: -1%;
+		}
+
+		> li {
+			// @include tooltip($message: "Drag to sort", $arrow: true, $where: bottom, $arrow-margin: '0 0 21px -6px', $min-width: null, $margin: 0, $arrow-border-color: 'transparent transparent #555', $width: 100%, $left: 0);
+			@include tooltip($message: "Drag to sort", $arrow: true);
+			&:after, &:before {
+				bottom: 0;
+				top: auto;
+			}
+
+			&:after {
+				left: 0;
+				margin: 0;
+				min-width: 100%;
+			}
+
+			&:before {
+				border-color: transparent transparent #555;
+				margin: 0 0 21px -6px
+			}
+		}
+
+		.ui-sortable-helper { // hide tooltip
+			&:after, &:before {
+				@include opacity(0);
+				visibility: hidden;
+			}
+		}
+	}
+}
+
+html.fancybox {
+	.products-product, .sidepost-page, .sidepost-post {
+		&.fancybox-lock {
+			margin-right: 0 !important; // override inline fancybox js
+
+			.fancybox-inner {
+				background-color: #fff;
+				bottom: 84px;
+				height: auto !important; // override inline fancybox js
+				left: 0;
+				position: fixed;
+				right: 0;
+				top: 0;
+				width: auto !important; // override inline fancybox js
+			}
+
+			.fancybox-overlay {
+				overflow: hidden;
+			}
+
+			.fancybox-wrap {
+				right: 0;
+				width: auto !important; // override inline fancybox js
+			}
+		}
+	}
+}

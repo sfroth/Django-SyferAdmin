@@ -1,0 +1,231 @@
+@import "compass/css3";
+@import "breakpoint";
+@import "../../../../syferadmin/static/syferadmin/sass/partials/variables";
+@import "../../../../syferadmin/static/syferadmin/sass/partials/icon-mixins";
+@import "../../../../syferadmin/static/syferadmin/sass/partials/reusables";
+
+// --------------------------------
+// Reusable stuff
+
+@mixin db-heading {
+	font-family: $font-standard;
+	font-size: 12px;
+	letter-spacing: .2em;
+	margin-bottom: 0;
+}
+
+%db-heading { @include db-heading; }
+
+@mixin db-heading-small {
+	color: #666;
+	display: block;
+	font-family: $font-standard;
+	font-size: 10px;
+	line-height: 17px;
+	text-transform: uppercase;
+}
+
+%db-heading-small { @include db-heading-small; }
+
+// Colors
+$db-orange: #E37A35;
+
+// Breakpoints (media queries)
+$no-query: 'no-query' true;
+$bp-420: 420px, $no-query;
+$bp-560: 560px, $no-query;
+$bp-820: 820px, $no-query;
+$bp-1020: 1020px, $no-query;
+$bp-1100: 1100px, $no-query;
+$bp-1100-450h: 1100px (min-height 450px), $no-query;
+$bp-1320: 1320px, $no-query;
+$bp-1500: 1500px, $no-query;
+$bp-phone: 480px, $no-query;
+$bp-tablet: 767px, $no-query;
+$bp-tablet-wide: 1024px, $no-query;
+
+// Icons (fontawesome)
+$fa-desktop: "\f108";
+$fa-mobile: "\f10b";
+$fa-tablet: "\f10a";
+
+
+// ----- Imports ----- //
+
+@import "partials/dashboard/right-now";
+@import "partials/dashboard/store-snapshot";
+@import "partials/dashboard/tools";
+@import "partials/dashboard/landing";
+@import "partials/dashboard/report";
+@import "partials/dashboard/top-products";
+
+.results {
+	@include transform(translateZ(0));
+}
+
+.help-info {
+    background-color: #f0f0f0;
+    border-top: $border;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    @extend %padding;
+}
+
+.help-info-text {
+	margin: 0;
+}
+
+body.reports main {
+	padding-top: 0;
+
+	> header {
+		@extend %clear-fix;
+		padding-bottom: 20px;
+		padding-top: 20px;
+		position: relative;
+
+		@include breakpoint($bp-tablet) {
+			padding: 30px 0;
+		}
+
+		h2 {
+			@extend %heading-title;
+			float: left;
+			margin-bottom: 10px;
+		}
+
+		@include breakpoint($bp-tablet-wide) {
+			min-height: 100px;
+		}
+
+		@include breakpoint($bp-buffness) {
+			// min-height: 100px;
+
+			h2 {
+				margin-bottom: 5px;
+			}
+		}
+
+	}
+
+	@include breakpoint($bp-1100-450h) {
+		padding-top: 100px;
+
+		> header {
+			background-color: #fff;
+			background-color: transparentize(#fff, .1);
+			border-bottom: $border;
+			left: 100px;
+			padding: 30px 30px 10px;
+			position: fixed;
+			right: 0;
+			top: 50px;
+			z-index: 10;
+		}
+	}
+
+	@include breakpoint($bp-1500) {
+		> header {
+			left: 110px;
+			padding-left: 50px;
+			padding-right: 50px;
+		}
+	}
+
+	> section {
+		clear: both;
+	}
+
+	.label {
+		@extend %db-heading-small;
+	}
+
+	.messages {
+		margin: 2em 0 0;
+
+		a {
+			display: initial;
+			height: auto;
+			position: static;
+			width: auto;
+
+			&:after {
+				display: none;
+			}
+		}
+
+		.error {
+			padding: 20px;
+		}
+
+		@include breakpoint($bp-1100) {
+			margin-bottom: 2em;
+		}
+	}
+
+	.hidden_container {
+		position: relative;
+
+		&:hover .hidden_content {
+			@include opacity(1);
+			visibility: visible;
+		}
+
+		.hidden_content {
+			position: absolute;
+			left: 0;
+			bottom: 100%;
+			background: #000;
+			color: #fff;
+			@include opacity(0);
+			padding: 10px;
+			@include transition(opacity 0.15s ease-in-out, visibility 0s 0.15s);
+			visibility: hidden;
+			z-index: 1;
+			margin-bottom: 6px;
+			width: 200%;
+			margin-left: -50%;
+
+			&:before {
+				border: 6px solid transparent;
+				border-top-color: #000;
+				content: "";
+				margin-right: -6px;
+				position: absolute;
+				right: 50%;
+				top: 100%;
+			}
+		}
+	}
+}
+
+.dashboard-date-range {
+	color: #999;
+	display: block;
+	font-size: 13px;
+	letter-spacing: .025em;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+body.reports.index .results > div.report {
+	min-height: 147px; // make enough space to show the loading icon without overlapping thead
+
+	&.loading {
+		min-height: 300px;
+	}
+
+	.data-body {
+		position: static;
+	}
+
+	.report {
+		position: relative;
+	}
+}
+
+.table-striped#result_list tbody .totals:nth-of-type(odd) {
+	background-color: #636363;
+}

@@ -1,0 +1,17 @@
+.popup main {
+	margin-left: 0 !important;
+
+	form h2 {
+		clear: left;
+		float: left;
+		width: auto;
+	}
+
+	.add-another, .add-related { // .add-another becomes .add-related in django 1.8
+		display: none !important;
+	}
+}
+
+.popup .submit-row.well .cancel {
+    float: right;
+}

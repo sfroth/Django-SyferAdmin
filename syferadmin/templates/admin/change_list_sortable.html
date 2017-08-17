@@ -1,0 +1,32 @@
+{% extends "admin/change_list.html" %}
+{% load mptt_tags admin_extras %}
+
+{% block result_list %}
+	{% if cl.model_admin.sortable == 'nested' %}
+		<ol class="nested-sortable" data-depth="4">
+		{% recursetree cl.result_list %}
+			<li id="{{ cl.opts.verbose_name_plural|lower }}_{{ node.id }}">
+				<div>
+					{% if not node.is_leaf_node %}<div class="expand open"></div>{% endif %}
+					{% result_list_sortable cl node %}
+				</div>
+				{% if not node.is_leaf_node %}
+					<ol>
+						{{ children }}
+					</ol>
+				{% endif %}
+			</li>
+		{% endrecursetree %}
+		</ol>
+	{% else %}
+		<ol class="nested-sortable" data-depth="1">
+		{% for result in cl.result_list %}
+			<li id="{{ cl.opts.verbose_name_plural|lower }}_{{ result.id }}">
+				<div>
+					{% result_list_sortable cl result %}
+				</div>
+			</li>
+		{% endfor %}
+		</ol>
+	{% endif %}
+{% endblock %}

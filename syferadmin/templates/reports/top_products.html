@@ -1,0 +1,16 @@
+<% if (!results.length) { %>
+	<h2>No data found</h2>
+<% } else { %>
+	<ol>
+		<% _.each(results, function(e) { %>
+			<li>
+				<a href="<%- e.url %>" title="<%- e.sku %>">
+					<figure><img src="<%- e.image %>" /></figure>
+					<h4><%- e.name %></h4>
+				</a>
+				$<%- e.revenue %> <small class="quantity"><%- e.quantity %> unit<% if (e.quantity > 1) { %>s<% } %></small> <span class="label">Revenue</span><br/>
+				<span class="difference<% if (e.difference < 0) { %> negative<% } if (e.difference > 0) { %> positive<% } %>"><%- e.difference %>%</span>
+			</li>
+		<% }); %>
+	</ol>
+<% } %>

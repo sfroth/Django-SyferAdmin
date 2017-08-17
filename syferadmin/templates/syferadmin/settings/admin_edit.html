@@ -1,0 +1,59 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+{% load recursion sort %}
+
+{% block bodyclass %}settings edit{% endblock %}
+
+{% block content %}
+
+	<h2>Edit {{ section }} Settings</h2>
+
+	<form action="" method="post">
+	{% csrf_token %}
+
+	<!-- Disable autocomplete --><input type="password" style="display:none">
+
+	{% if regions.count > 1 %}
+	<div class="form-group">
+		<a href="{% url "admin:syferadmin_setting_change" section %}" class="btn {% if not current_region %}active{% endif %}">Defaults</a>
+		{% for region in user_regions %}
+			<a href="{% url "admin:syferadmin_setting_change" section %}?region={{ region.slug }}" class="btn {% if region.slug == current_region %}active{% endif %}">{{ region.name }}</a>
+		{% endfor %}
+	</div>
+	{% endif %}
+
+	<input type="hidden" name="current_region" value="{{ current_region }}">
+
+	{% defrecurse settings_list %}
+
+		{% for setting in settings_list|sort %}
+
+			{% if setting.children %}
+				<section>
+					<h{{ level|add:2 }}>{{ setting.key }}</h1>
+					{% recurse setting %}
+				</section>
+			{% else %}
+				<div class="form-group">
+					{% if 'checkbox' in setting.form_field.as_widget %}
+						{{ setting.form_field }}
+					{% endif %}
+					{{ setting.form_field.label_tag }}
+					{% if setting.admin %}<span class="label label-default">Admin</span>{% endif %}
+					{% if not 'checkbox' in setting.form_field.as_widget %}
+						<div class="input-holder">{{ setting.form_field }}</div>
+					{% endif %}
+				</div>
+			{% endif %}
+
+		{% endfor %}
+
+	{% enddefrecurse %}
+
+	<div class="well">
+		<input class="btn btn-lg btn-primary save" type="submit" value="Save" />
+		<a class="btn btn-lg btn-default cancel" href="{% url "admin:syferadmin_setting_changelist" %}">Cancel</a>
+	</div>
+
+	</form>
+{% endblock %}

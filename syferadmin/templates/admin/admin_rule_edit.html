@@ -1,0 +1,13 @@
+{% extends "admin/change_form.html" %}
+
+{% block bodyclass %}{{ opts.app_label }}-{{ opts.object_name.lower }} form {{ change|yesno:"edit,add" }}{% endblock %}
+
+{% block field_sets %}
+	{% for fieldset in adminform %}
+		{% include adminform.form.fieldset_template %}
+	{% endfor %}
+{% endblock %}
+
+{% block stylesheets %}{{ block.super }}
+{{ media.css }}
+{% endblock %}

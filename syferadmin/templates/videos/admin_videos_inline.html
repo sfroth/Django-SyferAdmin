@@ -1,0 +1,30 @@
+{% load i18n admin_static %}
+<fieldset class="inline-group accordion-group {{inline_admin_formset.opts.verbose_name_plural}}" id="{{ inline_admin_formset.formset.prefix }}-group" data-prefix="{{ inline_admin_formset.formset.prefix }}">
+	<legend data-slide-toggle=".toggle-wrap">{{ inline_admin_formset.opts.verbose_name_plural|title }}</legend>
+
+	<div class="toggle-wrap">
+		<div class="video-upload-container">
+			<a href="#" data-url="{% url 'add_video' %}" class="new-video btn">Add Video(s)</a>
+			<div class="video-upload-holder">
+				<input type="text" class="video-search" placeholder="YouTube or Vimeo urls (separated by spaces)" />
+			</div>
+		</div>
+
+		{{ inline_admin_formset.formset.management_form }}
+		{{ inline_admin_formset.formset.non_form_errors }}
+
+		<ul>
+		{% for inline_admin_form in inline_admin_formset %}<li class="inline-related{% if forloop.last %} empty-form last-related{% endif %}" id="{{ inline_admin_formset.formset.prefix }}-{% if not forloop.last %}{{ forloop.counter0 }}{% else %}empty{% endif %}">
+			{% if inline_admin_form.form.non_field_errors %}{{ inline_admin_form.form.non_field_errors }}{% endif %}
+			{% for fieldset in inline_admin_form %}
+				<img src="{{ inline_admin_form.original.thumb }}" />
+				<span class="delete">Delete</span>
+				{% include "admin/includes/fieldset.html" %}
+				{% if inline_admin_form.original %}{{ inline_admin_form.deletion_field.field }}{% endif %}
+			{% endfor %}
+			{% if inline_admin_form.needs_explicit_pk_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
+			{{ inline_admin_form.fk_field.field }}
+		</li>{% endfor %}
+		</ul>
+	</div>
+</fieldset>

@@ -1,0 +1,50 @@
+{% extends "admin/base.html" %}
+{% load i18n admin_static admin_list %}
+{% load admin_urls %}
+
+{% block bodyclass %}settings index{% endblock %}
+
+{% block content %}
+
+	{{ media.js }}
+	<h2>Settings <span class="record-count">{{ settings_list|length }}</span></h2>
+
+	{% if history %}
+	<ul class="object-tools">
+        <a href="{% url 'admin:syferadmin_setting_history' history %}" class="history">{% trans "History" %}</a>
+	</ul>
+	{% endif %}
+
+	<div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>{% trans "Setting Category" %}</th>
+					<th>{% trans "Settings" %}</th>
+					<th>{% trans "Last Modified" %}</th>
+					<th class="actions">{% trans "Actions" %}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for section in settings_list %}
+				<tr>
+					<td>
+						<a href="{% url "admin:syferadmin_setting_change" section.key %}" class="edit">{{ section.title }}</a>
+					</td>
+					<td>{{ section.count }}</td>
+					<td>{{ section.modified|default:"Never" }}</td>
+					<td class="actions">
+						<div class="btn-group">
+							<a href="{% url "admin:syferadmin_setting_change" section.key %}" class="edit">
+								{% trans "Edit" %}
+							</a>
+						</div>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+	</div>
+{% endblock %}

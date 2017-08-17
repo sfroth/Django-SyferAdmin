@@ -1,0 +1,240 @@
+// ----- Dashboard Landing ----- //
+
+#reports {
+	.bottom {
+		padding-top: 30px;
+
+		@include breakpoint($bp-1100) {
+			padding-top: 0;
+		}
+	}
+
+	.showcase {
+		clear: both;
+	}
+
+	.split-col {
+		margin-top: 30px;
+		width: 100%;
+
+		@include breakpoint($bp-1100) {
+			margin-bottom: 30px;
+			width: 48%;
+			@include calc("width", "50% - 15px")
+		}
+
+		@include breakpoint($bp-1500) {
+			margin-top: 50px;
+			margin-bottom: 50px;
+			@include calc("width", "50% - 25px")
+		}
+
+		&.left {
+			clear: left;
+			float: left;
+		}
+
+		&.right {
+			clear: right;
+			float: right;
+		}
+	}
+}
+
+.data-body { // module content
+	@extend %thin-scrollbars;
+	min-height: 300px;
+	position: relative;
+
+	> * {
+		@include opacity(0);
+
+		.loaded &, .no-js & {
+			@include opacity(1);
+			@include transition(opacity .25s .25s ease-in-out);
+		}
+	}
+
+	> h2 { // error
+		background-color: $light-red;
+		border: 1px solid lighten($red, 10%);
+		border-radius: 1px;
+		color: lighten($red, 10%);
+		display: inline-block;
+		font-size: 10px;
+		letter-spacing: .05em;
+		margin: 25px 15px;
+		max-height: 30px; // resets weird flexbox container issues
+		@include opacity(1);
+		padding: 8px 12px;
+		position: relative;
+
+		&:after, &:before { // triangle
+			bottom: 100%;
+		    border-style: solid;
+		    border-width: 8px;
+		    content: "";
+		    position: absolute;
+			left: 10px;
+		}
+
+		&:after {  // triangle
+		    border-color: transparent transparent $light-red;
+			z-index: 1;
+		}
+
+		&:before { // border on triangle
+			border-color: transparent transparent lighten($red, 10%);
+			margin-bottom: 1px;
+		    padding-right: 0;
+			z-index: 0;
+		}
+	}
+
+	table {
+		@extend %table;
+
+		thead {
+			border-top: 0;
+
+			th {
+				padding-top: 15px;
+			}
+		}
+	}
+
+	tbody tr:nth-child(odd) {
+		background: $background-grey;
+	}
+
+	tbody td:first-child, th {
+		color: #333;
+		font-family: $font-standard-bold;
+		font-size: 11px;
+		text-transform: uppercase;
+	}
+
+	tbody td:first-child {
+		text-align: left;
+	}
+
+	.error & {
+		min-height: 80px;
+	}
+
+	.loading & {
+		@extend %loading-icon;
+		&:before {
+			top: 50%;
+		}
+	}
+}
+
+.list-view { // Top searches and general styles for any lists
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	li {
+		padding: 10px 20px;
+
+		&:nth-child(odd) {
+			background: $background-grey;
+		}
+	}
+}
+
+ol.list-view { // Numbered List
+	counter-reset: list;
+
+	> li:before {
+		counter-increment: list;
+		content: counter(list) ". ";
+		display: inline-block;
+		margin-right: 10px;
+	}
+}
+
+.no-js {
+	noscript h3 {
+		@include alert($background: $light-red, $color: $red);
+		margin-top: 40px;
+		text-align: center;
+	}
+
+	#reports, #tools {
+		display: none;
+	}
+}
+
+.report-toolbox { // toggle arrow and other buttons
+	bottom: 0;
+	color: #333;
+	font-size: $base-font-px;
+	float: right;
+	list-style: none;
+	margin: 0;
+	@include opacity(0);
+	padding: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	@include transition(opacity .25s ease-in-out);
+
+	a, button {
+		border-color: $outline-grey;
+		border-style: solid;
+		border-width: 0 0 0 1px;
+		color: #333;
+		display: block;
+		height: 100%;
+		line-height: inherit;
+		padding: 0;
+		position: relative;
+		text-indent: -999em;
+		width: 100%;
+
+		&:before {
+			bottom: 0;
+			left: 0;
+			position: absolute;
+			right: 0;
+			text-indent: 0;
+			top: 0;
+		}
+
+		&:hover {
+			background-color: transparent;
+			color: $blue;
+		}
+	}
+
+	li {
+		float: right;
+		line-height: 39px;
+		height: 100%;
+		text-align: center;
+		width: 39px;
+
+		@include breakpoint($bp-1500) {
+			line-height: 49px;
+			width: 49px;
+		}
+	}
+
+	.details:before {
+		content: $icon-edit;
+		font-family: $font-icon;
+		font-size: .75em;
+	}
+
+	.toggle:before {
+		content: "\f0d8";
+		font-family: FontAwesome;
+		font-size: 1.2em;
+
+		.closed & {
+			content: "\f0d7";
+		}
+	}
+}

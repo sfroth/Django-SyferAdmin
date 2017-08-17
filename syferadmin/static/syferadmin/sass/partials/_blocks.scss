@@ -1,0 +1,44 @@
+// ----- Blocks ----- //
+
+.products-productblock {
+	@extend %position-object-tools;
+}
+
+.blocks.add main > ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	li {
+		a {
+			background: $grey-1;
+			border: $border;
+			color: $text-dark-grey;
+			float: left;
+			margin: 0.5%;
+			padding: 1%;
+			width: 99%;
+
+			h4 {
+				margin: 1em;
+				text-align: center;
+			}
+
+			p {
+				display: none;
+			}
+		}
+
+		@include breakpoint($bp-tablet) {
+			a {
+				width: 49%;
+			}
+		}
+
+		@include breakpoint($bp-desktop) {
+			a {
+				width: 32.33%;
+			}
+		}
+	}
+}

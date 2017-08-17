@@ -1,0 +1,24 @@
+// ----- Pages ----- //
+
+.pages .actions {
+	min-width: 100px;
+}
+
+.sidepost-page.form {
+	.module > h2 {
+		@extend %heading-title;
+	}
+
+	.inline-group ul li,
+	.inline-group ol li {
+
+		.inline-deletelink {
+			display: none;
+		}
+
+		.delete:after {
+			content: "Delete";
+			display: inline;
+		}
+	}
+}

@@ -1,0 +1,80 @@
+#tieredprice_set-group {
+	.add-row td {
+		padding-top: 40px;
+	}
+
+	.form-row {
+		text-align: center;
+	}
+
+	.last-related {
+		padding-bottom: 20px;
+	}
+
+	table {
+		border-collapse: collapse;
+		width: 100%;
+	}
+
+	tbody {
+		.inline-deletelink {
+			@include icon-no-text($icon: $icon-close);
+			display: inline-block;
+			margin: 0 auto;
+			width: 14px;
+		}
+
+		input[type=checkbox] + label {
+			font-size: 0;
+			display: inline-block;
+		}
+
+		input[type="text"] {
+			max-width: 100px;
+		}
+
+		input[type="number"] {
+			background: white !important;
+			max-width: 100px;
+		}
+
+		td {
+			background: inherit;
+			color: $table-body;
+			padding: 20px 10px;
+
+			&.original {
+				padding: 0;
+				width: 0;
+
+				p {
+					display: none;
+				}
+			}
+		}
+
+		tr {
+			border-bottom: 1px solid $outline-light-grey;
+
+			&:nth-child(odd) {
+				background: $background-grey;
+			}
+
+			&.add-row {
+				background: transparent;
+				border-bottom: none;
+			}
+		}
+	}
+
+	thead {
+		border-bottom: $border;
+		border-top: $border;
+		text-align: center;
+
+		th {
+			color: $label-color;
+			padding: 30px 10px 15px 10px;
+		}
+	}
+}

@@ -1,0 +1,1018 @@
+// ----- Prodcut Manager ----- //
+
+#product_form {
+	.edit-actions {
+		@extend %clear-fix;
+		clear: left;
+		margin: 0 0 2em 157px;
+
+		span {
+			cursor: pointer;
+			display: block;
+			float: left;
+			height: 40px;
+			margin-right: em(10px);
+			position: relative;
+			text-indent: -999em;
+			@include transition(background-color .2s);
+			width: 40px;
+
+			&:before {
+				height: 100%;
+				left: 0;
+				line-height: 40px;
+				position: absolute;
+				text-align: center;
+				text-indent: 0;
+				top: 0;
+				width: 100%;
+			}
+
+			&:last-of-type {
+				margin-right: 0;
+			}
+		}
+
+		+ span {
+			display: none;
+		}
+
+		.delete {
+			margin-right: 0;
+		}
+	}
+
+	.field-color {
+	    position: relative;
+
+	    .add-another, .add-related { // .add-another becomes .add-related in django 1.8
+		    position: absolute;
+		    right: 0;
+		    top: 0;
+		}
+
+		.chosen-container-single {
+			width: 100% !important;
+		}
+	}
+
+
+	.field-images {
+		img {
+			margin: auto;
+		}
+
+		+ .field-images {
+		    padding-top: 40px;
+		}
+	}
+
+	.move {
+		@include icon("\f047");
+		color: #A0A0A0;
+		cursor: move;
+		font-size: 1.2em;
+		left: 20px;
+		position: relative;
+		top: 20px;
+
+		&:before {
+			padding: 0;
+		}
+	}
+
+	span.toggle {
+		@include icon("\f040");
+		border: 1px solid $blue;
+		color: $blue;
+
+		&:before {
+			padding-right: 0;
+		}
+
+		&:hover {
+			background-color: $blue;
+			color: #fff;
+		}
+
+		&.active {
+			width: 5em;
+
+			&:before {
+				content: "CLOSE";
+				font-family: inherit;
+				letter-spacing: .1em;
+			}
+		}
+	}
+
+	.product-details {
+		fieldset {
+			background-color: #fafafa;
+			border-top: 1px solid $outline-light-grey;
+			padding: 1em;
+
+			&.active-toggle {
+				background-color: $baby-blue;
+			}
+
+			@include breakpoint($bp-tablet) {
+				padding: 18px 30px;
+			}
+		}
+
+		.upload-button, .uploader ul.ui-sortable li {
+			padding: 1em 0;
+			width: 100%;
+		}
+
+		.upload-button {
+			box-sizing: content-box;
+			clear: left;
+			margin-left: 0;
+			margin-right: 0;
+		}
+
+		@include breakpoint($bp-480) {
+			.field-code, .field-color, .field-name, .field-price, .field-sale_price, .upload-button, .uploader ul.ui-sortable li {
+			    clear: none;
+			    display: block;
+			    float: left;
+			    max-width: 240px;
+			    width: 48%;
+			}
+
+			.uploader ul.ui-sortable li {
+				display: inline-block;
+				float: none;
+			}
+
+			.field-code, .field-sale_price {
+				margin-left: 4%;
+			}
+
+			.field-color {
+				clear: left;
+			}
+
+			.uploader ul.ui-sortable li {
+				margin-right: 4%;
+			}
+		}
+
+		@include breakpoint($bp-tablet) {
+			.field-code, .field-color, .field-name, .field-price, .field-sale_price {
+			    @include calc("width", "50% - 15px");
+			}
+
+			.field-code, .field-sale_price {
+			    @include calc("margin-left", "30px");
+			}
+
+			.uploader ul.ui-sortable li {
+				margin-right: 30px;
+				width: 48%;
+			}
+		}
+
+		@include breakpoint($bp-1075) {
+			.field-code, .field-color, .field-name, .field-price, .field-sale_price, .uploader ul.ui-sortable li, .upload-button {
+			    max-width: 240px;
+			}
+
+			.field-color, .upload-button {
+				clear: none;
+			}
+
+			.field-code {
+				margin-right: 30px;
+			}
+
+			.field-price_sale {
+				margin-left:  30px;
+			}
+
+			.uploader ul.ui-sortable li {
+				&:nth-of-type(2n+2) {
+					margin-right: 30px;
+				}
+			}
+		}
+	}
+
+	.product-summary {
+		@extend %clear-fix;
+		background: #fff;
+		padding-bottom: 2em;
+		padding-top: 2em;
+		position: relative;
+
+		dd, dl, dt, img, .move {
+			float: left;
+		}
+
+		dd {
+			margin-left: 4px;
+		}
+
+		dl {
+			line-height: 150%;
+			margin: 0 0 1em;
+		}
+
+		dt {
+			clear: left;
+
+			&:after {
+				content: ": ";
+			}
+		}
+
+		img, .product-name, .product-name + dd {
+			cursor: url("#{$image-dir}edit.png"), auto;
+		}
+
+		img {
+			margin: 0 em(40px);
+			min-height: 1px; // so empty images hold their space on new variations (in chrome)
+			position: relative;
+			@include transition(opacity .3s);
+			width: em(60px);
+
+			&:hover {
+				opacity: .7;
+
+				&:before {
+					opacity: 1;
+				}
+			}
+		}
+
+		.delete {
+			@extend %delete-icon;
+
+			label {
+				display: none;
+			}
+		}
+
+		@include breakpoint($bp-tablet) {
+			dl, img, .move {
+				display: inline-block;
+				float: none;
+				vertical-align: middle;
+			}
+
+			dl {
+				margin-bottom: 0;
+				padding-top: 5px;
+			}
+
+			dt {
+				clear: none;
+			}
+
+			.edit-actions {
+				margin: -20px 0 0;
+				position: absolute;
+				right: 30px;
+				top: 50%;
+			}
+
+			.move {
+				left: 0;
+				margin-left: 20px;
+				top: 0;
+			}
+
+			.product-code + dd + dt, .product-name + dd + dt:not(.product-code) {
+				clear: left;
+				padding-left: 0;
+			}
+
+			.product-code {
+			    display: none;
+
+			    + dd {
+				    background-color: #efefef;
+				    margin-left: 10px;
+				    padding: 2px 5px 0;
+				    margin-top: -1px;
+
+ 					@include tooltip("Variation Code", true);
+				}
+			}
+
+			.product-name {
+				display: none;
+
+				+ dd {
+					font-family: $font-standard-bold;
+					margin: 0 0 10px;
+				}
+
+				~ dt {
+					padding-left: 25px;
+				}
+			}
+
+			.product-price {
+				display: none;
+
+				+ dd {
+					clear: left;
+					margin-left: 0;
+				}
+			}
+
+			.toggle.active {
+				width: 6em;
+			}
+		}
+	}
+
+	.active-toggle .product-summary {
+		background-color: $taupe;
+	}
+
+	// ----- Sorting ----- //
+
+	.inline-related {
+		@include transition(opacity .3s ease-in-out);
+	}
+
+	.move {
+ 		@include tooltip("Drag To Sort");
+
+ 		&:before {
+ 			@include opacity(1);
+ 		}
+	}
+
+	.placeholder { // sorting space holder
+		background-color: $baby-blue;
+		clear: right;
+		position: relative;
+		@include transition(all .3s ease-in-out);
+
+		&:before {
+			@extend %ico-add;
+			color: #999;
+			font-size: 2em;
+			left: 0;
+			position: absolute;
+			top: 50%;
+			height: 80px;
+			margin-top: -40px;
+			line-height: 80px;
+			padding-left: 1.5em;
+			right: 0;
+			text-align: center;
+			width: auto;
+		}
+	}
+
+	.product-summary {
+		@include transition(background-color .3s ease-in-out);
+	}
+
+	.ui-sortable-helper {
+		opacity: .75;
+
+		.move:after {
+			@include opacity(0);
+		}
+	}
+
+	// Show that variations and sub-fields have errors
+	.dynamic-variation_set.errors {
+		.product-summary:before {
+			color: $red;
+			content: "\f071";
+			display: inline-block;
+			font-family: FontAwesome;
+			font-size: 1.6em;
+			left: 10px;
+			position: relative;
+			top: 5px;
+		}
+	}
+
+	fieldset.module.errors legend:after {
+		color: $red;
+		content: "\f071";
+		display: inline-block;
+		font-family: FontAwesome;
+		left: 10px;
+		position: relative;
+	}
+
+	.errorlist > li {
+		padding: .75em;
+	}
+}
+
+.field-amount_display {
+	del {
+		color: $red;
+		display: block;
+		padding-bottom: 3px;
+	}
+}
+
+.product-mobile-heading {
+	color: #999;
+
+	@include breakpoint($bp-769) {
+		display: none;
+	}
+}
+
+#variation_set-group {
+	margin-bottom: 0;
+	min-height: 180px;
+	padding-top: em(30px);
+	@include transition(background-color .6s);
+
+	.active-toggle {
+		background-color: $taupe;
+	}
+
+	> .add-row {
+		left: 0;
+		position: absolute;
+		top: 105px;
+		width: auto;
+		margin-left: 20px;
+
+		@include breakpoint($bp-tablet) {
+			left: auto;
+			right: 30px;
+			top: 30px;
+		}
+
+		@include breakpoint($bp-buffness) {
+			right: 50px;
+		}
+	}
+
+	> .description {
+		margin-bottom: 90px;
+	}
+
+	.form-group.field-sort {
+		display: none;
+	}
+
+	.inline-related {
+		border-top: 1px solid $outline-light-grey;
+		clear: both;
+	}
+
+	input[type="hidden"] + .inline-related { // this makes room above the variations for the absolutely positioned + Add Another Variation Button
+		margin-top: 70px;
+	}
+}
+
+.form {
+	form {
+		width: 100%;
+
+		> div > fieldset {
+			border-top: 1px solid $outline-light-grey;
+			clear: both;
+			position: relative;
+
+			@include breakpoint($bp-thunderbolt) {
+				> .add-row {
+					left: 0;
+					right: auto;
+					top: 110px;
+				}
+			}
+		}
+	}
+}
+
+.headers {
+	margin-bottom: 0;
+
+	span {
+		@extend %label;
+	    float: left;
+	    margin-bottom: 0;
+	    text-align: center;
+
+	    + span {
+	    	margin-left: 3%;
+	    }
+	}
+
+	.quantity {
+		@include breakpoint(max-width 479px) {
+			position: relative;
+			text-indent: -999em;
+
+			&:after {
+				content: "Qty";
+				display: inline-block;
+				left: 0;
+				position: absolute;
+				right: 0;
+				text-indent: 0;
+				top: 0;
+			}
+		}
+	}
+
+	@include breakpoint($bp-626) {
+		span + span {
+    		margin-left: 10px;
+		}
+	}
+}
+
+.active-toggle {
+	> legend[data-slide-toggle] {
+		&:after {
+			display: none;
+		}
+
+		&:before {
+			@include transform(rotateZ(90deg));
+		}
+	}
+}
+
+.items-set {
+	@extend %clear-fix;
+
+	+ label, input[type=checkbox] + label {
+		display: none;
+	}
+
+	+ label, input[type=checkbox].active + label, input[type=checkbox].backorder + label, input[type=checkbox].correct + label {
+		display: block;
+		float: left;
+		margin: 13px 9px 7px 9px;
+	}
+
+	input, span {
+		width: 50px;
+
+		@include breakpoint($bp-480) {
+			width: 90px;
+		}
+
+		&.active {
+			width: auto;
+		}
+	}
+
+	li {
+		@extend %clear-fix;
+		margin-bottom: 30px;
+		position: relative;
+
+		input {
+			float: left;
+			margin-right: 3%;
+			padding: 0 0 0 2px;
+			text-align: center;
+
+			&[disabled], &[disabled] + label {
+				cursor: not-allowed;
+			}
+
+			// hide spinners
+			&[type="number"][disabled] {
+				-moz-appearance: textfield;
+				-webkit-appearance: textfield;
+				padding-right: 10px;
+
+				&::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
+					-webkit-appearance: none;
+					margin: 0;
+				}
+
+				&::-webkit-inner-spin-button {
+					  -webkit-appearance: none;
+					  width: 0;
+				}
+
+				&::-webkit-outer-spin-button {
+					  -webkit-appearance: none;
+					  margin: 0;
+					  width: 0;
+				}
+			}
+		}
+
+		+ li {
+			margin-top: .5em;
+		}
+	}
+
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+	}
+
+	.add-row {
+		margin-top: 1.5em;
+	}
+
+	.delete {
+		@extend %delete-icon;
+		width: 40px;
+	}
+
+	// ----- 3 columns: Size | UPC | Quantity ----- //
+
+	&[data-cols="4"] {
+		.code {
+			width: 60%;
+			@include calc("width", "100% - 9% - 190px");
+
+			@include breakpoint($bp-480) {
+				@include calc("width", "100% - 9% - 270px");
+			}
+
+			@include breakpoint($bp-626) {
+				@include calc("width", "100% - 300px");
+			}
+		}
+	}
+
+	&[data-cols="5"] {
+		input, span {
+			width: 40px;
+
+			@include breakpoint($bp-626) {
+				width: 50px;
+
+				.delete {
+					width: 50px;
+				}
+			}
+		}
+
+		.code {
+			width: 40%;
+			@include calc("width", "100% - 15% - 280px");
+		}
+
+		@include breakpoint($bp-626) {
+			input, span {
+				width: 60px;
+			}
+
+			.code {
+				@include calc("width", "100% - 325px");
+			}
+
+			.delete {
+				width: 40px;
+			}
+		}
+
+		@include breakpoint($bp-1400) {
+			input, span {
+				width: 70px;
+			}
+
+			.code {
+				@include calc("width", "100% - 325px");
+			}
+
+			.delete {
+				width: 40px;
+			}
+		}
+	}
+
+	// ----- 5 columns: Size | UPC | Price | Sale Price | Quantity ----- //
+
+	&[data-cols="6"] {
+		input, span {
+			width: 40px;
+
+			@include breakpoint($bp-626) {
+				width: 50px;
+
+				.delete {
+					width: 50px;
+				}
+			}
+		}
+
+		.code {
+			width: 40%;
+			@include calc("width", "100% - 15% - 250px");
+		}
+
+		@include breakpoint($bp-626) {
+			input, span {
+				width: 60px;
+			}
+
+			.code {
+				@include calc("width", "100% - 380px");
+			}
+
+			.delete {
+				width: 40px;
+			}
+		}
+
+		@include breakpoint($bp-1400) {
+			input, span {
+				width: 70px;
+			}
+
+			.code {
+				@include calc("width", "100% - 420px");
+			}
+
+			.delete {
+				width: 40px;
+			}
+		}
+	}
+
+	// ----- 7 columns: Size | UPC | Price | Sale Price | Quantity ----- //
+
+	&[data-cols="7"] {
+		input, span {
+			width: 40px;
+
+			@include breakpoint($bp-626) {
+				width: 50px;
+
+				.delete {
+					width: 50px;
+				}
+			}
+		}
+
+		.code {
+			width: 40%;
+			@include calc("width", "100% - 15% - 280px");
+		}
+
+		@include breakpoint($bp-626) {
+			input, span {
+				width: 60px;
+			}
+
+			.code {
+				@include calc("width", "100% - 420px");
+			}
+
+			.delete {
+				width: 40px;
+			}
+		}
+
+		@include breakpoint($bp-1400) {
+			input, span {
+				width: 70px;
+			}
+
+			.code {
+				@include calc("width", "100% - 490px");
+			}
+
+			.delete {
+				width: 40px;
+			}
+		}
+	}
+
+	@include breakpoint($bp-480) {
+		li {
+			margin-bottom: 0;
+		}
+
+		ul {
+			text-align: left;
+		}
+	}
+
+	@include breakpoint($bp-626) {
+		li input {
+			margin-right: 10px;
+			max-width: none;
+			padding: 0 5px;
+
+			&:last-of-type {
+				margin-right: 0;
+			}
+		}
+	}
+
+	span.active {
+		overflow: hidden;
+		width: 35px;
+	}
+
+	span.backorder {
+		overflow: hidden;
+		width: 35px;
+	}
+
+	span.correct {
+		overflow: hidden;
+		width: 35px;
+	}
+}
+
+.products.index {
+	#changelist-form {
+		img {
+			margin: 5px auto;
+		}
+
+		.action-checkbox {
+			input + label {
+				left: 0
+			}
+		}
+
+		.action-select {
+			margin-left: 0;
+
+			+ label {
+				left: 0;
+			}
+		}
+
+		table .actions {
+			white-space: nowrap;
+
+			.delete, .edit, .login, .visit {
+				color: transparent;
+				text-indent: 0;
+
+				&:before {
+					color: $blue;
+				}
+			}
+
+			@include breakpoint(max-width 768px) {
+				a {
+					display: block;
+					font-size: 11px;
+					letter-spacing: .05em;
+					padding: 25px 0;
+					text-transform: uppercase;
+				}
+
+				li {
+					margin: 0;
+					padding: 0;
+					width: 33.333%;
+				}
+
+				a:before {
+					display: block;
+					margin-top: -14px;
+					padding-bottom: 3px;
+					position: relative;
+				    text-indent: 0;
+				}
+
+				li + li {
+					a {
+						border-left: $border;
+					}
+				}
+
+				tbody td:last-of-type {
+    				clear: both;
+				}
+
+				ul {
+					border: $border;
+				}
+
+				.delete, .edit, .login, .visit {
+					width: 100%;
+				}
+
+				.selected .thumb {
+					border: 1px solid #666;
+				}
+
+				.thumb {
+					background-color: #fff;
+					@include transition(border-color .2s ease-in-out);
+				}
+			}
+
+		}
+
+		tbody {
+			td, th {
+				display: block;
+				margin: 0 auto;
+				padding: 0 20px 5px;
+				text-align: left;
+
+				@include breakpoint($display-tablet 768px) {
+					padding-left: 30px;
+					padding-right: 30px;
+				}
+			}
+
+			th {
+				float: left;
+				width: 50%;
+			}
+		}
+
+		tbody td + th + td + td, thead {
+			display: none;
+		}
+
+		.action-checkbox + td {
+		    clear: left;
+		    float: left;
+
+			+ td {
+			    padding-top: 18px;
+			}
+		}
+
+		@include breakpoint($bp-769) {
+			tbody {
+				td, th {
+					display: table-cell;
+					margin: 0 auto;
+					max-width: none;
+					padding: 5px 10px;
+					text-align: center;
+				}
+
+				th {
+					float: none;
+					width: auto;
+				}
+			}
+
+			thead {
+				display: table-header-group;
+			}
+		}
+
+		@include breakpoint($bp-desktop) {
+			tbody td + th + td + td, .column-code {
+				display: table-cell;
+			}
+		}
+	}
+
+	#results_list ul {
+    	margin-bottom: 0;
+	}
+}
+
+.product-details {
+	display: none;
+}
+
+.products-color.form { // add color popup
+	.submit-row:first-of-type {
+		display: none;
+	}
+}
+
+// .products-category.form { // add category popup
+// 	.submit-row:first-of-type {
+// 		display: none;
+// 	}
+// }
+
+.product.types .actions {
+	min-width: 60px;
+}
+
+.products-season, .seasons.index {
+	.actions {
+		min-width: 60px;
+	}
+}
+
+.toggle-wrap {
+	clear: both;
+	display: none;
+	float: left;
+	width: 100%;
+}
+
+#product_form .toggle-wrap .field-box {
+    margin: 0;
+    width: 100%;
+}

@@ -1,0 +1,205 @@
+// ----- Regions ----- //
+
+$country-codes: 'ad','ae','af','ag','ai','al','am','ao','aq','ar','as','at','au','aw','ax','az','ba','bb','bd','be','bf','bg','bh','bi','bj','bl','bm','bn','bo','bq','br','bs','bt','bv','bw','by','bz','ca','cc','cd','cf','cg','ch','ci','ck','cl','cm','cn','co','cr','cu','cv','cw','cx','cy','cz','de','dj','dk','dm','do','dz','ec','ee','eg','eh','er','es','et','eu','fi','fj','fk','fm','fo','fr','ga','gb','gd','ge','gf','gg','gh','gi','gl','gm','gn','gp','gq','gr','gs','gt','gu','gw','gy','hk','hm','hn','hr','ht','hu','id','ie','il','im','in','io','iq','ir','is','it','je','jm','jo','jp','ke','kg','kh','ki','km','kn','kp','kr','kw','ky','kz','la','lb','lc','li','lk','lr','ls','lt','lu','lv','ly','ma','mc','md','me','mf','mg','mh','mk','ml','mm','mn','mo','mp','mq','mr','ms','mt','mu','mv','mw','mx','my','mz','na','nc','ne','nf','ng','ni','nl','no','np','nr','nu','nz','om','pa','pe','pf','pg','ph','pk','pl','pm','pn','pr','ps','pt','pw','py','qa','re','ro','rs','ru','rw','sa','sb','sc','sd','se','sg','sh','si','sj','sk','sl','sm','sn','so','sr','ss','st','sv','sx','sy','sz','tc','td','tf','tg','th','tj','tk','tl','tm','tn','to','tr','tt','tv','tw','tz','ua','ug','uk','um','us','uy','uz','va','vc','ve','vg','vi','vn','vu','wf','ws','ye','yt','za','zm','zw';
+$flags-dir: '../libs/flag-icons/flags/';
+$supported-countries: 'au', 'ca', 'cn', 'eu', 'fr', 'jp', 'nz', 'uk', 'us';
+
+// Helper classes:
+// .flag-icon-background {
+// 	background-position: 50%;
+// 	background-repeat: no-repeat;
+// 	@include background-size(contain);
+// }
+
+// .flag-icon {
+// 	background-position: 50%;
+// 	background-repeat: no-repeat;
+// 	@include background-size(contain);
+// 	display: inline-block;
+// 	line-height: 1em;
+// 	position: relative;
+// 	width: 1.33333333em;
+
+// 	&:before {
+// 		content: "\00a0";
+// 	}
+
+// 	&.flag-icon-squared {
+// 		width: 1em;
+// 	}
+// }
+
+// Create a %placeholder-selector for each code
+// These can be @extended on anything, for example:
+// .united-states span:before { @extend %flag-icon-us; }
+@each $code in $country-codes {
+	// 4x3:
+	%flag-icon-#{$code} {
+		background-image: url(#{$flags-dir}4x3/#{$code}.svg);
+	}
+
+	// Sqaure:
+	%flag-icon-#{$code}-squared {
+		background-image: url(#{$flags-dir}1x1/#{$code}.svg);
+	}
+
+	// Create a helper class for each code:
+	// .flag-icon-#{$code} {
+	// 	@extend %flag-icon-#{$code};
+	// }
+}
+
+#id_regions {
+	padding-left: 0;
+
+	label {
+		border: 1px dashed $outline-dark-grey;
+		border-radius: 8px;
+		bottom: 0;
+		color: #858585;
+		float: none;
+		left: 0;
+		overflow: hidden; // so maps wont break out of boxes when li's get floated
+  		padding: 150px 0 0;
+		position: absolute; // increase hit area
+		right: 0;
+		text-align: center;
+		top: 0;
+		@include transition(border-color .3s ease-in-out, color .3s ease-in-out);
+
+		// flags
+		&:after {
+			-webkit-backface-visibiilty: hidden;
+			background-repeat: no-repeat;
+			@include background-size(100px 75px);
+			content: "";
+			height: 75px;
+			left: 50%;
+			margin: -37px 0 0 -50px;
+			opacity: .333;
+			position: absolute;
+			top: 50%;
+			@include transition(opacity .3s ease-in-out);
+			width: 100px;
+		}
+
+		&:before { // checkbox
+			left: 50%;
+			margin-left: -10px;
+			position: absolute;
+			right: 0;
+			top: 30px;
+		}
+
+		&:focus, &:hover {
+			color: $label-color;
+
+			&:after {
+				opacity: .666;
+			}
+		}
+	}
+
+	input:checked + label {
+		border-color: #777;
+		color: $label-color;
+
+		&:after {
+			opacity: 1;
+		}
+	}
+
+	li {
+		display: block;
+		margin-bottom: 20px;
+		padding: 170px 20px 20px;
+		position: relative;
+		text-align: center;
+	}
+
+	@each $code in $supported-countries {
+		.#{$code} label:after {
+			@extend %flag-icon-#{$code};
+		}
+	}
+
+	.global label:after {
+		background-image: url(#{$image-dir}regions-sprite.png);
+		background-position: 0 -365px;
+		@include background-size(auto);
+		margin-left: -37px;
+		width: 75px;
+	}
+
+	@include breakpoint($bp-480) {
+		@include clear-fix;
+		margin-right: -3%;
+		max-width: 1200px;
+
+		li {
+			float: left;
+			margin-bottom: 3%;
+			margin-right: 3%;
+			width: 22%;
+		}
+	}
+}
+
+.form-group.field-regions {
+	@extend %padding-margin;
+	border-top: 1px solid #e5e5e5;
+	margin-top: 10px;
+	padding-bottom: 20px;
+	padding-top: 35px;
+
+	> div > label {
+		font-family: $font-standard-bold;
+		-webkit-font-smoothing: antialiased;
+		font-size: em(20px);
+		line-height: 1.2em;
+		margin-bottom: 1.4em;
+		padding-top: 0.4em;
+		text-transform: uppercase;
+		color: #333;
+	}
+}
+
+.regions {
+	@extend %clear-fix;
+	padding-left: 0;
+	margin: 0 -10px 10px 0;
+	min-width: 144px;
+
+	.region {
+		display: inline-block;
+		margin: 10px 10px 0 0;
+		padding: 0;
+
+		a {
+			background-repeat: no-repeat;
+			@include background-size(28px 21px);
+			@include filter(grayscale(100%));
+			display: block;
+			height: 21px;
+			@include opacity(.3);
+			text-indent: -999em;
+			@include transition(opacity .2s ease-in-out);
+			width: 28px;
+
+			&:hover {
+				opacity: .6;
+			}
+		}
+	}
+
+	.active a {
+		@include filter(grayscale(0));
+		@include opacity(1);
+	}
+
+	@each $code in $supported-countries {
+		.#{$code} a, .#{$code}-retail a {
+			background-image: url('../libs/flag-icons/flags/4x3/#{$code}.svg');
+		}
+	}
+}

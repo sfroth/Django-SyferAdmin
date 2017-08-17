@@ -1,0 +1,186 @@
+// ----- Customers ----- //
+
+#id_account_balance_value {
+	max-width: 110px;
+}
+
+.customers-customer, .syferadmin-user {
+	section {
+		border-top: 1px solid $outline-light-grey;
+		padding-bottom: 20px;
+		padding-top: 50px;
+		position: relative;
+
+		&:last-of-type .table-wrap {
+			padding-bottom: 35px;
+		}
+
+		h4 {
+			font-family: $font-standard-bold;
+			-webkit-font-smoothing: antialiased;
+			font-size: em(20px);
+			line-height: 1.2em;
+			margin-bottom: 1.4em;
+			padding-top: 0.4em;
+			text-transform: uppercase;
+			color: #333;
+		}
+	}
+
+	#account, #orders, #returns, #logins, #carts {
+		padding-left: 0;
+		padding-right: 0;
+
+		h4 {
+			@extend %padding-left;
+		}
+
+		p {
+			@extend %padding;
+		}
+
+		table {
+			@extend %table;
+		}
+
+		tbody tr:nth-child(odd) {
+			background: #f4f3f2;
+		}
+
+		.edit {
+			@extend %icon-edit;
+			display: inline-block;
+			height: 14px;
+			margin: 0 auto;
+			overflow: hidden;
+			text-indent: -9999px;
+			width: 17px;
+
+			&:before {
+				display: block;
+				text-indent: 0;
+			}
+		}
+
+		.nowrap {
+			white-space: nowrap;
+		}
+
+		.success, .failure {
+			display: inline-block;
+			height: 1.05em;
+			line-height: 1.05em;
+			overflow: hidden;
+			text-indent: -9999px;
+			width: 1.05em;
+
+			&:before {
+				content: "\f058";
+				display: block;
+				font-family: "FontAwesome";
+				text-indent: 0;
+				color: green;
+				margin-bottom: 2px;
+			}
+		}
+
+		.failure:before {
+			content: "\f057";
+			color: firebrick;
+		}
+
+		.os, .browser {
+			display: inline-block;
+			height: 1.05em;
+			line-height: 1.05em;
+			overflow: hidden;
+			text-indent: -9999px;
+			width: 1.05em;
+			&:before {
+				content: "\f059";
+				display: block;
+				font-family: "FontAwesome";
+				text-indent: 0;
+				margin-bottom: 2px;
+			}
+			&.browser-chrome:before {
+				content: "\f268";
+			}
+			&.browser-firefox:before {
+				content: "\f269";
+			}
+			&.browser-ie:before {
+				content: "\f26b";
+			}
+			&.browser-opera:before {
+				content: "\f26a";
+			}
+			&.browser-safari:before {
+				content: "\f267";
+			}
+
+			&.os-android:before {
+				content: "\f17b";
+			}
+			&.os-linux:before {
+				content: "\f17c";
+			}
+			&.os-osx:before {
+				content: "\f179";
+			}
+			&.os-windows:before {
+				content: "\f17a";
+			}
+		}
+	}
+
+	#addresses {
+		li {
+			float: left;
+			line-height: 20px;
+			margin: 0 40px 25px 0;
+		}
+
+		ul {
+			@extend %clear-fix;
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+	}
+
+	#id_password {
+		margin-bottom: 0;
+	}
+
+	#carts {
+		tr.cart-details {
+			background-color: white !important;
+		}
+		#items, #log, #shipping, #payment {
+			border: none;
+			float: left;
+			width: 50%;
+
+			li {
+				border: 1px solid #eee;
+				margin: 1%;
+				max-width: 30%;
+				padding: 1%;
+			}
+
+			tr {
+				background: white;
+
+				th {
+					text-align: left;
+					font-weight: bold;
+				}
+
+				td {
+					text-align: left;
+				}
+			}
+		}
+	}
+}

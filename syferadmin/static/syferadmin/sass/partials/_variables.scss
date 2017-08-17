@@ -1,0 +1,208 @@
+
+// - $variables - //
+
+$base-font-px: 14px;
+$old-ie: false !default;
+
+$cubic-bezier: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+// Breakpoints
+$display-thunderbolt: 1200px;
+$display-buffness: 1500px;
+$display-desktop: 979px;
+$display-tablet: 767px;
+$display-phone-landscape: 480px;
+$display-phone-portrait: 320px;
+
+
+// Quick use breakpoints that get output to old-ie as well (at bottom of style block - not in a media query)
+$no-query: 'no-query' true;
+$bp-320: 320px, $no-query;
+$bp-380: 380px, $no-query;
+$bp-400: 400px, $no-query;
+$bp-480: 480px, $no-query;
+$bp-550: 550px, $no-query;
+$bp-600: 600px, $no-query;
+$bp-626: 626px, $no-query;
+$bp-715: 715px, $no-query;
+$bp-767: 767px, $no-query;
+$bp-768: 768px, $no-query;
+$bp-769: 769px, $no-query;
+$bp-870: 870px, $no-query;
+$bp-979: 979px, $no-query;
+$bp-1050: 1050px, $no-query;
+$bp-1075: 1075px, $no-query;
+$bp-1140: 1140px, $no-query;
+$bp-1280-min-910: (min-height 910px) 1280px, $no-query;
+$bp-max-1279: max-width 1279px, $no-query;
+$bp-1280: 1280px, $no-query;
+$bp-1340: 1340px, $no-query;
+$bp-1400: 1400px, $no-query;
+$bp-1430: 1430px, $no-query;
+$bp-1500: 1500px, $no-query;
+$bp-2200: 2200px, $no-query;
+$bp-desktop: $display-desktop, $no-query;
+$bp-buffness: $display-buffness, $no-query;
+$bp-tablet: $display-tablet, $no-query;
+$bp-thunderbolt: $display-thunderbolt, $no-query;
+
+$width-thunderbolt: 1170px;
+$width-desktop: 940px;
+$width-tablet: 724px;
+
+// Colors
+$baby-blue: #f2fafc;
+$green-border: #97C997;
+$light-grey: #fafafa;
+$text-grey: #666;
+$text-light-grey: #bcbcbc;
+$text-dark-grey: #333;
+$text-input-grey: #8c8c8c;
+$label-color: #1e1e1e;
+$outline-grey: #e5e5e5;
+$outline-dark-grey: #dbdbdb;
+$outline-light-grey: #dadada;
+$outline-select-grey: #d1d1d1;
+$placeholder-grey: lighten(#cdcdcd, 5.5%);
+$background-grey: #f4f3f2;
+$border: 1px solid $outline-grey;
+$grey-1: #f4f3f2;
+$grey-2: #eaeaea;
+$blue: #3498db;
+$light-blue: #e8f6fc;
+$red: #c0392b;
+$light-red: #feecec;
+$green: #33cc00;
+$green-2: #44ad41;
+$light-green: #f2fcf0;
+$yellow: #e8cb3d;
+$light-yellow: #f7f9d4;
+$nav-outline-grey: #424242;
+$sidenav-grey: #444444;
+$sidenav-dark-grey: #2d2d2d;
+$aqua: #66ad9f;
+$table-head: #1e1e1e;
+$table-body: #676767;
+$taupe: #fcfaeb;
+$input-color: #878787;
+// $link-color: #3498db;
+$link-color: $blue;
+$link-color-alt: #999;
+
+// Status badges
+// $blue-status: #3498db;
+$blue-status: $blue;
+$gray-status: #95a5a6;
+$green-status: #1abc9c;
+$orange-status: #e67e22;
+$purple-status: #9b59b6;
+// $red-status: #c0392b;
+$red-status: $red;
+$yellow-status: #f1c40f;
+//
+$approved-status: $blue-status;
+$cancel-status: $red-status;
+$hold-status: $orange-status;
+$pending-status: $gray-status;
+$placed-status: $gray-status;
+$processed-status: $blue-status;
+$rejected-status: $red-status;
+$requested-status: $yellow-status;
+$sent-status: $purple-status;
+$shipped-status: $green-status;
+
+// Fonts
+$font-icon: "AdminIcons";
+$font-standard: "Proxima Nova Regular", Helvetica, Arial, sans-serif;
+$font-standard-bold: "Proxima Nova Semibold", Helvetica, Arial, sans-serif;
+$font-standard-light: "Proxima Nova Light", Helvetica, Arial, sans-serif;
+
+// Icons
+$icon-view: "\e600";
+$icon-search: "\e601";
+$icon-move: "\e602";
+$icon-mobile-menu: "\e603";
+$icon-info: "\e604";
+$icon-import: "\e605";
+$icon-form-radio: "\e606";
+$icon-form-check: "\e607";
+$icon-export: "\e608";
+$icon-edit: "\e609";
+$icon-edit-checkbox: "\e60a";
+$icon-direction-up: "\e63a";
+$icon-direction-right: "\e60c";
+$icon-direction-left: "\e60d";
+$icon-direction-down: "\e60e";
+$icon-close: "\e60f";
+$icon-chevron-up: "\e610";
+$icon-chevron-right: "\e611";
+$icon-chevron-left: "\e612";
+$icon-chevron-down: "\e613";
+$icon-arrow-up: "\e614";
+$icon-arrow-updown: "\e615";
+$icon-arrow-right: "\e616";
+$icon-arrow-left: "\e617";
+$icon-arrow-down: "\e618";
+$icon-arrow-add: "\e619";
+$icon-settings: "\e61a";
+$icon-close-skinny: "\e61b";
+$icon-cart: "\e61c";
+$icon-bar-graph: "\e61d";
+$icon-dashboard: "\e61e";
+$icon-user: "\e61f";
+$icon-locator: "\e620";
+$icon-glasses: "\e621";
+$icon-shirt: "\e622";
+$icon-skull: "\e623";
+$icon-earth: "\e624";
+$icon-locked: "\e625";
+$icon-image: "\e626";
+$icon-image2: "\e627";
+$icon-file: "\e628";
+$icon-file2: "\e629";
+$icon-address-book: "\e62a";
+$icon-contains: "\e62b";
+$icon-contains-does: "\e63e";
+$icon-contains-not: "\e60b";
+$icon-category: "\e62c";
+$icon-category-not: "\e637";
+$icon-quantity-below: "\e62d";
+$icon-quantity-above: "\e62e";
+$icon-amount-below: "\e638";
+$icon-amount-over: "\e62f";
+$icon-buy-x-get-y: "\e630";
+$icon-fixed-discount: "\e631";
+$icon-free-shipping: "\e632";
+$icon-percentage: "\e633";
+$icon-tiered: "\e634";
+$icon-printer: "\f02f";
+$icon-tag: "\e639";
+$icon-tax-free: "\e641";
+$icon-thumbs-up: "\e635";
+$icon-thumbs-down: "\e636";
+$icon-google-analytics: "\e63c";
+$icon-url-contains: "\e63d";
+$icon-url-contains-not: "\e63b";
+$icon-referrer: "\e640";
+$icon-referrer-not: "\e63f";
+$icon-free-item: "\e642";
+$icon-clock: "\f017";
+$icon-help: "\e644";
+$icon-note: "\e645";
+$icon-translate: "\e646";
+$icon-tiered-fixed: "\e657";
+$icon-tiered-percent: "\e658";
+$icon-zoom: "\e659";
+
+$icon-warning: "\e652";
+$icon-checkmark: "\e650";
+$icon-add: "\e651";
+$icon-warning: "\e652";
+$icon-info-outline: "\e653";
+$icon-info2: "\e654";
+$icon-error-outline: "\e655";
+$icon-error: "\e656";
+$icon-users: "\e65a";
+
+// Paths
+$image-dir: "../img/";

@@ -1,0 +1,22 @@
+{% load i18n admin_urls %}
+<div class="submit-row well">
+	<div class="save-group dropdown" data-save-group>
+		{% if show_save %}
+			<button type="submit" value="{% trans 'Save' %}" class="btn save{% if show_save_as_new or show_save_and_add_another or show_save_and_continue %} has_options{% endif %}" name="_save">
+				{% trans 'Save' %}
+			{% if show_save_as_new or show_save_and_add_another or show_save_and_continue %}
+				<span data-toggle="save-options" class="caret"></span>
+			{% endif %}
+			</button>
+		{% endif %}
+		{% if show_save_as_new or show_save_and_add_another or show_save_and_continue %}
+		<div class="save-options">
+			{% if show_save_as_new %}<button type="submit" value="{% trans 'Save as new' %}" class="btn save-new" name="_saveasnew">{% trans 'Save as new' %}</button>{%endif%}
+			{% if show_save_and_add_another %}<button type="submit" value="{% trans 'Save and add another' %}" class="btn save-add" name="_addanother">{% trans 'Save and add another' %}</button>{% endif %}
+			{% if show_save_and_continue %}<button type="submit" value="{% trans 'Save and continue editing' %}" class="btn save-continue" name="_continue">{% trans 'Save and continue editing' %}</button>{% endif %}
+		</div>
+		{% endif %}
+	</div>
+	{% if show_delete_link %}<a href="{% url opts|admin_urlname:'delete' original.pk|admin_urlquote %}" class="btn delete">{% trans "Delete" %}</a>{% endif %}
+	<a href="{% if cancel_url %}{{ cancel_url }}{% else %}{% url opts|admin_urlname:'changelist' %}{% endif %}" class="btn cancel">{% trans "Cancel" %}</a>
+</div>

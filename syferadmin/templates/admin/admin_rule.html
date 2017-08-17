@@ -1,0 +1,7 @@
+{% load i18n admin_static admin_extras %}
+
+{% for field in form %}
+	{% render_field field %}
+{% endfor %}
+
+<span class="remove">Remove</span>

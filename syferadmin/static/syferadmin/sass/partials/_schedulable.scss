@@ -1,0 +1,59 @@
+.schedule {
+	clear: both;
+	color: #999;
+	margin-bottom: em(2px);
+
+	&:before {
+		content: "\f017";
+		font-family: "FontAwesome";
+		font-size: 1.2em;
+		display: inline-block;
+		padding-right: 6px;
+		position: relative;
+		top: em(-1.5px);
+		vertical-align: middle;
+	}
+}
+
+.progress {
+    background-color: #dbdbdb;
+    border-radius: 1px;
+	display: none;
+    @include breakpoint($bp-desktop) {
+	    display: inline-block;
+	}
+    height: 6px;
+    margin-left: 20px;
+    position: relative;
+    left: 10px;
+    vertical-align: middle;
+    width: 100px;
+
+    &:after {
+        content: attr(data-progress);
+        display: inline-block;
+        left: 100%;
+        font-size: 12px;
+        margin: -7px 0 0 8px;
+        position: absolute;
+        top: 50%;
+    }
+
+    &:before {
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        bottom: -12px;
+        content: "";
+        left: -12px;
+        position: absolute;
+        right: -45px;
+        top: -12px;
+
+    }
+
+    span {
+        background-color: $blue;
+        display: block;
+        height: 100%;
+    }
+}
