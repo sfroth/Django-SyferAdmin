@@ -1,0 +1,23 @@
+.alignment-widget {
+	border-collapse: collapse;
+	width: 100%;
+	max-width: 400px;
+}
+
+.alignment-widget td {
+	background: #FFF;
+	border: 1px solid #3498db;
+	color: #3498db;
+	cursor: pointer;
+	height: 25px;
+	padding: 10px 4px;
+	text-align: center;
+	transition: background 250ms, color 250ms;
+	width: 33.33%;
+	white-space: nowrap;
+}
+
+.alignment-widget td.active {
+	background: #3498db;
+	color: #FFF;
+}

@@ -1,0 +1,726 @@
+@-webkit-keyframes fadeIn {
+  /* line 4, ../sass/partials/_reusables.scss */
+  0% {
+    opacity: 0;
+  }
+
+  /* line 8, ../sass/partials/_reusables.scss */
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  /* line 14, ../sass/partials/_reusables.scss */
+  0% {
+    opacity: 0;
+  }
+
+  /* line 18, ../sass/partials/_reusables.scss */
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fade-in {
+  /* line 103, ../sass/partials/_reusables.scss */
+  from {
+    opacity: 0;
+  }
+
+  /* line 107, ../sass/partials/_reusables.scss */
+  to {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fade-in {
+  /* line 103, ../sass/partials/_reusables.scss */
+  from {
+    opacity: 0;
+  }
+
+  /* line 107, ../sass/partials/_reusables.scss */
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  /* line 103, ../sass/partials/_reusables.scss */
+  from {
+    opacity: 0;
+  }
+
+  /* line 107, ../sass/partials/_reusables.scss */
+  to {
+    opacity: 1;
+  }
+}
+
+/* line 406, ../sass/partials/_reusables.scss */
+#id_permissions h5, #id_user_permissions h5, #id_permissions h6, #id_user_permissions h6, .group-toggle {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+/* line 1868, ../sass/partials/_reusables.scss */
+.url {
+  margin-top: 0;
+}
+/* line 1871, ../sass/partials/_reusables.scss */
+.url a {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+
+@-webkit-keyframes loader {
+  /* line 1962, ../sass/partials/_reusables.scss */
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  /* line 1966, ../sass/partials/_reusables.scss */
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes loader {
+  /* line 1972, ../sass/partials/_reusables.scss */
+  from {
+    -moz-transform: rotate(0deg);
+  }
+
+  /* line 1976, ../sass/partials/_reusables.scss */
+  to {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@keyframes loader {
+  /* line 1982, ../sass/partials/_reusables.scss */
+  from {
+    transform: rotate(0deg);
+  }
+
+  /* line 1985, ../sass/partials/_reusables.scss */
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* line 35, ../sass/permissions-widget.scss */
+#id_permissions .active > label, #id_user_permissions .active > label, #id_permissions > .active label, #id_user_permissions > .active label {
+  color: #777;
+  padding-left: 20px;
+}
+/* line 39, ../sass/permissions-widget.scss */
+#id_permissions .active > label:before, #id_user_permissions .active > label:before, #id_permissions > .active label:before, #id_user_permissions > .active label:before {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+
+/* line 44, ../sass/permissions-widget.scss */
+#id_permissions, #id_user_permissions {
+  font-size: 0;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 0;
+}
+/* line 50, ../sass/permissions-widget.scss */
+#id_permissions h5, #id_user_permissions h5 {
+  background-color: #f7f7f7;
+  color: #b5b5b5;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  margin-bottom: 0;
+  overflow: hidden;
+  padding: 19px 20px 13px 40px;
+  position: relative;
+  -webkit-transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out, padding-left 0.1s ease-in-out;
+  -moz-transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out, padding-left 0.1s ease-in-out;
+  -o-transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out, padding-left 0.1s ease-in-out;
+  transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out, padding-left 0.1s ease-in-out;
+  z-index: 1;
+}
+/* line 64, ../sass/permissions-widget.scss */
+#id_permissions h5:before, #id_user_permissions h5:before {
+  bottom: 0;
+  content: "\f10c";
+  display: inline-block;
+  font-family: "FontAwesome";
+  font-size: 13px;
+  left: 20px;
+  position: absolute;
+  top: 20px;
+}
+/* line 75, ../sass/permissions-widget.scss */
+#id_permissions h5:hover, #id_user_permissions h5:hover {
+  background-color: #f2f2f2;
+  color: #333;
+}
+/* line 81, ../sass/permissions-widget.scss */
+#id_permissions h6, #id_user_permissions h6 {
+  cursor: pointer;
+  font-size: 13px;
+  margin-bottom: .75em;
+}
+/* line 87, ../sass/permissions-widget.scss */
+#id_permissions h6:hover + ul label, #id_user_permissions h6:hover + ul label {
+  color: #777;
+}
+/* line 92, ../sass/permissions-widget.scss */
+#id_permissions label, #id_user_permissions label {
+  color: #b3b3b3;
+  font-size: 11px;
+  line-height: 1.1;
+  min-height: 15px;
+  padding: 0 20px 0 0;
+  -webkit-transition: color 0.25s ease-in-out, padding-left 0.1s ease-in-out;
+  -moz-transition: color 0.25s ease-in-out, padding-left 0.1s ease-in-out;
+  -o-transition: color 0.25s ease-in-out, padding-left 0.1s ease-in-out;
+  transition: color 0.25s ease-in-out, padding-left 0.1s ease-in-out;
+}
+/* line 100, ../sass/permissions-widget.scss */
+#id_permissions label:before, #id_user_permissions label:before {
+  background-color: transparent;
+  border: 0;
+  color: #777;
+  content: "\f00c";
+  font-family: "FontAwesome";
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  -webkit-transition: opacity 0.1s ease-in-out;
+  -moz-transition: opacity 0.1s ease-in-out;
+  -o-transition: opacity 0.1s ease-in-out;
+  transition: opacity 0.1s ease-in-out;
+}
+/* line 110, ../sass/permissions-widget.scss */
+#id_permissions label:hover, #id_user_permissions label:hover {
+  color: #333;
+}
+/* line 115, ../sass/permissions-widget.scss */
+#id_permissions > li, #id_user_permissions > li {
+  background-color: #f7f7f7;
+  font-size: 0;
+  margin-bottom: 10px;
+  position: relative;
+  -webkit-transition: background-color 0.25s ease-in-out;
+  -moz-transition: background-color 0.25s ease-in-out;
+  -o-transition: background-color 0.25s ease-in-out;
+  transition: background-color 0.25s ease-in-out;
+  vertical-align: top;
+}
+@media (min-width: 400px) {
+  /* line 125, ../sass/permissions-widget.scss */
+  #id_permissions > li .permission-types, #id_user_permissions > li .permission-types {
+    overflow: hidden;
+  }
+  /* line 128, ../sass/permissions-widget.scss */
+  #id_permissions > li .permission-types > li, #id_user_permissions > li .permission-types > li {
+    float: left;
+    margin-bottom: 30px;
+    padding-right: 5%;
+    width: 50%;
+  }
+  /* line 134, ../sass/permissions-widget.scss */
+  #id_permissions > li .permission-types > li:nth-of-type(2n+1), #id_user_permissions > li .permission-types > li:nth-of-type(2n+1) {
+    clear: left;
+  }
+}
+@media (min-width: 500px) {
+  /* line 115, ../sass/permissions-widget.scss */
+  #id_permissions > li, #id_user_permissions > li {
+    display: inline-block;
+    margin-right: 4%;
+    margin-right: -webkit-calc(10px);
+    margin-right: -moz-calc(10px);
+    margin-right: calc(10px);
+    width: 48%;
+    width: -webkit-calc(50% - 5px);
+    width: -moz-calc(50% - 5px);
+    width: calc(50% - 5px);
+  }
+  /* line 148, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(2n+2), #id_user_permissions > li:nth-of-type(2n+2) {
+    margin-right: 0;
+  }
+  /* line 151, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(2n+2) .permission-types, #id_user_permissions > li:nth-of-type(2n+2) .permission-types {
+    margin-left: -100%;
+  }
+  /* line 156, ../sass/permissions-widget.scss */
+  #id_permissions > li .permission-types, #id_user_permissions > li .permission-types {
+    width: 200%;
+    width: -webkit-calc(200% + 10px);
+    width: -moz-calc(200% + 10px);
+    width: calc(200% + 10px);
+  }
+  /* line 160, ../sass/permissions-widget.scss */
+  #id_permissions > li .permission-types > li, #id_user_permissions > li .permission-types > li {
+    float: left;
+    margin-bottom: 25px;
+    padding-right: 5%;
+    width: 50%;
+  }
+}
+@media (min-width: 900px) {
+  /* line 115, ../sass/permissions-widget.scss */
+  #id_permissions > li, #id_user_permissions > li {
+    margin-right: 3%;
+    margin-right: -webkit-calc(10px);
+    margin-right: -moz-calc(10px);
+    margin-right: calc(10px);
+    width: 31.333%;
+    width: -webkit-calc(33.333% - 6.666px);
+    width: -moz-calc(33.333% - 6.666px);
+    width: calc(33.333% - 6.666px);
+  }
+  /* line 176, ../sass/permissions-widget.scss */
+  #id_permissions > li .permission-types, #id_user_permissions > li .permission-types {
+    width: 300%;
+    width: -webkit-calc(300% + 20px);
+    width: -moz-calc(300% + 20px);
+    width: calc(300% + 20px);
+  }
+  /* line 180, ../sass/permissions-widget.scss */
+  #id_permissions > li .permission-types > li, #id_user_permissions > li .permission-types > li {
+    width: 33.333%;
+  }
+  /* line 183, ../sass/permissions-widget.scss */
+  #id_permissions > li .permission-types > li:nth-of-type(2n+1), #id_user_permissions > li .permission-types > li:nth-of-type(2n+1) {
+    clear: none;
+  }
+  /* line 187, ../sass/permissions-widget.scss */
+  #id_permissions > li .permission-types > li:nth-of-type(3n+1), #id_user_permissions > li .permission-types > li:nth-of-type(3n+1) {
+    clear: left;
+  }
+  /* line 193, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(2n+2), #id_user_permissions > li:nth-of-type(2n+2) {
+    margin-right: 3%;
+    margin-right: -webkit-calc(10px);
+    margin-right: -moz-calc(10px);
+    margin-right: calc(10px);
+  }
+  /* line 197, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(2n+2) .permission-types, #id_user_permissions > li:nth-of-type(2n+2) .permission-types {
+    margin-left: 0;
+  }
+  /* line 202, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(3n+2) .permission-types, #id_user_permissions > li:nth-of-type(3n+2) .permission-types {
+    margin-left: -100%;
+    margin-left: -webkit-calc(-100% - 10px);
+    margin-left: -moz-calc(-100% - 10px);
+    margin-left: calc(-100% - 10px);
+  }
+  /* line 207, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(3n+3), #id_user_permissions > li:nth-of-type(3n+3) {
+    margin-right: 0;
+  }
+  /* line 210, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(3n+3) .permission-types, #id_user_permissions > li:nth-of-type(3n+3) .permission-types {
+    margin-left: -200%;
+    margin-left: -webkit-calc(-200% - 20px);
+    margin-left: -moz-calc(-200% - 20px);
+    margin-left: calc(-200% - 20px);
+  }
+}
+@media (min-width: 1200px) {
+  /* line 115, ../sass/permissions-widget.scss */
+  #id_permissions > li, #id_user_permissions > li {
+    width: 22.75%;
+    width: -webkit-calc(25% - 7.5px);
+    width: -moz-calc(25% - 7.5px);
+    width: calc(25% - 7.5px);
+  }
+  /* line 222, ../sass/permissions-widget.scss */
+  #id_permissions > li .permission-types, #id_user_permissions > li .permission-types {
+    width: 400%;
+    width: -webkit-calc(400% + 30px);
+    width: -moz-calc(400% + 30px);
+    width: calc(400% + 30px);
+  }
+  /* line 226, ../sass/permissions-widget.scss */
+  #id_permissions > li .permission-types > li, #id_user_permissions > li .permission-types > li {
+    width: 25%;
+  }
+  /* line 229, ../sass/permissions-widget.scss */
+  #id_permissions > li .permission-types > li:nth-of-type(3n+1), #id_user_permissions > li .permission-types > li:nth-of-type(3n+1) {
+    clear: none;
+  }
+  /* line 233, ../sass/permissions-widget.scss */
+  #id_permissions > li .permission-types > li:nth-of-type(4n+1), #id_user_permissions > li .permission-types > li:nth-of-type(4n+1) {
+    clear: left;
+  }
+  /* line 239, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(3n+2) .permission-types, #id_user_permissions > li:nth-of-type(3n+2) .permission-types {
+    margin-left: 0;
+  }
+  /* line 243, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(3n+3), #id_user_permissions > li:nth-of-type(3n+3) {
+    margin-right: 3%;
+    margin-right: -webkit-calc(10px);
+    margin-right: -moz-calc(10px);
+    margin-right: calc(10px);
+  }
+  /* line 247, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(3n+3) .permission-types, #id_user_permissions > li:nth-of-type(3n+3) .permission-types {
+    margin-left: 0;
+  }
+  /* line 252, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(4n+2) .permission-types, #id_user_permissions > li:nth-of-type(4n+2) .permission-types {
+    margin-left: -100%;
+    margin-left: -webkit-calc(-100% - 10px);
+    margin-left: -moz-calc(-100% - 10px);
+    margin-left: calc(-100% - 10px);
+  }
+  /* line 257, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(4n+3) .permission-types, #id_user_permissions > li:nth-of-type(4n+3) .permission-types {
+    margin-left: -200%;
+    margin-left: -webkit-calc(-200% - 20px);
+    margin-left: -moz-calc(-200% - 20px);
+    margin-left: calc(-200% - 20px);
+  }
+  /* line 262, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(4n+4), #id_user_permissions > li:nth-of-type(4n+4) {
+    margin-right: 0;
+  }
+  /* line 265, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(4n+4) .permission-types, #id_user_permissions > li:nth-of-type(4n+4) .permission-types {
+    margin-left: -300%;
+    margin-left: -webkit-calc(-300% - 30px);
+    margin-left: -moz-calc(-300% - 30px);
+    margin-left: calc(-300% - 30px);
+  }
+}
+@media (min-width: 1800px) {
+  /* line 115, ../sass/permissions-widget.scss */
+  #id_permissions > li, #id_user_permissions > li {
+    width: 17.6%;
+    width: -webkit-calc(20% - 8px);
+    width: -moz-calc(20% - 8px);
+    width: calc(20% - 8px);
+  }
+  /* line 277, ../sass/permissions-widget.scss */
+  #id_permissions > li .permission-types, #id_user_permissions > li .permission-types {
+    width: 500%;
+    width: -webkit-calc(500% + 40px);
+    width: -moz-calc(500% + 40px);
+    width: calc(500% + 40px);
+  }
+  /* line 281, ../sass/permissions-widget.scss */
+  #id_permissions > li .permission-types > li, #id_user_permissions > li .permission-types > li {
+    width: 20%;
+  }
+  /* line 284, ../sass/permissions-widget.scss */
+  #id_permissions > li .permission-types > li:nth-of-type(4n+1), #id_user_permissions > li .permission-types > li:nth-of-type(4n+1) {
+    clear: none;
+  }
+  /* line 288, ../sass/permissions-widget.scss */
+  #id_permissions > li .permission-types > li:nth-of-type(5n+1), #id_user_permissions > li .permission-types > li:nth-of-type(5n+1) {
+    clear: left;
+  }
+  /* line 295, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(4n+2) .permission-types, #id_permissions > li:nth-of-type(4n+3) .permission-types, #id_permissions > li:nth-of-type(4n+4) .permission-types, #id_user_permissions > li:nth-of-type(4n+2) .permission-types, #id_user_permissions > li:nth-of-type(4n+3) .permission-types, #id_user_permissions > li:nth-of-type(4n+4) .permission-types {
+    margin-left: 0;
+  }
+  /* line 300, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(4n+4), #id_user_permissions > li:nth-of-type(4n+4) {
+    margin-right: 3%;
+    margin-right: -webkit-calc(10px);
+    margin-right: -moz-calc(10px);
+    margin-right: calc(10px);
+  }
+  /* line 305, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(5n+2) .permission-types, #id_user_permissions > li:nth-of-type(5n+2) .permission-types {
+    margin-left: -100%;
+    margin-left: -webkit-calc(-100% - 10px);
+    margin-left: -moz-calc(-100% - 10px);
+    margin-left: calc(-100% - 10px);
+  }
+  /* line 310, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(5n+3) .permission-types, #id_user_permissions > li:nth-of-type(5n+3) .permission-types {
+    margin-left: -200%;
+    margin-left: -webkit-calc(-200% - 20px);
+    margin-left: -moz-calc(-200% - 20px);
+    margin-left: calc(-200% - 20px);
+  }
+  /* line 315, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(5n+4) .permission-types, #id_user_permissions > li:nth-of-type(5n+4) .permission-types {
+    margin-left: -300%;
+    margin-left: -webkit-calc(-300% - 30px);
+    margin-left: -moz-calc(-300% - 30px);
+    margin-left: calc(-300% - 30px);
+  }
+  /* line 320, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(5n+5), #id_user_permissions > li:nth-of-type(5n+5) {
+    margin-right: 0;
+  }
+  /* line 323, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(5n+5) .permission-types, #id_user_permissions > li:nth-of-type(5n+5) .permission-types {
+    margin-left: -400%;
+    margin-left: -webkit-calc(-400% - 40px);
+    margin-left: -moz-calc(-400% - 40px);
+    margin-left: calc(-400% - 40px);
+  }
+}
+@media (min-width: 2200px) {
+  /* line 115, ../sass/permissions-widget.scss */
+  #id_permissions > li, #id_user_permissions > li {
+    width: 14.1666%;
+    width: -webkit-calc(16.666% - 8.333px);
+    width: -moz-calc(16.666% - 8.333px);
+    width: calc(16.666% - 8.333px);
+  }
+  /* line 335, ../sass/permissions-widget.scss */
+  #id_permissions > li .permission-types, #id_user_permissions > li .permission-types {
+    width: 600%;
+    width: -webkit-calc(600% + 50px);
+    width: -moz-calc(600% + 50px);
+    width: calc(600% + 50px);
+  }
+  /* line 339, ../sass/permissions-widget.scss */
+  #id_permissions > li .permission-types > li, #id_user_permissions > li .permission-types > li {
+    width: 16.666%;
+  }
+  /* line 342, ../sass/permissions-widget.scss */
+  #id_permissions > li .permission-types > li:nth-of-type(5n+1), #id_user_permissions > li .permission-types > li:nth-of-type(5n+1) {
+    clear: none;
+  }
+  /* line 346, ../sass/permissions-widget.scss */
+  #id_permissions > li .permission-types > li:nth-of-type(6n+1), #id_user_permissions > li .permission-types > li:nth-of-type(6n+1) {
+    clear: left;
+  }
+  /* line 353, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(5n+2) .permission-types, #id_permissions > li:nth-of-type(5n+3) .permission-types, #id_permissions > li:nth-of-type(5n+4) .permission-types, #id_permissions > li:nth-of-type(5n+5) .permission-types, #id_user_permissions > li:nth-of-type(5n+2) .permission-types, #id_user_permissions > li:nth-of-type(5n+3) .permission-types, #id_user_permissions > li:nth-of-type(5n+4) .permission-types, #id_user_permissions > li:nth-of-type(5n+5) .permission-types {
+    margin-left: 0;
+  }
+  /* line 358, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(5n+5), #id_user_permissions > li:nth-of-type(5n+5) {
+    margin-right: 3%;
+    margin-right: -webkit-calc(10px);
+    margin-right: -moz-calc(10px);
+    margin-right: calc(10px);
+  }
+  /* line 363, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(6n+2) .permission-types, #id_user_permissions > li:nth-of-type(6n+2) .permission-types {
+    margin-left: -100%;
+    margin-left: -webkit-calc(-100% - 10px);
+    margin-left: -moz-calc(-100% - 10px);
+    margin-left: calc(-100% - 10px);
+  }
+  /* line 368, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(6n+3) .permission-types, #id_user_permissions > li:nth-of-type(6n+3) .permission-types {
+    margin-left: -200%;
+    margin-left: -webkit-calc(-200% - 20px);
+    margin-left: -moz-calc(-200% - 20px);
+    margin-left: calc(-200% - 20px);
+  }
+  /* line 373, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(6n+4) .permission-types, #id_user_permissions > li:nth-of-type(6n+4) .permission-types {
+    margin-left: -300%;
+    margin-left: -webkit-calc(-300% - 30px);
+    margin-left: -moz-calc(-300% - 30px);
+    margin-left: calc(-300% - 30px);
+  }
+  /* line 378, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(6n+5) .permission-types, #id_user_permissions > li:nth-of-type(6n+5) .permission-types {
+    margin-left: -400%;
+    margin-left: -webkit-calc(-400% - 40px);
+    margin-left: -moz-calc(-400% - 40px);
+    margin-left: calc(-400% - 40px);
+  }
+  /* line 383, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(6n+6), #id_user_permissions > li:nth-of-type(6n+6) {
+    margin-right: 0;
+  }
+  /* line 386, ../sass/permissions-widget.scss */
+  #id_permissions > li:nth-of-type(6n+6) .permission-types, #id_user_permissions > li:nth-of-type(6n+6) .permission-types {
+    margin-left: -500%;
+    margin-left: -webkit-calc(-500% - 50px);
+    margin-left: -moz-calc(-500% - 50px);
+    margin-left: calc(-500% - 50px);
+  }
+}
+/* line 394, ../sass/permissions-widget.scss */
+#id_permissions ul, #id_user_permissions ul {
+  list-style: none;
+  padding-left: 0;
+}
+/* line 400, ../sass/permissions-widget.scss */
+#id_permissions .active h5, #id_permissions .partial h5, #id_user_permissions .active h5, #id_user_permissions .partial h5 {
+  color: #333;
+}
+/* line 410, ../sass/permissions-widget.scss */
+#id_permissions > .active h5:before, #id_user_permissions > .active h5:before {
+  content: "\f111";
+}
+/* line 419, ../sass/permissions-widget.scss */
+#id_permissions .active-toggle, #id_user_permissions .active-toggle {
+  background-color: #eaf7fa;
+}
+/* line 422, ../sass/permissions-widget.scss */
+#id_permissions .active-toggle h5, #id_permissions .active-toggle .group-toggle, #id_user_permissions .active-toggle h5, #id_user_permissions .active-toggle .group-toggle {
+  background-color: #eaf7fa;
+}
+/* line 425, ../sass/permissions-widget.scss */
+#id_permissions .active-toggle h5:hover, #id_permissions .active-toggle .group-toggle:hover, #id_user_permissions .active-toggle h5:hover, #id_user_permissions .active-toggle .group-toggle:hover {
+  background-color: #e3f4f9;
+}
+/* line 431, ../sass/permissions-widget.scss */
+#id_permissions .partial h5:before, #id_user_permissions .partial h5:before {
+  content: "\f042";
+}
+
+/* line 436, ../sass/permissions-widget.scss */
+.group-toggle {
+  background-color: #f7f7f7;
+  border: 0;
+  color: #b5b5b5;
+  height: 48px;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  text-indent: -9999px;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
+/* line 450, ../sass/permissions-widget.scss */
+.group-toggle:hover {
+  background-color: #f2f2f2;
+  color: #000;
+}
+/* line 455, ../sass/permissions-widget.scss */
+.group-toggle:after {
+  bottom: 0;
+  content: "\f0d7";
+  font-family: "FontAwesome";
+  font-size: 12px;
+  line-height: 48px;
+  position: absolute;
+  right: 20px;
+  text-indent: 0;
+  top: 0;
+}
+/* line 468, ../sass/permissions-widget.scss */
+.active-toggle .group-toggle:after {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+/* line 472, ../sass/permissions-widget.scss */
+.active-toggle .group-toggle:hover {
+  background-color: #e3f4f9;
+  color: #000;
+}
+
+/* line 479, ../sass/permissions-widget.scss */
+.permission-items > li {
+  margin-bottom: 5px;
+}
+
+/* line 483, ../sass/permissions-widget.scss */
+.permission-types {
+  background-color: #eaf7fa;
+  border-top: 1px solid #fff;
+  display: none;
+  padding: 35px 0;
+}
+/* line 489, ../sass/permissions-widget.scss */
+.permission-types > li {
+  padding: 0 22px;
+}
+@media (min-width: 400px) {
+  /* line 483, ../sass/permissions-widget.scss */
+  .permission-types {
+    padding-bottom: 0;
+  }
+}
+
+/* line 498, ../sass/permissions-widget.scss */
+.permissions-legend {
+  color: #666;
+  font-size: 11px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+/* line 504, ../sass/permissions-widget.scss */
+.permissions-legend dd {
+  float: left;
+  margin-left: 0;
+}
+/* line 509, ../sass/permissions-widget.scss */
+.permissions-legend dl {
+  float: left;
+  overflow: hidden;
+}
+/* line 513, ../sass/permissions-widget.scss */
+.permissions-legend dl + dl:before {
+  content: "|";
+  float: left;
+  margin: 0 10px;
+}
+/* line 519, ../sass/permissions-widget.scss */
+.permissions-legend dl:first-of-type {
+  color: #b5b5b5;
+}
+/* line 524, ../sass/permissions-widget.scss */
+.permissions-legend dt {
+  float: left;
+  margin-right: 6px;
+}
+/* line 529, ../sass/permissions-widget.scss */
+.permissions-legend h4 {
+  display: none;
+}
+/* line 533, ../sass/permissions-widget.scss */
+.permissions-legend span {
+  display: inline-block;
+  height: 11px;
+  position: relative;
+  text-indent: -999em;
+  width: 10px;
+}
+/* line 540, ../sass/permissions-widget.scss */
+.permissions-legend span:after {
+  font-family: "FontAwesome";
+  left: 0;
+  position: absolute;
+  text-indent: 0;
+  top: 1px;
+}
+/* line 549, ../sass/permissions-widget.scss */
+.permissions-legend .empty-icon:after {
+  content: "\f10c";
+}
+/* line 553, ../sass/permissions-widget.scss */
+.errors .permissions-legend {
+  display: none;
+}
+/* line 557, ../sass/permissions-widget.scss */
+.permissions-legend .filled-icon:after {
+  content: "\f111";
+}
+/* line 561, ../sass/permissions-widget.scss */
+.permissions-legend .partial-icon:after {
+  content: "\f042";
+}
+@media (min-width: 767px) {
+  /* line 498, ../sass/permissions-widget.scss */
+  .permissions-legend {
+    position: absolute;
+    right: 0;
+    top: -10px;
+  }
+  /* line 570, ../sass/permissions-widget.scss */
+  .permissions-legend dl + dl:before {
+    margin: 0 20px;
+  }
+}

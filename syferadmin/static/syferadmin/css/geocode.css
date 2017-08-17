@@ -1,0 +1,23 @@
+.geo {
+	border: 1px solid #eee;
+	padding: 5px;
+	margin-bottom: 30px;
+}
+.geo__map {
+	min-width: 400px;
+	min-height: 300px;
+}
+.geo__message-wrapper {
+	display: none;
+}
+
+.geo__message {
+	background: firebrick;
+	color: white;
+	margin: 0;
+	padding: 5px;
+	margin-top: 5px;
+}
+.geo__message, .geo__message strong {
+	color: white;
+}

@@ -1,0 +1,1796 @@
+@charset "UTF-8";
+@-webkit-keyframes fadeIn {
+  /* line 4, ../sass/partials/_reusables.scss */
+  0% {
+    opacity: 0;
+  }
+
+  /* line 8, ../sass/partials/_reusables.scss */
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  /* line 14, ../sass/partials/_reusables.scss */
+  0% {
+    opacity: 0;
+  }
+
+  /* line 18, ../sass/partials/_reusables.scss */
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fade-in {
+  /* line 103, ../sass/partials/_reusables.scss */
+  from {
+    opacity: 0;
+  }
+
+  /* line 107, ../sass/partials/_reusables.scss */
+  to {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fade-in {
+  /* line 103, ../sass/partials/_reusables.scss */
+  from {
+    opacity: 0;
+  }
+
+  /* line 107, ../sass/partials/_reusables.scss */
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  /* line 103, ../sass/partials/_reusables.scss */
+  from {
+    opacity: 0;
+  }
+
+  /* line 107, ../sass/partials/_reusables.scss */
+  to {
+    opacity: 1;
+  }
+}
+
+/* line 421, ../sass/partials/_reusables.scss */
+.errorlist, .messages .error, .messages .info, .messages .success, .messages .warning {
+  border: 1px solid;
+  font: 1.07143em/1.3em "Proxima Nova Regular", Helvetica, Arial, sans-serif;
+  padding: 10px 57px 9px 15px;
+  position: relative;
+}
+/* line 427, ../sass/partials/_reusables.scss */
+.errorlist a.close, .messages .error a.close, .messages .info a.close, .messages .success a.close, .messages .warning a.close {
+  display: block;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 42px;
+}
+/* line 435, ../sass/partials/_reusables.scss */
+.errorlist a.close:after, .messages .error a.close:after, .messages .info a.close:after, .messages .success a.close:after, .messages .warning a.close:after {
+  content: "\e60f";
+  display: block;
+  font: 11px/30px "AdminIcons";
+  height: 30px;
+  margin-top: -15px;
+  position: absolute;
+  right: 6px;
+  text-align: center;
+  top: 50%;
+  width: 30px;
+}
+
+/* line 452, ../sass/partials/_reusables.scss */
+button {
+  background: #fff;
+  border: 1px solid #3498db;
+  border-radius: 0;
+  color: #3498db;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Proxima Nova Regular", Helvetica, Arial, sans-serif;
+  font-size: 0.875em;
+  height: 40px;
+  line-height: 40px;
+  letter-spacing: 2px;
+  margin: 0;
+  outline: none;
+  padding: 0 1.85714em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  -webkit-transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  -moz-transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  -o-transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+/* line 473, ../sass/partials/_reusables.scss */
+button:hover, button.active {
+  color: #fff;
+  background: #3498db;
+  text-decoration: none;
+}
+
+/* line 487, ../sass/partials/_reusables.scss */
+.button, .search-container .input-group-btn .btn, .search-container .input-group-btn .button, .search-container .input-group-btn .object-tools a, .object-tools .search-container .input-group-btn a {
+  padding: 0 15px;
+}
+
+/* line 492, ../sass/partials/_reusables.scss */
+.object-tools a {
+  max-width: 44px;
+  min-width: 40px;
+  padding: 0;
+  text-indent: -9999px;
+}
+/* line 499, ../sass/partials/_reusables.scss */
+.object-tools a:before {
+  display: block;
+  left: 0;
+  padding-left: 1px;
+  padding-right: 0;
+  position: absolute;
+  text-align: center;
+  text-indent: 0;
+  top: 0;
+  width: 100%;
+}
+@media (min-width: 979px) {
+  /* line 492, ../sass/partials/_reusables.scss */
+  .object-tools a {
+    max-width: 100%;
+    padding: 0 1.46939em;
+    text-indent: 0;
+  }
+  /* line 516, ../sass/partials/_reusables.scss */
+  .object-tools a:before {
+    display: inline-block;
+    left: auto;
+    padding-left: 0;
+    padding-right: 10px;
+    position: static;
+    top: auto;
+    width: auto;
+  }
+}
+
+/* line 532, ../sass/partials/_reusables.scss */
+.inline-related .edit-actions .delete {
+  color: #c0392b;
+  font-size: .75em;
+  text-indent: -999em;
+  text-transform: uppercase;
+}
+/* line 538, ../sass/partials/_reusables.scss */
+.inline-related .edit-actions .delete:before {
+  background-color: transparent;
+  border-color: #c0392b;
+  color: #c0392b;
+  content: "\f00d";
+  -webkit-transition: background-color 0.2s ease-in-out;
+  -moz-transition: background-color 0.2s ease-in-out;
+  -o-transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* line 547, ../sass/partials/_reusables.scss */
+.inline-related .edit-actions .delete {
+  border: 1px solid #c0392b;
+  cursor: pointer;
+  display: block;
+  float: left;
+  height: 40px;
+  position: relative;
+  text-align: center;
+  text-indent: -999em;
+  width: 40px;
+}
+/* line 559, ../sass/partials/_reusables.scss */
+.inline-related .edit-actions .delete:before {
+  font-family: "FontAwesome";
+  left: 0;
+  line-height: 38px;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  text-indent: 0;
+  top: 0;
+}
+/* line 570, ../sass/partials/_reusables.scss */
+.inline-related .edit-actions .delete:hover {
+  background-color: #c0392b;
+  color: #fff;
+}
+/* line 574, ../sass/partials/_reusables.scss */
+.inline-related .edit-actions .delete:hover:before {
+  background-color: #c0392b;
+  color: #fff;
+}
+
+/* line 791, ../sass/partials/_reusables.scss */
+form > h2, main > h2, .module > h2 {
+  font-size: 1.42857em;
+  line-height: 1.2em;
+  margin-bottom: 38px;
+  padding-top: 0.4em;
+}
+
+/* line 814, ../sass/partials/_reusables.scss */
+.actions .edit:before, .actions .delete:before, .actions .add:before, .actions .activity:before, .actions .visit:before {
+  font-family: "AdminIcons";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal !important;
+  font-variant: normal !important;
+  font-weight: normal !important;
+  line-height: 1;
+  speak: none;
+  text-transform: none;
+}
+
+/* line 882, ../sass/partials/_reusables.scss */
+.actions .edit:before {
+  content: "\e60a";
+}
+
+/* line 917, ../sass/partials/_reusables.scss */
+.actions .delete:before {
+  content: "\e60f";
+}
+
+/* line 987, ../sass/partials/_reusables.scss */
+.actions .add:before {
+  content: "\e619";
+}
+
+/* line 1022, ../sass/partials/_reusables.scss */
+.actions .activity:before {
+  content: "\f133";
+}
+
+/* line 1057, ../sass/partials/_reusables.scss */
+.actions .visit:before {
+  content: "\e600";
+}
+
+/* line 1078, ../sass/partials/_reusables.scss */
+.actions .visit:before {
+  content: "\e600";
+}
+
+/* line 1098, ../sass/partials/_reusables.scss */
+.actions .view:before, .actions .sort:before, .object-tools .import:before, .object-tools .import_link:before, .object-tools .export:before, .object-tools .export_link:before, .object-tools .add:before {
+  background-image: none;
+  background-position: 0 0;
+  background-repeat: repeat;
+  display: inline-block;
+  font-family: "AdminIcons";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  height: auto;
+  margin-top: 0;
+  speak: none;
+  text-decoration: inherit;
+  text-transform: none;
+  width: 100%;
+}
+@media (min-width: 979px) {
+  /* line 1098, ../sass/partials/_reusables.scss */
+  .actions .view:before, .actions .sort:before, .object-tools .import:before, .object-tools .import_link:before, .object-tools .export:before, .object-tools .export_link:before, .object-tools .add:before {
+    padding-right: 10px;
+    width: auto;
+  }
+}
+
+/* line 1129, ../sass/partials/_reusables.scss */
+.actions .view:before {
+  content: "\e601";
+}
+
+/* line 1136, ../sass/partials/_reusables.scss */
+.actions .sort:before {
+  content: "\e602";
+}
+
+/* line 1157, ../sass/partials/_reusables.scss */
+.object-tools .import:before, .object-tools .import_link:before {
+  content: "\e605";
+}
+
+/* line 1178, ../sass/partials/_reusables.scss */
+.object-tools .export:before, .object-tools .export_link:before {
+  content: "\e608";
+}
+
+/* line 1298, ../sass/partials/_reusables.scss */
+.object-tools .add:before {
+  content: "\e619";
+  font-size: 10px;
+}
+
+/* line 1454, ../sass/partials/_reusables.scss */
+.section-padding {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+@media (min-width: 767px) {
+  /* line 1454, ../sass/partials/_reusables.scss */
+  .section-padding {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+@media (min-width: 1500px) {
+  /* line 1454, ../sass/partials/_reusables.scss */
+  .section-padding {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+/* line 1546, ../sass/partials/_reusables.scss */
+body > footer, main {
+  padding: 20px;
+}
+@media (min-width: 480px) {
+  /* line 1546, ../sass/partials/_reusables.scss */
+  body > footer, main {
+    margin-left: 70px;
+  }
+}
+@media (min-width: 767px) {
+  /* line 1546, ../sass/partials/_reusables.scss */
+  body > footer, main {
+    margin-left: 100px;
+    padding: 30px;
+  }
+}
+@media (min-width: 1500px) {
+  /* line 1546, ../sass/partials/_reusables.scss */
+  body > footer, main {
+    margin-left: 110px;
+    padding: 30px 50px;
+  }
+}
+
+/* line 1631, ../sass/partials/_reusables.scss */
+span.order-status, span.return-status {
+  background-color: #95a5a6;
+  color: #fff;
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 1px;
+  min-width: 160px;
+  padding: 8px 10px 6px 11px;
+  text-transform: uppercase;
+}
+
+/* line 1642, ../sass/partials/_reusables.scss */
+main #content-main .module, .results {
+  margin-left: -20px;
+  margin-right: -20px;
+  overflow: hidden;
+  overflow-x: auto;
+  width: auto;
+}
+@media (min-width: 767px) {
+  /* line 1642, ../sass/partials/_reusables.scss */
+  main #content-main .module, .results {
+    margin-left: -30px;
+    margin-right: -30px;
+  }
+}
+@media (min-width: 1500px) {
+  /* line 1642, ../sass/partials/_reusables.scss */
+  main #content-main .module, .results {
+    margin-left: -50px;
+    margin-right: -50px;
+  }
+}
+
+/* line 1660, ../sass/partials/_reusables.scss */
+#change-history, #result_list, form[action*="process_import"] + h2 + table {
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+  display: table;
+  max-width: 100%;
+  width: 100%;
+}
+/* line 1669, ../sass/partials/_reusables.scss */
+.table-striped#change-history tbody tr:nth-child(odd), .table-striped#result_list tbody tr:nth-child(odd), form[action*="process_import"] + h2 + table.table-striped tbody tr:nth-child(odd) {
+  background: #f4f3f2;
+}
+/* line 1674, ../sass/partials/_reusables.scss */
+#change-history img, #result_list img, form[action*="process_import"] + h2 + table img {
+  display: inline-block;
+  vertical-align: middle;
+}
+/* line 1679, ../sass/partials/_reusables.scss */
+#change-history thead, #result_list thead, form[action*="process_import"] + h2 + table thead {
+  border-bottom: 1px solid #e5e5e5;
+  border-top: 1px solid #e5e5e5;
+}
+/* line 1683, ../sass/partials/_reusables.scss */
+#change-history thead th, #result_list thead th, form[action*="process_import"] + h2 + table thead th, #change-history thead td, #result_list thead td, form[action*="process_import"] + h2 + table thead td {
+  padding: 30px 10px 15px 10px;
+  color: #1e1e1e;
+}
+/* line 1689, ../sass/partials/_reusables.scss */
+#change-history tr, #result_list tr, form[action*="process_import"] + h2 + table tr {
+  border-color: inherit;
+  display: table-row;
+  vertical-align: inherit;
+}
+/* line 1695, ../sass/partials/_reusables.scss */
+#change-history th, #result_list th, form[action*="process_import"] + h2 + table th, #change-history td, #result_list td, form[action*="process_import"] + h2 + table td {
+  display: table-cell;
+  text-align: center;
+  vertical-align: inherit;
+}
+/* line 1702, ../sass/partials/_reusables.scss */
+#change-history tbody th, #result_list tbody th, form[action*="process_import"] + h2 + table tbody th, #change-history tbody td, #result_list tbody td, form[action*="process_import"] + h2 + table tbody td {
+  padding: 20px 10px;
+  color: #676767;
+}
+/* line 1707, ../sass/partials/_reusables.scss */
+#change-history tbody tr, #result_list tbody tr, form[action*="process_import"] + h2 + table tbody tr {
+  border-bottom: 1px solid #dadada;
+}
+/* line 1709, ../sass/partials/_reusables.scss */
+#change-history tbody tr.alt, #result_list tbody tr.alt, form[action*="process_import"] + h2 + table tbody tr.alt {
+  background: #f4f3f2;
+}
+/* line 1715, ../sass/partials/_reusables.scss */
+#change-history ul, #result_list ul, form[action*="process_import"] + h2 + table ul {
+  list-style: none;
+  padding-left: 0;
+}
+/* line 1719, ../sass/partials/_reusables.scss */
+#change-history ul li:not(.region), #result_list ul li:not(.region), form[action*="process_import"] + h2 + table ul li:not(.region) {
+  display: inline-block;
+  padding: 0 7px;
+  vertical-align: middle;
+}
+/* line 1726, ../sass/partials/_reusables.scss */
+#change-history .totals, #result_list .totals, form[action*="process_import"] + h2 + table .totals {
+  background-color: #636363;
+}
+/* line 1729, ../sass/partials/_reusables.scss */
+#change-history .totals td, #result_list .totals td, form[action*="process_import"] + h2 + table .totals td {
+  color: #fff;
+  letter-spacing: .1em;
+  padding: 30px 0;
+}
+/* line 1734, ../sass/partials/_reusables.scss */
+#change-history .totals td:first-child:before, #result_list .totals td:first-child:before, form[action*="process_import"] + h2 + table .totals td:first-child:before {
+  content: "TOTAL: ";
+  display: inline-block;
+  font-family: "Proxima Nova Semibold", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  letter-spacing: 0;
+  vertical-align: middle;
+}
+
+/* line 1868, ../sass/partials/_reusables.scss */
+.url {
+  margin-top: 0;
+}
+/* line 1871, ../sass/partials/_reusables.scss */
+.url a {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+
+/* line 1879, ../sass/partials/_reusables.scss */
+.accordion-group [data-slide-toggle] {
+  clear: both;
+  cursor: pointer;
+  float: left;
+  font-size: 1.1em;
+  line-height: .875em;
+  margin: 1em 0;
+  position: relative;
+  width: 100%;
+}
+/* line 1889, ../sass/partials/_reusables.scss */
+.accordion-group [data-slide-toggle]:before {
+  content: "\e616";
+  display: inline-block;
+  font-family: "AdminIcons";
+  font-size: 0.71429em;
+  margin-right: 1em;
+  -webkit-transition: -webkit-transform 0.3s;
+  -moz-transition: -moz-transform 0.3s;
+  -o-transition: -o-transform 0.3s;
+  transition: transform 0.3s;
+}
+
+/* line 1899, ../sass/partials/_reusables.scss */
+.accordion-group {
+  background-color: #fafafa;
+  padding: 1em 20px;
+}
+/* line 1903, ../sass/partials/_reusables.scss */
+.accordion-group [data-slide-toggle] {
+  top: 0;
+}
+@media (min-width: 979px) {
+  /* line 1903, ../sass/partials/_reusables.scss */
+  .accordion-group [data-slide-toggle] {
+    clear: left;
+    width: 165px;
+  }
+  /* line 1911, ../sass/partials/_reusables.scss */
+  .accordion-group [data-slide-toggle] + .toggle-wrap {
+    clear: right;
+    float: right;
+    margin-left: 0;
+    margin-top: 1.14286em;
+    width: 80%;
+    width: -webkit-calc(100% - 185px);
+    width: -moz-calc(100% - 185px);
+    width: calc(100% - 185px);
+  }
+}
+@media (min-width: 1500px) {
+  /* line 1903, ../sass/partials/_reusables.scss */
+  .accordion-group [data-slide-toggle] {
+    left: 20px;
+  }
+}
+/* line 1926, ../sass/partials/_reusables.scss */
+.active-toggle.accordion-group {
+  background-color: #f2fafc;
+}
+@media (min-width: 767px) {
+  /* line 1899, ../sass/partials/_reusables.scss */
+  .accordion-group {
+    padding: 18px 30px;
+  }
+}
+@media (min-width: 1500px) {
+  /* line 1935, ../sass/partials/_reusables.scss */
+  form > div > .accordion-group {
+    padding-left: 30px;
+    padding-right: 70px;
+  }
+}
+
+/* line 1944, ../sass/partials/_reusables.scss */
+.loading.btn:before, .loading.button:before, .object-tools a.loading:before {
+  -webkit-animation-name: loader;
+  -moz-animation-name: loader;
+  -o-animation-name: loader;
+  animation-name: loader;
+  -webkit-animation-duration: 0.5s;
+  -moz-animation-duration: 0.5s;
+  -o-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -o-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+  -o-animation-timing-function: linear;
+  animation-timing-function: linear;
+  border-radius: 50%;
+  box-shadow: 0px 0px 1px black, 1px 1px 1px black;
+  content: "";
+  height: 20px;
+  left: 50%;
+  margin: -10px 0 0 -10px;
+  position: absolute;
+  width: 20px;
+  z-index: 1;
+}
+
+@-webkit-keyframes loader {
+  /* line 1962, ../sass/partials/_reusables.scss */
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  /* line 1966, ../sass/partials/_reusables.scss */
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes loader {
+  /* line 1972, ../sass/partials/_reusables.scss */
+  from {
+    -moz-transform: rotate(0deg);
+  }
+
+  /* line 1976, ../sass/partials/_reusables.scss */
+  to {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@keyframes loader {
+  /* line 1982, ../sass/partials/_reusables.scss */
+  from {
+    transform: rotate(0deg);
+  }
+
+  /* line 1985, ../sass/partials/_reusables.scss */
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@font-face {
+  font-family: "Proxima Nova Regular";
+  src: url("/static/syferadmin/font/proximanova-regular-webfont.eot");
+  src: url("/static/syferadmin/font/proximanova-regular-webfont.eot?#iefix") format("embedded-opentype"), url("/static/syferadmin/font/proximanova-regular-webfont.woff") format("woff"), url("/static/syferadmin/font/proximanova-regular-webfont.ttf") format("truetype"), url("/static/syferadmin/font/proximanova-regular-webfont.svg#Proxima Nova Regular") format("svg");
+  font-weight: normal !important;
+  font-style: normal !important;
+  font-variant: normal !important;
+}
+
+@font-face {
+  font-family: "Proxima Nova Semibold";
+  src: url("/static/syferadmin/font/proximanova-semibold-webfont.eot");
+  src: url("/static/syferadmin/font/proximanova-semibold-webfont.eot?#iefix") format("embedded-opentype"), url("/static/syferadmin/font/proximanova-semibold-webfont.woff") format("woff"), url("/static/syferadmin/font/proximanova-semibold-webfont.ttf") format("truetype"), url("/static/syferadmin/font/proximanova-semibold-webfont.svg#Proxima Nova Semibold") format("svg");
+  font-weight: normal !important;
+  font-style: normal !important;
+  font-variant: normal !important;
+}
+
+@font-face {
+  font-family: "Proxima Nova Light";
+  src: url("/static/syferadmin/font/proximanova-light-webfont.eot");
+  src: url("/static/syferadmin/font/proximanova-light-webfont.eot?#iefix") format("embedded-opentype"), url("/static/syferadmin/font/proximanova-light-webfont.woff") format("woff"), url("/static/syferadmin/font/proximanova-light-webfont.ttf") format("truetype"), url("/static/syferadmin/font/proximanova-light-webfont.svg#Proxima Nova Light") format("svg");
+  font-weight: normal !important;
+  font-style: normal !important;
+  font-variant: normal !important;
+}
+
+@font-face {
+  font-family: "AdminIcons";
+  src: url("/static/syferadmin/font/syferadmin-icons.eot");
+  src: url("/static/syferadmin/font/syferadmin-icons.eot?#iefix") format("embedded-opentype"), url("/static/syferadmin/font/syferadmin-icons.woff") format("woff"), url("/static/syferadmin/font/syferadmin-icons.ttf") format("truetype"), url("/static/syferadmin/font/syferadmin-icons.svg#Icons") format("svg");
+  font-weight: normal !important;
+  font-style: normal !important;
+  font-variant: normal !important;
+}
+
+@font-face {
+  font-family: "FontAwesome";
+  src: url("/static/syferadmin/font/fontawesome-webfont.eot?v=4.4.0");
+  src: url("/static/syferadmin/font/fontawesome-webfont.eot?#iefix&v=4.4.0") format("embedded-opentype"), url("/static/syferadmin/font/fontawesome-webfont.woff?v=4.4.0") format("woff"), url("/static/syferadmin/font/fontawesome-webfont.woff2?v=4.4.0") format("woff2"), url("/static/syferadmin/font/fontawesome-webfont.ttf?v=4.4.0") format("truetype"), url("/static/syferadmin/font/fontawesome-webfont.svg#FontAwesome?v=4.4.0") format("svg");
+  font-weight: normal !important;
+  font-style: normal !important;
+  font-variant: normal !important;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @font-face {
+    font-family: "Proxima Nova Regular";
+    src: url("/static/syferadmin/font/proximanova-regular-webfont.svg#Proxima Nova Regular") format("svg");
+}
+
+  @font-face {
+    font-family: "Proxima Nova Semibold";
+    src: url("/static/syferadmin/font/proximanova-semibold-webfont.svg#Proxima Nova Semibold") format("svg");
+}
+
+  @font-face {
+    font-family: "Proxima Nova Light";
+    src: url("/static/syferadmin/font/proximanova-light-webfont.svg#Proxima Nova Light") format("svg");
+}
+
+  @font-face {
+    font-family: "AdminIcons";
+    src: url("/static/syferadmin/font/syferadmin-icons.svg#Icons") format("svg");
+}
+
+  @font-face {
+    font-family: "FontAwesome";
+    src: url("/static/syferadmin/font/fontawesome-webfont.svg#FontAwesome?v=3.1.0") format("svg");
+}
+}
+/* line 3, ../sass/partials/_general.scss */
+article, aside, figure, footer, header, hgroup, main, nav, section {
+  display: block;
+}
+
+/* line 7, ../sass/partials/_general.scss */
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+/* line 11, ../sass/partials/_general.scss */
+html {
+  height: 100%;
+  min-height: 100%;
+}
+
+/* line 16, ../sass/partials/_general.scss */
+body {
+  color: #666666;
+  font-family: "Proxima Nova Regular", Helvetica, Arial, sans-serif;
+  font-size: .875em;
+  background: #fff;
+  margin: 0 auto;
+  min-height: 400px;
+  position: relative;
+}
+
+/* line 26, ../sass/partials/_general.scss */
+a {
+  color: #3498db;
+  text-decoration: none;
+  outline: 0;
+  -webkit-transition: color 0.25s;
+  -moz-transition: color 0.25s;
+  -o-transition: color 0.25s;
+  transition: color 0.25s;
+}
+/* line 32, ../sass/partials/_general.scss */
+a:hover {
+  color: #333333;
+  text-decoration: none;
+}
+
+/* line 45, ../sass/partials/_general.scss */
+a:active,
+a:focus,
+a:hover,
+button:focus,
+img:focus,
+input:focus,
+object,
+textarea:focus {
+  outline: 0;
+}
+
+/* line 49, ../sass/partials/_general.scss */
+b, strong {
+  color: #333;
+  font-family: "Proxima Nova Semibold", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+}
+
+/* line 55, ../sass/partials/_general.scss */
+.nested-sortable strong.name > a {
+  color: #333;
+}
+
+/* line 59, ../sass/partials/_general.scss */
+body > footer {
+  clear: both;
+}
+
+/* line 65, ../sass/partials/_general.scss */
+button[disabled], input[disabled] {
+  cursor: not-allowed;
+}
+
+/* line 74, ../sass/partials/_general.scss */
+fieldset .related-items {
+  margin-bottom: 50px;
+}
+/* line 77, ../sass/partials/_general.scss */
+fieldset .related-items:last-of-type {
+  margin-bottom: 20px;
+}
+
+/* line 83, ../sass/partials/_general.scss */
+form > h2, main > h2 {
+  float: left;
+}
+
+/* line 91, ../sass/partials/_general.scss */
+form .editor {
+  border: 1px solid #e5e5e5;
+  margin-left: 0;
+}
+/* line 97, ../sass/partials/_general.scss */
+form .editor-toolbar:after {
+  background: #e5e5e5;
+}
+/* line 101, ../sass/partials/_general.scss */
+form .editor-toolbar:before {
+  height: 0;
+}
+
+/* line 107, ../sass/partials/_general.scss */
+h1, h2, h3, h4, h5, h6 {
+  color: #333333;
+  font-weight: normal;
+  margin: 0 0 .83em;
+  padding: 0;
+  text-rendering: auto;
+}
+/* line 114, ../sass/partials/_general.scss */
+h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
+  color: #bcbcbc;
+  font-size: 100%;
+}
+
+/* line 120, ../sass/partials/_general.scss */
+h1, h2, h3 {
+  font-family: "Proxima Nova Semibold", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+/* line 125, ../sass/partials/_general.scss */
+h1 {
+  font-size: 1.42857em;
+}
+
+/* line 129, ../sass/partials/_general.scss */
+h2 {
+  font-size: 1.14286em;
+}
+
+/* line 133, ../sass/partials/_general.scss */
+h3 {
+  font-size: 0.85714em;
+}
+
+/* line 137, ../sass/partials/_general.scss */
+h4, h5, h6 {
+  font-family: "Proxima Nova Regular", Helvetica, Arial, sans-serif;
+  margin-bottom: 1em;
+}
+
+/* line 142, ../sass/partials/_general.scss */
+h4 {
+  font-size: 1.42857em;
+}
+
+/* line 146, ../sass/partials/_general.scss */
+h5 {
+  font-size: 1.14286em;
+}
+
+/* line 150, ../sass/partials/_general.scss */
+h6 {
+  font-size: 1em;
+}
+
+/* line 154, ../sass/partials/_general.scss */
+img {
+  border-style: none;
+  max-width: 100%;
+}
+
+/* line 162, ../sass/partials/_general.scss */
+main > h2 + p {
+  clear: both;
+}
+/* line 166, ../sass/partials/_general.scss */
+main .messages:first-child {
+  margin-bottom: 2em;
+}
+
+/* line 171, ../sass/partials/_general.scss */
+p {
+  margin-bottom: 0.71429em;
+}
+
+/* line 175, ../sass/partials/_general.scss */
+#changelist {
+  clear: both;
+}
+
+/* line 183, ../sass/partials/_general.scss */
+main #content-main .module p {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+@media (min-width: 767px) {
+  /* line 183, ../sass/partials/_general.scss */
+  main #content-main .module p {
+    margin-left: 3em;
+    margin-right: 3em;
+  }
+}
+
+/* line 197, ../sass/partials/_general.scss */
+#change-history thead {
+  border-top: none;
+}
+
+/* line 208, ../sass/partials/_general.scss */
+#result_list tbody th img, #result_list tbody td img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
+/* line 217, ../sass/partials/_general.scss */
+#changelist-form .thumb {
+  display: block;
+  font-size: 0;
+  max-width: 100px;
+  padding: 0;
+}
+/* line 223, ../sass/partials/_general.scss */
+#changelist-form .thumb:before {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+/* line 230, ../sass/partials/_general.scss */
+#changelist-form .thumb img {
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid #e5e5e5;
+}
+@media (min-width: 767px) {
+  /* line 217, ../sass/partials/_general.scss */
+  #changelist-form .thumb {
+    display: inline-block;
+  }
+}
+
+/* line 243, ../sass/partials/_general.scss */
+body[class*="category"] .form-group > div > .add-another:after, body[class*="category"] .form-group > div > div .add-related:after {
+  display: none;
+}
+
+/* line 249, ../sass/partials/_general.scss */
+[type="hidden"] {
+  display: none;
+}
+
+/* line 258, ../sass/partials/_general.scss */
+.actions > label {
+  float: left;
+  width: 90%;
+  width: -webkit-calc(100% - 64px);
+  width: -moz-calc(100% - 64px);
+  width: calc(100% - 64px);
+}
+/* line 264, ../sass/partials/_general.scss */
+.actions li {
+  text-align: center;
+}
+/* line 268, ../sass/partials/_general.scss */
+.actions select {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  height: 40px;
+  margin-top: 5px;
+  width: 100%;
+}
+/* line 276, ../sass/partials/_general.scss */
+.actions .button {
+  margin: 5px 0 0 10px;
+  padding: 0;
+  top: 15px;
+  width: 54px;
+}
+/* line 283, ../sass/partials/_general.scss */
+.actions select, .actions .chosen-container {
+  min-width: 0;
+}
+@media (max-width: 1049px) {
+  /* line 283, ../sass/partials/_general.scss */
+  .actions select, .actions .chosen-container {
+    width: 100% !important;
+  }
+}
+/* line 291, ../sass/partials/_general.scss */
+.actions .chosen-container {
+  margin: 5px 0 0;
+}
+/* line 296, ../sass/partials/_general.scss */
+.actions .activity, .actions .add, .actions .delete, .actions .edit, .actions .login, .actions .visit, .actions .sort, .actions .view {
+  display: inline-block;
+  height: 15px;
+  line-height: 17px;
+  min-width: 15px;
+  overflow: hidden;
+  position: relative;
+  text-indent: -9999px;
+  vertical-align: middle;
+}
+/* line 306, ../sass/partials/_general.scss */
+.actions .activity:before, .actions .add:before, .actions .delete:before, .actions .edit:before, .actions .login:before, .actions .visit:before, .actions .sort:before, .actions .view:before {
+  bottom: 0;
+  left: 0;
+  line-height: 15px;
+  position: absolute;
+  right: 0;
+  text-indent: 0;
+  top: 0;
+}
+/* line 317, ../sass/partials/_general.scss */
+.actions .activity {
+  width: 14px;
+}
+/* line 321, ../sass/partials/_general.scss */
+.actions .activity:before {
+  font-family: "FontAwesome";
+}
+/* line 326, ../sass/partials/_general.scss */
+.actions .add {
+  width: 14px;
+}
+/* line 331, ../sass/partials/_general.scss */
+.actions .delete {
+  width: 14px;
+}
+/* line 336, ../sass/partials/_general.scss */
+.actions .edit {
+  width: 17px;
+}
+/* line 341, ../sass/partials/_general.scss */
+.actions .login {
+  margin: 5px auto 0;
+  width: 17px;
+}
+/* line 345, ../sass/partials/_general.scss */
+.actions .login:before {
+  content: "\f007";
+  display: block;
+  font-family: "FontAwesome";
+  text-indent: 0;
+}
+@media (min-width: 715px) {
+  /* line 341, ../sass/partials/_general.scss */
+  .actions .login {
+    margin: 0 auto;
+  }
+}
+/* line 357, ../sass/partials/_general.scss */
+.actions .sort {
+  width: 20px;
+}
+/* line 366, ../sass/partials/_general.scss */
+.actions .visit {
+  width: 21px;
+}
+@media (min-width: 1050px) {
+  /* line 372, ../sass/partials/_general.scss */
+  .actions > label {
+    display: inline-block;
+    float: none;
+    vertical-align: middle;
+    width: auto;
+  }
+  /* line 379, ../sass/partials/_general.scss */
+  .actions select, .actions .chosen-container {
+    margin: 0;
+  }
+  /* line 383, ../sass/partials/_general.scss */
+  .actions select {
+    width: 400px;
+  }
+  /* line 387, ../sass/partials/_general.scss */
+  .actions .button {
+    margin: 0 0 0 6px;
+    top: 0;
+    vertical-align: middle;
+  }
+}
+
+/* line 402, ../sass/partials/_general.scss */
+.delete-confirmation main p:first-child {
+  font-size: 1.5em;
+}
+/* line 406, ../sass/partials/_general.scss */
+.delete-confirmation main ul {
+  list-style: disc inside;
+}
+/* line 410, ../sass/partials/_general.scss */
+.delete-confirmation main > ul {
+  margin: 2em 0;
+  padding: 0;
+}
+/* line 414, ../sass/partials/_general.scss */
+.delete-confirmation main > ul > li + li {
+  margin-top: 1.4em;
+}
+/* line 418, ../sass/partials/_general.scss */
+.delete-confirmation main > ul ul {
+  padding-left: 1.25em;
+  margin-top: .5em;
+}
+/* line 422, ../sass/partials/_general.scss */
+.delete-confirmation main > ul ul li + li {
+  margin-top: .5em;
+}
+
+/* line 430, ../sass/partials/_general.scss */
+.map {
+  display: inline-block;
+  height: 1em;
+  line-height: 1em;
+  overflow: hidden;
+  text-indent: -9999px;
+  width: 1em;
+}
+/* line 437, ../sass/partials/_general.scss */
+.map:before {
+  content: "\f041";
+  display: block;
+  font-family: "FontAwesome";
+  text-indent: 0;
+}
+
+/* line 445, ../sass/partials/_general.scss */
+.drag-drop {
+  font-style: italic;
+  clear: both;
+  color: #bcbcbc;
+}
+/* line 450, ../sass/partials/_general.scss */
+.drag-drop:before {
+  content: "* ";
+}
+
+/* line 455, ../sass/partials/_general.scss */
+.errorlist {
+  background: #feecec;
+  border-color: #c0392b;
+  color: #c0392b;
+  margin: 0 0 1.5em 0;
+  padding: 0;
+}
+/* line 39, ../sass/partials/_reusables.scss */
+.errorlist a:after {
+  color: #c0392b;
+}
+/* line 460, ../sass/partials/_general.scss */
+.errorlist li {
+  list-style: none;
+  padding: .75em;
+}
+/* line 464, ../sass/partials/_general.scss */
+.errorlist li + li {
+  border-top: 1px solid #c0392b;
+}
+
+/* line 470, ../sass/partials/_general.scss */
+.errornote {
+  clear: both;
+  color: #c0392b;
+  font-size: 1.14286em;
+  font-style: italic;
+  position: relative;
+  z-index: -1;
+}
+/* line 478, ../sass/partials/_general.scss */
+.errornote:before {
+  content: "* ";
+  display: inline-block;
+  font-size: 1.2em;
+}
+
+/* line 486, ../sass/partials/_general.scss */
+.inline-deletelink {
+  display: inline-block;
+  margin-left: 0.3em;
+}
+
+/* line 492, ../sass/partials/_general.scss */
+.inline-related h3 {
+  margin-bottom: 1.5em;
+}
+/* line 496, ../sass/partials/_general.scss */
+.inline-related .edit-actions .delete {
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+/* line 504, ../sass/partials/_general.scss */
+.inline-related .edit-actions .delete:hover {
+  background-color: #c0392b;
+  color: #fff;
+}
+
+/* line 513, ../sass/partials/_general.scss */
+.loading.btn:before, .loading.button:before, .object-tools a.loading:before {
+  box-shadow: 0px 0px 1px #3498db, 1px 1px 1px #3498db;
+  display: inline-block;
+  height: 12px;
+  left: 0;
+  margin: 0 12px 0 0;
+  position: relative;
+  top: 2px;
+  width: 12px;
+}
+/* line 523, ../sass/partials/_general.scss */
+.loading.btn:hover:before, .loading.button:hover:before, .object-tools a.loading:hover:before {
+  box-shadow: 0px 0px 1px #fff, 1px 1px 1px #fff;
+}
+
+/* line 528, ../sass/partials/_general.scss */
+.messages {
+  list-style: none;
+  margin: 0 0 1.5em 0;
+  padding: 0;
+}
+/* line 533, ../sass/partials/_general.scss */
+.messages .error {
+  background: #feecec;
+  border-color: #c0392b;
+  color: #c0392b;
+}
+/* line 39, ../sass/partials/_reusables.scss */
+.messages .error a:after {
+  color: #c0392b;
+}
+/* line 537, ../sass/partials/_general.scss */
+.messages .info {
+  background: #e8f6fc;
+  border-color: #3498db;
+  color: #3498db;
+}
+/* line 39, ../sass/partials/_reusables.scss */
+.messages .info a:after {
+  color: #3498db;
+}
+/* line 541, ../sass/partials/_general.scss */
+.messages .success {
+  background: #f2fcf0;
+  border-color: #33cc00;
+  color: #33cc00;
+}
+/* line 39, ../sass/partials/_reusables.scss */
+.messages .success a:after {
+  color: #33cc00;
+}
+/* line 545, ../sass/partials/_general.scss */
+.messages .warning {
+  background: #f7f9d4;
+  border-color: #e8cb3d;
+  color: #e8cb3d;
+}
+/* line 39, ../sass/partials/_reusables.scss */
+.messages .warning a:after {
+  color: #e8cb3d;
+}
+
+/* line 554, ../sass/partials/_general.scss */
+.no-entries {
+  font-size: 1.2em;
+}
+
+/* line 558, ../sass/partials/_general.scss */
+.block-title {
+  float: left;
+}
+
+/* line 563, ../sass/partials/_general.scss */
+.object-tools {
+  float: right;
+  list-style: none;
+  margin: 0 0 20px 10px;
+  padding: 0;
+  text-align: right;
+}
+/* line 571, ../sass/partials/_general.scss */
+.object-tools li {
+  float: right;
+  margin-left: 10px;
+}
+/* line 575, ../sass/partials/_general.scss */
+.object-tools li:last-child {
+  margin-left: 0;
+}
+/* line 594, ../sass/partials/_general.scss */
+.object-tools .refresh_link:before {
+  display: inline-block;
+  content: "\f021";
+  font-family: "FontAwesome";
+}
+/* line 602, ../sass/partials/_general.scss */
+.object-tools .update_link:before {
+  display: inline-block;
+  content: "\f0ed";
+  font-family: "FontAwesome";
+}
+/* line 609, ../sass/partials/_general.scss */
+.object-tools .report:before {
+  display: inline-block;
+  content: "\e61d";
+  font-family: "AdminIcons";
+}
+/* line 616, ../sass/partials/_general.scss */
+.object-tools .history:before {
+  content: "\f017";
+  font-family: "FontAwesome";
+  font-size: 1.1em;
+}
+/* line 627, ../sass/partials/_general.scss */
+.object-tools .login:before {
+  content: "\e61f";
+  font-family: "AdminIcons";
+}
+/* line 632, ../sass/partials/_general.scss */
+.object-tools .merge:before {
+  content: "\e65a";
+  font-family: "AdminIcons";
+}
+/* line 638, ../sass/partials/_general.scss */
+.object-tools .sort:before {
+  content: "\f0c7";
+  font-family: "FontAwesome";
+  font-size: 1.2em;
+}
+/* line 645, ../sass/partials/_general.scss */
+.object-tools .activity:before {
+  font-family: "FontAwesome";
+  content: "\f133";
+  font-size: 1.2em;
+}
+/* line 651, ../sass/partials/_general.scss */
+.object-tools .downgrade:before {
+  font-family: "FontAwesome";
+  content: "\f0ab";
+  font-size: 1.2em;
+}
+/* line 657, ../sass/partials/_general.scss */
+.object-tools .upgrade:before {
+  font-family: "FontAwesome";
+  content: "\f0aa";
+  font-size: 1.2em;
+}
+/* line 664, ../sass/partials/_general.scss */
+.object-tools .used-on:before {
+  content: "\f0e8";
+  font-family: "FontAwesome";
+  font-size: 1.1em;
+}
+/* line 672, ../sass/partials/_general.scss */
+.object-tools .view:before {
+  content: "\e600";
+  font-family: "AdminIcons";
+  font-size: .875em;
+}
+/* line 679, ../sass/partials/_general.scss */
+.object-tools .report:before {
+  display: inline-block;
+  content: "\e61d";
+  font-family: "AdminIcons";
+}
+/* line 686, ../sass/partials/_general.scss */
+.stock.notifications .object-tools a:before {
+  content: "\e600";
+  font-family: "AdminIcons";
+}
+
+/* line 697, ../sass/partials/_general.scss */
+span.order-status.approved, span.order-status.processed, span.order-status.active, span.return-status.approved, span.return-status.processed, span.return-status.active {
+  background-color: #3498db;
+}
+/* line 701, ../sass/partials/_general.scss */
+span.order-status.canceled, span.order-status.rejected, span.return-status.canceled, span.return-status.rejected {
+  background-color: #c0392b;
+}
+/* line 705, ../sass/partials/_general.scss */
+span.order-status.hold, span.order-status.paused, span.return-status.hold, span.return-status.paused {
+  background-color: #e67e22;
+}
+/* line 709, ../sass/partials/_general.scss */
+span.order-status.pending, span.order-status.placed, span.return-status.pending, span.return-status.placed {
+  background-color: #95a5a6;
+}
+/* line 713, ../sass/partials/_general.scss */
+span.order-status.requested, span.return-status.requested {
+  background-color: #f1c40f;
+}
+/* line 717, ../sass/partials/_general.scss */
+span.order-status.sent, span.order-status.suspended, span.return-status.sent, span.return-status.suspended {
+  background-color: #9b59b6;
+}
+/* line 721, ../sass/partials/_general.scss */
+span.order-status.shipped, span.return-status.shipped {
+  background-color: #1abc9c;
+}
+
+/* line 728, ../sass/partials/_general.scss */
+.pagination-holder {
+  color: #333333;
+  font-size: 0.85714em;
+  text-align: center;
+}
+/* line 733, ../sass/partials/_general.scss */
+.pagination-holder .pagination-center {
+  display: inline-block;
+}
+/* line 736, ../sass/partials/_general.scss */
+.pagination-holder .pagination-center:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+/* line 744, ../sass/partials/_general.scss */
+.pagination-holder a,
+.pagination-holder .current {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  width: 40px;
+}
+/* line 751, ../sass/partials/_general.scss */
+.pagination-holder a {
+  background: #f4f3f2;
+  border: 1px solid #f4f3f2;
+  color: #333333;
+  -webkit-transition: all 0.25s;
+  -moz-transition: all 0.25s;
+  -o-transition: all 0.25s;
+  transition: all 0.25s;
+}
+/* line 757, ../sass/partials/_general.scss */
+.pagination-holder a:hover {
+  background: #3498db;
+  border-color: #3498db;
+  color: #fff;
+}
+/* line 764, ../sass/partials/_general.scss */
+.pagination-holder span {
+  display: block;
+  float: left;
+  margin: 0 0.35714em 0.71429em;
+}
+/* line 770, ../sass/partials/_general.scss */
+.pagination-holder .current {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+}
+/* line 776, ../sass/partials/_general.scss */
+.pagination-holder .next,
+.pagination-holder .prev {
+  display: block;
+  height: 40px;
+  line-height: 42px;
+  position: relative;
+}
+/* line 783, ../sass/partials/_general.scss */
+.pagination-holder .next a, .pagination-holder .next.disabled,
+.pagination-holder .prev a,
+.pagination-holder .prev.disabled {
+  background: transparent;
+  border: none;
+  width: 20px;
+}
+/* line 788, ../sass/partials/_general.scss */
+.pagination-holder .next a:before, .pagination-holder .next.disabled:before,
+.pagination-holder .prev a:before,
+.pagination-holder .prev.disabled:before {
+  color: #3498db;
+  font: 12px/42px "AdminIcons";
+  position: absolute;
+  top: 0;
+  -webkit-transition: color 0.25s;
+  -moz-transition: color 0.25s;
+  -o-transition: color 0.25s;
+  transition: color 0.25s;
+}
+/* line 796, ../sass/partials/_general.scss */
+.pagination-holder .next a:hover:before, .pagination-holder .next.disabled:hover:before,
+.pagination-holder .prev a:hover:before,
+.pagination-holder .prev.disabled:hover:before {
+  color: #333333;
+}
+/* line 803, ../sass/partials/_general.scss */
+.pagination-holder .next.disabled:before, .pagination-holder .next.disabled:hover:before,
+.pagination-holder .prev.disabled:before,
+.pagination-holder .prev.disabled:hover:before {
+  color: #eaeaea;
+}
+/* line 809, ../sass/partials/_general.scss */
+.pagination-holder .next {
+  margin-right: 0;
+}
+/* line 814, ../sass/partials/_general.scss */
+.pagination-holder .next a:before, .pagination-holder .next.disabled:before {
+  content: "\e611";
+  left: 5px;
+}
+/* line 821, ../sass/partials/_general.scss */
+.pagination-holder .prev {
+  margin-left: 0;
+}
+/* line 826, ../sass/partials/_general.scss */
+.pagination-holder .prev a:before, .pagination-holder .prev.disabled:before {
+  content: "\e612";
+  right: 5px;
+}
+
+/* line 834, ../sass/partials/_general.scss */
+.paginator {
+  font-size: 0;
+  margin-top: 30px;
+  text-align: center;
+}
+/* line 839, ../sass/partials/_general.scss */
+.paginator a, .paginator span {
+  border: 1px solid transparent;
+  color: #333;
+  display: inline-block;
+  font-size: 14px;
+  height: 40px;
+  line-height: 40px;
+  margin: 4px;
+  vertical-align: middle;
+  width: 40px;
+}
+/* line 851, ../sass/partials/_general.scss */
+.paginator a {
+  background-color: #f4f3f2;
+  -webkit-transition: background-color 0.25s, border-color 0.25s, color 0.25s;
+  -moz-transition: background-color 0.25s, border-color 0.25s, color 0.25s;
+  -o-transition: background-color 0.25s, border-color 0.25s, color 0.25s;
+  transition: background-color 0.25s, border-color 0.25s, color 0.25s;
+}
+/* line 855, ../sass/partials/_general.scss */
+.paginator a:hover, .paginator a.this-page {
+  background-color: #e8e6e4;
+  background-color: #e8f6fc;
+  border-color: #3498db;
+  color: #3498db;
+}
+/* line 863, ../sass/partials/_general.scss */
+.paginator span {
+  border-color: #dadada;
+}
+/* line 867, ../sass/partials/_general.scss */
+.paginator .dots {
+  border-color: #fff;
+}
+/* line 871, ../sass/partials/_general.scss */
+.paginator .next, .paginator .prev {
+  background-color: transparent;
+  border-color: #fff;
+  position: relative;
+  text-indent: -9009px;
+}
+/* line 877, ../sass/partials/_general.scss */
+.paginator .next:before, .paginator .prev:before {
+  font-size: 20px;
+  content: "»";
+  left: 0;
+  position: absolute;
+  text-indent: 0;
+  top: -0.075em;
+  width: 100%;
+}
+/* line 887, ../sass/partials/_general.scss */
+.paginator .next:hover, .paginator .prev:hover {
+  background-color: transparent;
+  border-color: #3498db;
+}
+/* line 892, ../sass/partials/_general.scss */
+.paginator .next.disabled, .paginator .prev.disabled {
+  color: #e9e9e9;
+}
+/* line 895, ../sass/partials/_general.scss */
+.paginator .next.disabled:hover, .paginator .prev.disabled:hover {
+  border-color: #fff;
+}
+/* line 902, ../sass/partials/_general.scss */
+.paginator .prev:before {
+  content: "«";
+}
+/* line 907, ../sass/partials/_general.scss */
+.paginator .showall {
+  background-color: transparent;
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding: 0 15px;
+  text-transform: uppercase;
+  width: auto;
+}
+
+/* line 923, ../sass/partials/_general.scss */
+.search-container .input-group-btn {
+  float: right;
+  margin-left: 0.71429em;
+}
+/* line 932, ../sass/partials/_general.scss */
+.search-container .search-holder {
+  overflow: hidden;
+  padding-bottom: 1.5em;
+}
+
+/* line 938, ../sass/partials/_general.scss */
+.search-container + span {
+  display: block;
+  margin-bottom: 2em;
+}
+
+/* line 947, ../sass/partials/_general.scss */
+.tab-content {
+  padding: 20px;
+}
+/* line 950, ../sass/partials/_general.scss */
+.tab-content .tab-pane {
+  display: none;
+}
+/* line 953, ../sass/partials/_general.scss */
+.tab-content .tab-pane.active {
+  display: block;
+}
+
+/* line 960, ../sass/partials/_general.scss */
+.tab-nav {
+  background: #f4f3f2;
+  border-top: 1px solid #dbdbdb;
+  padding-left: 32px;
+  position: relative;
+}
+/* line 966, ../sass/partials/_general.scss */
+.tab-nav:before {
+  background: #dbdbdb;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 1px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+/* line 978, ../sass/partials/_general.scss */
+.tab-nav li {
+  float: left;
+  margin-right: 3px;
+  margin-top: 9px;
+  position: relative;
+  z-index: 2;
+}
+/* line 985, ../sass/partials/_general.scss */
+.tab-nav li a {
+  border-color: transparent;
+  border-style: solid;
+  border-width: 1px 1px 0;
+  color: #333333;
+  display: block;
+  letter-spacing: 1px;
+  padding: 17px 29px;
+  text-transform: uppercase;
+}
+/* line 997, ../sass/partials/_general.scss */
+.tab-nav li.active a,
+.tab-nav li a:hover {
+  background: #fff;
+  border-color: #dbdbdb;
+}
+
+/* line 1004, ../sass/partials/_general.scss */
+.table-wrap {
+  overflow-x: auto;
+}
+
+/* line 1008, ../sass/partials/_general.scss */
+.url {
+  margin-top: 0;
+}
+/* line 1011, ../sass/partials/_general.scss */
+.url a {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+
+/* line 1019, ../sass/partials/_general.scss */
+.video-upload-container {
+  clear: both;
+}
+/* line 1022, ../sass/partials/_general.scss */
+.video-upload-container .btn, .video-upload-container .button, .video-upload-container .object-tools a, .object-tools .video-upload-container a {
+  float: right;
+  margin-left: 0.8em;
+}
+/* line 1026, ../sass/partials/_general.scss */
+.video-upload-container .video-upload-holder {
+  overflow: hidden;
+  padding-bottom: 1.5em;
+}
+
+/* line 1033, ../sass/partials/_general.scss */
+.video-holder {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+}
+/* line 1042, ../sass/partials/_general.scss */
+.video-holder embed,
+.video-holder iframe,
+.video-holder object {
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+/* line 1056, ../sass/partials/_general.scss */
+form[action*="process_import"] + h2 + table tbody tr:nth-child(odd) {
+  background: #f4f3f2;
+}
+
+/* line 15, ../sass/locale.scss */
+.trans-field + .trans-field:not(.trans-field-default) {
+  border: 1px solid #dadada;
+  background-color: #f2fafc;
+  display: none;
+  margin-bottom: 20px;
+  padding: 20px 25px 25px;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  margin-top: -1.2em;
+}
+/* line 27, ../sass/locale.scss */
+.trans-field + .trans-field:not(.trans-field-default):after {
+  background: transparent url("../img/select-tip-top.png");
+  -webkit-background-size: 15px 8px;
+  -moz-background-size: 15px 8px;
+  -o-background-size: 15px 8px;
+  background-size: 15px 8px;
+  content: "";
+  height: 8px;
+  position: absolute;
+  left: 26px;
+  top: -8px;
+  width: 15px;
+  z-index: 2;
+}
+/* line 39, ../sass/locale.scss */
+.trans-field + .trans-field:not(.trans-field-default):before {
+  border: 8px solid transparent;
+  content: "";
+  border-color: transparent transparent #f2fafc;
+  height: 8px;
+  position: absolute;
+  left: 26px;
+  top: -14px;
+  width: 15px;
+  z-index: 3;
+}
+/* line 53, ../sass/locale.scss */
+.trans-field .editor {
+  background-color: #fff;
+}
+
+/* line 58, ../sass/locale.scss */
+.hide-trans-field {
+  display: none;
+}
+
+/* line 65, ../sass/locale.scss */
+.trans-active .trans-field {
+  clear: left !important;
+  float: none !important;
+}
+/* line 72, ../sass/locale.scss */
+.trans-active #product_form .trans-field + .field-code {
+  margin-left: 0;
+}
+/* line 76, ../sass/locale.scss */
+.trans-active #variation_set-group .field-price {
+  clear: left;
+}
