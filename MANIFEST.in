@@ -1,0 +1,2 @@
+recursive-include syferadmin/templates *
+recursive-include syferadmin/static *
