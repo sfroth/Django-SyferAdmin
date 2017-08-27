@@ -271,6 +271,10 @@ class Region(SortableModel):
 					return False
 		return True
 
+	@property
+	def tzinfo(self):
+		return pytz.timezone(self.timezone)
+
 
 class RegionCountry(models.Model):
 	region = models.ForeignKey(Region, related_name='countries')

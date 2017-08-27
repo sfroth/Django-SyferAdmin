@@ -27,7 +27,6 @@ class RegionMiddleware(object):
 
 	def detect_region(self, request):
 		self.detected_country_code = GeoIP(path=settings.SYFERADMIN_GEO_IP_PATH).country_code(request.META['REMOTE_ADDR'])
-		print(self.detected_country_code)
 		self.log.debug("IP Detected Country for {}: {}".format(request.META['REMOTE_ADDR'], self.detected_country_code))
 		try:
 			if self.detected_country_code:

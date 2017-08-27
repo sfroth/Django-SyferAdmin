@@ -39,8 +39,8 @@ def detail(request, token):
 	# Creating a json object here cause the standard request obj is not pickleable
 	report_request = {
 		'report': request.GET,
-		'region': request.region,
-		'user': request.user,
+		'region_id': request.region.id,
+		'user_id': request.user.id,
 	}
 	if request.is_ajax():
 		# Delaying the report due to timeouts for heavy reports

@@ -109,6 +109,10 @@ class Report(object):
 	@classmethod
 	def get_report(cls, request_data, token):
 		try:
+			if 'region_id' in request_data:
+				request_data['region'] = Region.objects.get(id=request_data['region_id'])
+			if 'user_id' in request_data:
+				request_data['user'] = User.objects.get(id=request_data['user_id'])
 			report = copy.copy(cls.objects.get(token=token))  # using copy because the rest of this method was modifying in-memory report
 			# Set incoming parameters on report
 			report.set_request(request_data)
@@ -154,7 +158,7 @@ class Report(object):
 		report = data.get('report')
 		if report.get('range'):
 			self.selected_range = report.get('range', 'custom')
-			now = datetime.now(data.get('region').timezone)
+			now = datetime.now(data.get('region').tzinfo)
 			if report.get('range') == 'day':
 				self.start_date = now
 				self.end_date = self.start_date

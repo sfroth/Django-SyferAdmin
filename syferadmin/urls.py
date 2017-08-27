@@ -45,7 +45,7 @@ urlpatterns = [
 	# Email viewing
 	url(r'^emails(?:/(?P<email_type>[a-zA-Z-]+))?(?:/(?P<param>[0-9]+))?/$', emails.email_test, name='emails'),
 
-	# Dynamic report URLs
-	# *[url(r'^reports/detail/{}/'.format(report.token), 'views.reports.report_detail', name='{}_report'.format(report.token)) for report in Report.objects.all()]
-
 ]
+
+# Dynamic report URLs
+urlpatterns += [url(r'^reports/detail/{}/'.format(report.token), reports.report_detail, name='{}_report'.format(report.token)) for report in Report.objects.all()]

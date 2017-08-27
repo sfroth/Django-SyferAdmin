@@ -1,11 +1,64 @@
 <% if (!results.length) { %>
 	<h2>No data found</h2>
 <% } else { %>
-	<ol class="list-view">
-		<% _.each(results, function(e) { %>
-			<li>
-				<%- e.detail %> <span class="count">(<%- e.count %>)</span>
-			</li>
-		<% }); %>
-	</ol>
+	<% if (results[0].detail) { %>
+		<ol class="list-view">
+			<% _.each(results, function(e) { %>
+				<li>
+					<%- e.detail %> <span class="count">(<%- e.count %>)</span>
+				</li>
+			<% }); %>
+		</ol>
+	<% } else { %>
+		<table>
+			<thead>
+				<tr>
+					{% for i in report.fields %}
+						{% if i.2 != 'hidden' %}
+							<th>{{ i.0 }}</th>
+						{% endif %}
+					{% endfor %}
+				</tr>
+			</thead>
+			<tbody>
+				<% _.each(results, function(e) { %>
+					<tr>
+						{% for i in report.fields %}
+							{% if i.2 != 'hidden' %}
+								<td>
+									{% if i.2 == 'currency' %}
+										<%- e.{{ i.1 }}.currency() %>
+									{% elif i.2 == 'datetime' %}
+										<% if (e.{{ i.1 }} != null) { %>
+											<%- d3.time.format('%x %X')(d3.time.format.iso.parse(e.{{ i.1 }})) %>
+										<% } %>
+									{% elif i.2 == 'date' %}
+										{% comment %}Javascript is interpreting the date as UTC, then parsing to the user's local. Bypass that.{% endcomment %}
+										<% if (e.{{ i.1 }} != null) { %>
+											<% var record_dt = e.{{ i.1 }}.split('-'); %>
+											<%- d3.time.format('%x')(new Date(record_dt[0], record_dt[1]-1, record_dt[2])) %>
+										<% } %>
+									{% elif i.2 == 'image' %}
+										<% if (e.{{ i.1 }}) { %>
+											<div class="thumb"><img src="<%- e.{{ i.1 }} %>" /></div>
+										<% } %>
+									{% elif i.2 == 'bool' %}
+										<% if (e.{{ i.1 }}) { %>
+											<img src="/static/admin/img/icon-yes.gif" alt="True">
+										<% } else { %>
+											<img src="/static/admin/img/icon-no.gif" alt="False">
+										<% } %>
+									{% elif i.2 == 'html' %}
+										<%= e.{{ i.1 }} %>
+									{% else %}
+										<%- e.{{ i.1 }} %>
+									{% endif %}
+								</td>
+							{% endif %}
+						{% endfor %}
+					</tr>
+				<% }); %>
+			</tbody>
+		</table>
+	<% } %>
 <% } %>

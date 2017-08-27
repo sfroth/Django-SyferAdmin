@@ -46,6 +46,15 @@ class MockImage(object):
 		self.url = url
 
 
+def absolute_url(url):
+	"Convert a relative URL to an absolute URL"
+	if not url:
+		return
+	if url.startswith('//'):
+		return ''.join(['https:' if settings.Site.enable_ssl else 'http:', url])
+	return ''.join([settings.ROOT_URL, url])
+
+
 def current_currency():
 	from .models import Region
 	try:
