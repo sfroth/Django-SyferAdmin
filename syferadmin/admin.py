@@ -89,6 +89,8 @@ class SyferAdmin(admin.AdminSite):
 			# Set prefiltering for region?
 			report.filter_current_region = settings.SYFERADMIN_DASHBOARD_FILTER_TO_CURRENT_REGION
 
+			if report.date_dependent:
+				context['show_filters'] = True
 			if hasattr(report, 'filters') and report.filters:
 				report_request = {
 					'report': request.GET,
