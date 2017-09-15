@@ -7,7 +7,7 @@ from django.http import Http404
 from django.utils.module_loading import import_string, module_has_submodule
 
 
-__version__ = '1.1.2'
+__version__ = '1.1.3'
 default_app_config = 'syferadmin.apps.SyferAdminConfig'
 
 

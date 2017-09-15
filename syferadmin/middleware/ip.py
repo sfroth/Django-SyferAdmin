@@ -12,7 +12,10 @@ class ForwardedRemoteAddrMiddleware(object):
 	trust the value of HTTP_X_FORWARDED_FOR.
 	"""
 
-	def process_request(self, request):
+	def __init__(self, get_response):
+		self.get_response = get_response
+
+	def __call__(self, request):
 		try:
 			real_ip = request.META['HTTP_X_FORWARDED_FOR']
 		except KeyError:
@@ -22,3 +25,7 @@ class ForwardedRemoteAddrMiddleware(object):
 			# client's IP will be the first one.
 			real_ip = real_ip.split(",")[0].strip()
 			request.META['REMOTE_ADDR'] = real_ip
+
+		response = self.get_response(request)
+
+		return response
