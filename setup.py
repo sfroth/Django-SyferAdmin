@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="syferadmin",
-    version="1.1.1",
+    version="1.1.2",
     author="Stephen Roth",
     author_email="steve@syferweb.com",
     description=("A styled Django admin with built in handling for many common components"),
