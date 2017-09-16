@@ -56,67 +56,67 @@ def load_admin_settings():
 		'Admin': {
 			'date_format': {'type': 'text', 'admin': True, 'default': 'n/j/y h:ia', 'description': "The default date format for created/modified dates in tables"},
 			'login_logo': {'type': 'text', 'default': "/static/syferadmin/img/admin-login-logo.png", 'description': "Logo to replace the title on the login screen (240x34 pixels max)"},
-			# 'timezone': {'type': 'text', 'admin': True, 'default': "US/Pacific", 'description': "The default timezone for the admin (Olson format)"},
-			'Reporting': {
-				'google_analytics_view_id': {'type': 'text', 'admin': True, 'name': 'Google Analytics View ID', 'description': 'Enter your Google Analytics View ID to enable GA-based reports on your dashboard', 'placeholder': 'XXXXXXXX'},
-			},
+			'timezone': {'type': 'text', 'admin': True, 'default': "US/Pacific", 'description': "The default timezone for the admin (Olson format)"},
+			# 'Reporting': {
+			# 	'google_analytics_view_id': {'type': 'text', 'admin': True, 'name': 'Google Analytics View ID', 'description': 'Enter your Google Analytics View ID to enable GA-based reports on your dashboard', 'placeholder': 'XXXXXXXX'},
+			# },
 		},
 		'Company': {
-			'address': {'type': 'textarea'},
-			'email': {'type': 'email'},
-			'hours': {'type': 'textarea'},
-			'legal_name': {'type': 'text', 'description': 'Legal company name. Example: The Company. Inc'},
+		# 	'address': {'type': 'textarea'},
+		# 	'email': {'type': 'email'},
+		# 	'hours': {'type': 'textarea'},
+		# 	'legal_name': {'type': 'text', 'description': 'Legal company name. Example: The Company. Inc'},
 			'name': {'type': 'text'},
-			'phone': {'type': 'tel'},
-			'toll_free_phone': {'type': 'tel', 'placeholder': '(555) 555 5555'},
-			'Social': {
-				'Facebook': {
-					'show': {'type': 'bool'},
-					'url': {'type': 'url', 'name': 'URL', 'placeholder': 'http://facebook.com/example'},
-				},
-				'Google_Plus': {
-					'show': {'type': 'bool'},
-					'url': {'type': 'url', 'name': 'URL', 'placeholder': 'http://plus.google.com/example'},
-				},
-				'Instagram': {
-					'show': {'type': 'bool'},
-					'url': {'type': 'url', 'name': 'URL', 'placeholder': 'http://instagram.com/example'},
-				},
-				'Pinterest': {
-					'show': {'type': 'bool'},
-					'url': {'type': 'url', 'name': 'URL', 'placeholder': 'http://pinterest.com/example'},
-				},
-				'Soundcloud': {
-					'show': {'type': 'bool'},
-					'url': {'type': 'url', 'name': 'URL', 'placeholder': 'https://soundcloud.com/example'},
-				},
-				'Spotify': {
-					'show': {'type': 'bool'},
-					'url': {'type': 'url', 'name': 'URL', 'placeholder': 'http://spotify.com/example'},
-				},
-				'Twitter': {
-					'show': {'type': 'bool'},
-					'url': {'type': 'url', 'name': 'URL', 'placeholder': 'http://twitter.com/example'},
-				},
-				'Tumblr': {
-					'show': {'type': 'bool'},
-					'url': {'type': 'url', 'name': 'URL', 'placeholder': 'http://tumblr.com/example'},
-				},
-				'Vimeo': {
-					'show': {'type': 'bool'},
-					'url': {'type': 'url', 'name': 'URL', 'placeholder': 'http://vimeo.com/example'},
-				},
-				'Youtube': {
-					'show': {'type': 'bool'},
-					'url': {'type': 'url', 'name': 'URL', 'placeholder': 'http://youtube.com/example'},
-				},
-			},
+		# 	'phone': {'type': 'tel'},
+		# 	'toll_free_phone': {'type': 'tel', 'placeholder': '(555) 555 5555'},
+		# 	'Social': {
+		# 		'Facebook': {
+		# 			'show': {'type': 'bool'},
+		# 			'url': {'type': 'url', 'name': 'URL', 'placeholder': 'http://facebook.com/example'},
+		# 		},
+		# 		'Google_Plus': {
+		# 			'show': {'type': 'bool'},
+		# 			'url': {'type': 'url', 'name': 'URL', 'placeholder': 'http://plus.google.com/example'},
+		# 		},
+		# 		'Instagram': {
+		# 			'show': {'type': 'bool'},
+		# 			'url': {'type': 'url', 'name': 'URL', 'placeholder': 'http://instagram.com/example'},
+		# 		},
+		# 		'Pinterest': {
+		# 			'show': {'type': 'bool'},
+		# 			'url': {'type': 'url', 'name': 'URL', 'placeholder': 'http://pinterest.com/example'},
+		# 		},
+		# 		'Soundcloud': {
+		# 			'show': {'type': 'bool'},
+		# 			'url': {'type': 'url', 'name': 'URL', 'placeholder': 'https://soundcloud.com/example'},
+		# 		},
+		# 		'Spotify': {
+		# 			'show': {'type': 'bool'},
+		# 			'url': {'type': 'url', 'name': 'URL', 'placeholder': 'http://spotify.com/example'},
+		# 		},
+		# 		'Twitter': {
+		# 			'show': {'type': 'bool'},
+		# 			'url': {'type': 'url', 'name': 'URL', 'placeholder': 'http://twitter.com/example'},
+		# 		},
+		# 		'Tumblr': {
+		# 			'show': {'type': 'bool'},
+		# 			'url': {'type': 'url', 'name': 'URL', 'placeholder': 'http://tumblr.com/example'},
+		# 		},
+		# 		'Vimeo': {
+		# 			'show': {'type': 'bool'},
+		# 			'url': {'type': 'url', 'name': 'URL', 'placeholder': 'http://vimeo.com/example'},
+		# 		},
+		# 		'Youtube': {
+		# 			'show': {'type': 'bool'},
+		# 			'url': {'type': 'url', 'name': 'URL', 'placeholder': 'http://youtube.com/example'},
+		# 		},
+		# 	},
 		},
 		'Site': {
 			'enable_ssl': {'type': 'bool', 'name': 'Enable SSL?', 'admin': True},
-			'google_tag_manager_container_id': {'type': 'text', 'admin': True, 'name': 'Google Tag Manager Container ID', 'placeholder': 'XXX-XXXXX'},
-			'mode': {'type': 'select', 'default': 'dev', 'admin': True, 'description': 'Website Mode', 'options': [('dev', 'Development'), ('staging', 'Staging'), ('prod', 'Production')]},
-			'site_title_separator': {'type': 'text', 'admin': True, 'name': 'Page Title Tag Item Separator', 'default': '/', 'description': 'Global site title tag separator.'},
+			# 'google_tag_manager_container_id': {'type': 'text', 'admin': True, 'name': 'Google Tag Manager Container ID', 'placeholder': 'XXX-XXXXX'},
+			# 'mode': {'type': 'select', 'default': 'dev', 'admin': True, 'description': 'Website Mode', 'options': [('dev', 'Development'), ('staging', 'Staging'), ('prod', 'Production')]},
+			# 'site_title_separator': {'type': 'text', 'admin': True, 'name': 'Page Title Tag Item Separator', 'default': '/', 'description': 'Global site title tag separator.'},
 		},
 	}
 
