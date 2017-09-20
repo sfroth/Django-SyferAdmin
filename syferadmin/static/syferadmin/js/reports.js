@@ -387,25 +387,25 @@ var Dashboard = {
 		else {
 			if(!this.force || !this.startDate) {
 				// Set end date to now
-				this.endDate = new Date()
+				this.endDate = new Date();
 
 				// Set start date based on end date and range
-				this.startDate = new Date(this.endDate)
+				this.startDate = new Date(this.endDate);
 				switch(this.range) {
 					case 'month':
-						this.startDate.setDate(this.endDate.getDate() - 30)
-						break
+						this.startDate = new Date(this.endDate.getFullYear(), this.endDate.getMonth(), 1);
+						break;
 					case 'week':
-						this.startDate.setDate(this.endDate.getDate() - 6)
-						break
+						this.startDate.setDate(this.endDate.getDate() - 6);
+						break;
 					case 'year':
-						this.startDate.setDate(this.endDate.getDate() - 365)
-						break
+						this.startDate = new Date(this.endDate.getFullYear(), 0, 1);
+						break;
 				}
 
 				// Only grab ones that are type=date
-				$('[name=start_date][type=date]').val(this.startDate.format("yyyy-mm-dd"))
-				$('[name=end_date][type=date]').val(this.endDate.format("yyyy-mm-dd"))
+				$('[name=start_date][type=date]').val(this.startDate.format("yyyy-mm-dd"));
+				$('[name=end_date][type=date]').val(this.endDate.format("yyyy-mm-dd"));
 			}
 		}
 
@@ -415,22 +415,22 @@ var Dashboard = {
 			return;
 		}
 
-		$('[name=start_date][type=date]').val(this.startDate.format("yyyy-mm-dd"))
-		$('[name=end_date][type=date]').val(this.endDate.format("yyyy-mm-dd"))
+		$('[name=start_date][type=date]').val(this.startDate.format("yyyy-mm-dd"));
+		$('[name=end_date][type=date]').val(this.endDate.format("yyyy-mm-dd"));
 
 		// Update the date range under page title
 		var tz = $('header[data-tz-abbrev]').data('tz-abbrev');
 		tz = tz ? ' ' + tz : '';
 		if (this.range == 'day') {
-			$('[data-start-date]').text('12:00AM' + tz)
-			$('[data-end-date]').text('Now')
+			$('[data-start-date]').text('12:00AM' + tz);
+			$('[data-end-date]').text('Now');
 		} else {
-			$('[data-start-date]').text(this.startDate.format("mm/dd/yyyy") + tz)
-			$('[data-end-date]').text(this.endDate.format("mm/dd/yyyy") + tz)
+			$('[data-start-date]').text(this.startDate.format("mm/dd/yyyy") + tz);
+			$('[data-end-date]').text(this.endDate.format("mm/dd/yyyy") + tz);
 		}
 		// Make sure start dates are 00:00 and end dates are 23:59
-		this.startDate.setHours(0, 0, 0)
-		this.endDate.setHours(23, 59, 0)
+		this.startDate.setHours(0, 0, 0);
+		this.endDate.setHours(23, 59, 0);
 		// Set active state
 		$('[data-range=' + this.range + ']').closest('li').addClass('active').siblings().removeClass('active');
 		// Hide time range if this report doesn't use it
