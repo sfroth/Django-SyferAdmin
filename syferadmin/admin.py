@@ -142,6 +142,7 @@ class SyferAdmin(admin.AdminSite):
 		active_url_token = options.pop('active_url_token', None)  # Alternative URL token to match for active status
 		force = options.pop('force', False)
 		ignore_section = options.pop('ignore_section', False)
+		perm = options.pop('perm', False)
 
 		# Unregister on force
 		if force:
@@ -164,6 +165,8 @@ class SyferAdmin(admin.AdminSite):
 			'position': position,
 			'active_url_token': active_url_token,
 		}
+		if perm:
+			sub_section['perm'] = perm
 		# Grab custom section, or AdminSection
 		section = getattr(admin_class, 'section', AdminSection)
 
