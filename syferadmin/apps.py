@@ -63,7 +63,7 @@ def load_admin_settings():
 		},
 		'Company': {
 		# 	'address': {'type': 'textarea'},
-		# 	'email': {'type': 'email'},
+			'email': {'type': 'email'},
 		# 	'hours': {'type': 'textarea'},
 		# 	'legal_name': {'type': 'text', 'description': 'Legal company name. Example: The Company. Inc'},
 			'name': {'type': 'text'},
@@ -115,7 +115,7 @@ def load_admin_settings():
 		'Site': {
 			'enable_ssl': {'type': 'bool', 'name': 'Enable SSL?', 'admin': True},
 			# 'google_tag_manager_container_id': {'type': 'text', 'admin': True, 'name': 'Google Tag Manager Container ID', 'placeholder': 'XXX-XXXXX'},
-			# 'mode': {'type': 'select', 'default': 'dev', 'admin': True, 'description': 'Website Mode', 'options': [('dev', 'Development'), ('staging', 'Staging'), ('prod', 'Production')]},
+			'mode': {'type': 'select', 'default': 'dev', 'admin': True, 'description': 'Website Mode', 'options': [('dev', 'Development'), ('staging', 'Staging'), ('prod', 'Production')]},
 			# 'site_title_separator': {'type': 'text', 'admin': True, 'name': 'Page Title Tag Item Separator', 'default': '/', 'description': 'Global site title tag separator.'},
 		},
 	}
