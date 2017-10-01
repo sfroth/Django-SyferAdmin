@@ -149,7 +149,11 @@ def generate_email(subject, template_path, to_emails, context):
 	context.update({'settings': settings_, 'site': site, 'subject': subject})
 	text, html = [render_to_string(template_path.format(mime_type), context) for mime_type in ('text', 'html')]
 	html = html.replace('href="/', 'href="http://{}/'.format(site))
-	email = EmailMultiAlternatives(subject, text, '{} <{}>'.format(settings_.Company.name, settings_.Company.email), to_emails, headers={'X-MC-Tags': template_name})
+	try:
+		from_email = '{} <{}>'.format(settings_.Company.name, settings_.Company.email)
+	except AttributeError:
+		from_email = settings.DEFAULT_FROM_EMAIL
+	email = EmailMultiAlternatives(subject, text, from_email, to_emails, headers={'X-MC-Tags': template_name})
 	if '<!-- endnoinline -->' in html:
 		html = html.replace('<!-- noinline -->', '<!-- noinline$')
 	html = inline_css(html)

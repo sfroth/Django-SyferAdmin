@@ -426,6 +426,9 @@ class UserAdmin(RegionalAdmin, ActionsAdmin, auth_admin.UserAdmin):
 	def has_delete_permission(self, request, obj=None):
 		return False
 
+	def has_change_permission(self, request, obj=None):
+		return (obj and obj.id == request.user.id) or super().has_change_permission(request, obj)
+
 
 class VideoInline(GenericStackedInline):
 	model = Video
