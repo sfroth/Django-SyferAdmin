@@ -405,7 +405,7 @@ class MetaModel(models.Model):
 	"""
 	Mixin for working with generic key/value store for models.
 	"""
-	meta_set = GenericRelation('Meta')
+	meta_set = GenericRelation('syferadmin.Meta')
 
 	class Meta:
 		abstract = True
