@@ -4,10 +4,14 @@ import os
 
 from django.apps import apps
 from django.conf import settings
-from django.contrib.gis.geoip import GeoIP
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect as httpredirect
 from django.utils import timezone
+
+try:
+	from django.contrib.gis.geoip import GeoIPA
+except ImportError:
+	pass
 
 from ..models import Region
 from ..settings import Settings
@@ -26,8 +30,12 @@ class RegionMiddleware(object):
 		self.get_response = get_response
 
 	def detect_region(self, request):
-		self.detected_country_code = GeoIP(path=settings.SYFERADMIN_GEO_IP_PATH).country_code(request.META['REMOTE_ADDR'])
-		self.log.debug("IP Detected Country for {}: {}".format(request.META['REMOTE_ADDR'], self.detected_country_code))
+		try:
+			self.detected_country_code = GeoIP(path=settings.SYFERADMIN_GEO_IP_PATH).country_code(request.META['REMOTE_ADDR'])
+			self.log.debug("IP Detected Country for {}: {}".format(request.META['REMOTE_ADDR'], self.detected_country_code))
+		except NameError as e:
+			self.detected_country_code = ''
+			self.log.debug("No Detected Country for {}".format(request.META['REMOTE_ADDR']))
 		try:
 			if self.detected_country_code:
 				return Region.objects.get(countries__country_code=self.detected_country_code)
