@@ -49,6 +49,7 @@ class MockAsyncResult(object):
 	def ready(self):
 		return True
 
+	@property
 	def result(self):
 		return self.get()
 

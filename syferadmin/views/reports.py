@@ -45,7 +45,7 @@ def detail(request, token):
 		job = run_report.delay(report_request, token)
 		# Return the report result or the id of the job if celery is running
 		if job.result:
-			data = job.result()
+			data = job.result
 		else:
 			request.session['task_id'] = job.id
 			data = {'job_id': job.id}
