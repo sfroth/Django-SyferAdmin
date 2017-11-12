@@ -6,8 +6,6 @@ from django.template.response import TemplateResponse
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 
-from celery.result import AsyncResult
-
 from syferadmin.csv import UnicodeWriter
 from .. import json
 from ..reports import Report
@@ -47,7 +45,7 @@ def detail(request, token):
 		job = run_report.delay(report_request, token)
 		# Return the report result or the id of the job if celery is running
 		if job.result:
-			data = job.result
+			data = job.result()
 		else:
 			request.session['task_id'] = job.id
 			data = {'job_id': job.id}
@@ -63,8 +61,9 @@ def poll_report_state(request):
 	if not request.is_ajax():
 		raise SuspiciousOperation("No access.")
 	try:
+		from celery.result import AsyncResult
 		result = AsyncResult(request.POST['task_id'])
-	except KeyError:
+	except (ImportError, KeyError):
 		ret = {'error': 'No optimisation (or you may have disabled cookies).'}
 		return HttpResponse(json.dumps(ret))
 	try:
