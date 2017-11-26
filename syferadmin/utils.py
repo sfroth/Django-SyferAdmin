@@ -370,7 +370,7 @@ def source_name_as_path(generator):
 	try:
 		modified_time = time.ctime(os.path.getmtime(str(generator.source.file)))
 	except FileNotFoundError:
-		return ''
+		modified_time = ''
 
 	if source_filename is None or os.path.isabs(source_filename):
 		# Generally, we put the file right in the cache file directory.

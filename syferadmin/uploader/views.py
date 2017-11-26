@@ -9,12 +9,14 @@ def add(request):
 	"Temporarily save an uploaded file"
 
 	# Small hack due to fineuploader not changing the standard parameter names
+	request.POST._mutable = True
 	if 'qquuid' in request.POST:
 		request.POST['uuid'] = request.POST['qquuid']
 	if 'qqtotalfilesize' in request.POST:
 		request.POST['totalfilesize'] = request.POST['qqtotalfilesize']
+	request.POST._mutable = False
 
-	if not 'file' in request.FILES or not 'uuid' in request.POST:
+	if 'file' not in request.FILES or 'uuid' not in request.POST:
 		raise Http404
 
 	result = {'success': False}
